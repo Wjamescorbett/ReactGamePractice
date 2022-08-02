@@ -1,37 +1,21 @@
 import React, { Component } from 'react';
-import TopBar from './TopBar/TopBar';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
+import Home from './Home/Home';
+import Layout from "./Layout/Layout";
 import GameBoard from './GameBoard/GameBoard';
-import axios from 'axios';
-import './App.css'
 
-
-
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            player: '',
-            playerHealth:'',
-            playerAttack:'',
-        }
-    }
-    render(){
-
-    return(
-        <div>
-            <div className="header">
-                <TopBar/>
-            </div>
-            <ul className="satrtLocation">
-                <li><a href='/roomOne'> This goes to room one.</a></li>
-                <li><a href='/roomTwo'> This goes to room two.</a></li>
-            </ul>
-            <div className="gameboard">
-                <GameBoard/>
-            </div>
-        </div>
-        )
-    }
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById("root"));
