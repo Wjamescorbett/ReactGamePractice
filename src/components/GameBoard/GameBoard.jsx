@@ -17,6 +17,9 @@ class GameBoard extends Component {
                     <Link to="/RoomTwo">Link to RoomTwo</Link>
                 </li>
             </ul>
+            <div>
+                <img src={require()} alt="GameRoomOnePNG" />
+            </div>
             </nav>
         )
     }
