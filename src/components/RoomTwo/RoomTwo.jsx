@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 
 class RoomTwo extends Component {
 
@@ -17,6 +18,9 @@ class RoomTwo extends Component {
                     <Link to="/RoomThree">Link to RoomThree</Link>
                 </li>
             </ul>
+            <div>
+                <img src={GameRoomTwoPNG} alt="GameRoomOnePNG" />
+            </div>
             </nav>
         )
     }

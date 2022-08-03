@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import GameRoomOnePNG from './GameRoomOnePNG.png';
 
 class GameBoard extends Component {
 
@@ -18,7 +19,7 @@ class GameBoard extends Component {
                 </li>
             </ul>
             <div>
-                <img src={require()} alt="GameRoomOnePNG" />
+                <img src={GameRoomOnePNG} alt="GameRoomOnePNG" />
             </div>
             </nav>
         )
