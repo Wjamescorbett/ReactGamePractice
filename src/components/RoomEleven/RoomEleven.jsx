@@ -1,31 +1,31 @@
 import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import GameRoomTwelvePNG from './GameRoomTwelvePNG.png';
+import GameRoomElevenPNG from './GameRoomElevenPNG.png';
 
-class RoomTwelve extends Component {
+class RoomEleven extends Component {
 
     render() {
         return (
             <nav>
             <div>
-                <h2>This Is The GameBoard Room Twelve</h2>
+                <h2>This Is The GameBoard Room Eleven</h2>
                 <h2>Change-----------Here</h2>
             </div>
             <h1>this is the homepage</h1>
             <ul>
                 <li>
-                    <Link to="/RoomTen">Link to RoomTen</Link>
+                    <Link to="/RoomFive">Link to RoomFive</Link>
                 </li>
                 <li>
-                    <Link to="/RoomEleven">Link to RoomEleven</Link>
+                    <Link to="/RoomTwelve">Link to RoomTwelve</Link>
                 </li>
             </ul>
             <div>
-                <img src={GameRoomTwelvePNG} alt="GameRoomTenPNG" />
+                <img src={GameRoomElevenPNG} alt="GameRoomElevenPNG" />
             </div>
             </nav>
         )
     }
 }
 
-export default RoomTwelve;
+export default RoomEleven;
