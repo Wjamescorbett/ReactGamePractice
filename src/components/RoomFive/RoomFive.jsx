@@ -9,7 +9,6 @@ class RoomFive extends Component {
             <nav>
             <div>
                 <h2>This Is The GameBoard Room Five</h2>
-                <h5>It is the first "bonfire"</h5>
                 <h2>Change-----------Here</h2>
             </div>
             <h1>this is the homepage</h1>
