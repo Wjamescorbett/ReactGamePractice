@@ -17,28 +17,35 @@ import RoomTen from './RoomTen/RoomTen';
 import RoomEleven from './RoomEleven/RoomEleven';
 import RoomTwelve from './RoomTwelve/RoomTwelve';
 
-export default function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="/GameBoard" element={<GameBoard />} />
-                <Route path="/RoomTwo" element={<RoomTwo />} />
-                <Route path="/RoomThree" element={<RoomThree />} />
-                <Route path="/RoomFour" element={<RoomFour />} />
-                <Route path="/RoomFive" element={<RoomFive />} />
-                <Route path="/RoomSix" element={<RoomSix />} />
-                <Route path="/RoomSeven" element={<RoomSeven />} />
-                <Route path="/RoomEight" element={<RoomEight />} />
-                <Route path="/RoomNine" element={<RoomNine />} />
-                <Route path="/RoomTen" element={<RoomTen />} />
-                <Route path="/RoomEleven" element={<RoomEleven />} />
-                <Route path="/RoomTwelve" element={<RoomTwelve />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            playerHealth: 100,
+            playerAttack: 2,
+        }
+    }
+    render() {
+        return(
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />} />
+                    <Route path="/GameBoard" element={<GameBoard />} />
+                    <Route path="/RoomTwo" element={<RoomTwo />} />
+                    <Route path="/RoomThree" element={<RoomThree />} />
+                    <Route path="/RoomFour" element={<RoomFour />} />
+                    <Route path="/RoomFive" element={<RoomFive />} />
+                    <Route path="/RoomSix" element={<RoomSix />} />
+                    <Route path="/RoomSeven" element={<RoomSeven />} />
+                    <Route path="/RoomEight" element={<RoomEight />} />
+                    <Route path="/RoomNine" element={<RoomNine />} />
+                    <Route path="/RoomTen" element={<RoomTen />} />
+                    <Route path="/RoomEleven" element={<RoomEleven />} />
+                    <Route path="/RoomTwelve" element={<RoomTwelve />} />
+                </Routes>
+            </BrowserRouter>
+        )
+    }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
