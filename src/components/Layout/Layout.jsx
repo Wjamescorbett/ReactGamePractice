@@ -5,7 +5,7 @@ import Home from "../Home/Home";
 const Layout = (props) => {
     return (
     <>
-        <Home playerHealth={props.playerHealth} playerAttack={props.playerAttack} pickClass={props.pickClass} />
+        <Home playerHealth={props.playerHealth} playerAttack={props.playerAttack} playerSpeed={props.playerSpeed} pickClass={props.pickClass} />
         <Outlet />
     </>
     );
