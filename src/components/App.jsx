@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from './Home/Home';
-import Layout from "./Layout/Layout";
+import Navbar from './Navbar/Navbar'
+import Layout from './Layout/Layout';
 import GameBoard from './GameBoard/GameBoard';
 import RoomTwo from './RoomTwo/RoomTwo';
 import RoomThree from './RoomThree/RoomThree';
@@ -28,8 +29,9 @@ class App extends Component {
     render() {
         return(
             <BrowserRouter>
+            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack}/>
                 <Routes>
-                    <Route path="/" element={<Layout />} />
+                    <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} />} />
                     <Route path="/GameBoard" element={<GameBoard />} />
                     <Route path="/RoomTwo" element={<RoomTwo />} />
                     <Route path="/RoomThree" element={<RoomThree />} />
