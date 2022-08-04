@@ -7,6 +7,7 @@ const Navbar = (props) => {
                 <h5>Your Heath is {props.playerHealth}. </h5>
                 <h5>Your Attack is {props.playerAttack}. </h5>
                 <h5>Your Speed is {props.playerSpeed}. </h5>
+                <h5>Your Armor is {props.playerArmor}. </h5>
                 <nav>
                     <ul>
                         <li>

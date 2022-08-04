@@ -25,27 +25,30 @@ class App extends Component {
             playerHealth: 0,
             playerAttack: 0,
             playerSpeed: 0,
+            playerArmor: 0,
             enemyHealth: 0,
             enemyAttack: 0,
             enemySpeed: 0,
+            enemyArmor: 0,
         }
     }
 
-    pickClass = (health, attack, speed) => {
-        console.log(health, attack, speed)
+    pickClass = (health, attack, speed, armor) => {
+        console.log(health, attack, speed, armor)
         this.setState({
             playerHealth: health,
             playerAttack: attack,
             playerSpeed: speed,
-    })
+            playerArmor: armor,
+        })
     }
 
     render() {
         return(
             <BrowserRouter>
-            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} />
+            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor}/>
                 <Routes>
-                    <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} pickClass={this.pickClass} />} />
+                    <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} pickClass={this.pickClass} />} />
                     <Route path="/GameBoard" element={<GameBoard />} />
                     <Route path="/RoomTwo" element={<RoomTwo />} />
                     <Route path="/RoomThree" element={<RoomThree />} />
