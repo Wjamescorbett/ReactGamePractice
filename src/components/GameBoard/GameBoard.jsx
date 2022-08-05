@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomOnePNG from './GameRoomOnePNG.png';
 
-class GameBoard extends Component {
+const GameBoard = (props) => {
 
-    render() {
         return (
             <nav>
             <div>
@@ -15,7 +14,9 @@ class GameBoard extends Component {
             <h1>this is the homepage</h1>
             <ul>
                 <li>
-                    <Link to="/RoomTwo">Link to RoomTwo</Link>
+                    <Link to="/RoomTwo" >
+                        <button className="circle" onClick={() => props.createCircleEnemy(20, 2, 0, 1, 1)}>Go to room Two</button>
+                    </Link>
                 </li>
             </ul>
             <div>
@@ -24,6 +25,6 @@ class GameBoard extends Component {
             </nav>
         )
     }
-}
+
 
 export default GameBoard;

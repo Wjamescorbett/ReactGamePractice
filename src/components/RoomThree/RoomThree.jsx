@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomThreePNG from './GameRoomThreePNG.png';
 
-class RoomThree extends Component {
+const RoomThree = (props) => {
 
-    render() {
         return (
             <nav>
             <div>
@@ -14,7 +13,9 @@ class RoomThree extends Component {
             <h1>filler</h1>
             <ul>
                 <li>
-                    <Link to="/RoomTwo">Link to RoomTwo</Link>
+                    <Link to="/RoomTwo" >
+                        <button className="circle" onClick={() => props.createCircleEnemy(20, 2, 0, 1, 1)}>Go to room Two</button>
+                    </Link>
                 </li>
                 <li>
                     <Link to="/RoomFour">Link to RoomFour</Link>
@@ -28,7 +29,6 @@ class RoomThree extends Component {
             </div>
             </nav>
         )
-    }
 }
 
 export default RoomThree;
