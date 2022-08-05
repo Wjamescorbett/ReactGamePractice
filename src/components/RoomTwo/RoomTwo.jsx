@@ -2,16 +2,30 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 
-class RoomTwo extends Component {
+const RoomTwo = (props) => {
 
-    render() {
+    function handleSubmit(health, attack, speed, armor) {
+        props.circleEnemy(health, attack, speed, armor)
+    }
+
+    function makeCircleEnemy(health, attack, speed, armor) {
+        console.log(health, attack, speed, armor)
+        props.createCircleEnemy(health, attack, speed, armor)
+    }
+
         return (
+
             <nav>
             <div>
                 <h2>This Is The GameBoard Room Two</h2>
-                <h2>Change-----------Here</h2>
+                <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, and {props.enemyArmor} armor. </h2>
+                <button className="circle" onClick={() => makeCircleEnemy(20, 2, 0, 1)}>EncounterCircleEnemy</button>
             </div>
-            <h1>this is the homepage</h1>
+            <div>
+                <button className="attackMove" onClick={() => props.playerAttackMove()}>Attack</button>
+                <button className="dodgeMove">Dodge</button>
+                <button className="healMove">Heal</button>
+            </div>
             <ul>
                 <li>
                     <Link to="/GameBoard">Link to RoomOne</Link>
@@ -28,7 +42,6 @@ class RoomTwo extends Component {
             </div>
             </nav>
         )
-    }
 }
 
 export default RoomTwo;

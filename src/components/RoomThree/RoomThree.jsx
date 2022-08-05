@@ -11,7 +11,7 @@ class RoomThree extends Component {
                 <h2>This Is The GameBoard Room Three</h2>
                 <h2>Change-----------Here</h2>
             </div>
-            <h1>this is the homepage</h1>
+            <h1>filler</h1>
             <ul>
                 <li>
                     <Link to="/RoomTwo">Link to RoomTwo</Link>

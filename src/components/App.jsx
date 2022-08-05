@@ -26,6 +26,7 @@ class App extends Component {
             playerAttack: 0,
             playerSpeed: 0,
             playerArmor: 0,
+            playerCoins: 0,
             enemyHealth: 0,
             enemyAttack: 0,
             enemySpeed: 0,
@@ -33,24 +34,40 @@ class App extends Component {
         }
     }
 
-    pickClass = (health, attack, speed, armor) => {
-        console.log(health, attack, speed, armor)
+    pickClass = (health, attack, speed, armor, coins) => {
+        console.log(health, attack, speed, armor, coins)
         this.setState({
             playerHealth: health,
             playerAttack: attack,
             playerSpeed: speed,
             playerArmor: armor,
+            playerCoins: coins,
+        })
+    }
+
+    createCircleEnemy = (health, attack, speed, armor) => {
+        this.setState({
+            enemyHealth: health,
+            enemyAttack: attack,
+            enemySpeed: speed,
+            enemyArmor: armor,
+        })
+    }
+
+    playerAttackMove = () => {
+        this.setState({
+        enemyHealth: this.state.enemyHealth + this.state.enemyArmor - this.state.playerAttack,
         })
     }
 
     render() {
         return(
             <BrowserRouter>
-            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor}/>
+            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins}/>
                 <Routes>
-                    <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} pickClass={this.pickClass} />} />
+                    <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
                     <Route path="/GameBoard" element={<GameBoard />} />
-                    <Route path="/RoomTwo" element={<RoomTwo />} />
+                    <Route path="/RoomTwo" element={<RoomTwo createCircleEnemy={this.createCircleEnemy} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} />} />
                     <Route path="/RoomThree" element={<RoomThree />} />
                     <Route path="/RoomFour" element={<RoomFour />} />
                     <Route path="/RoomFive" element={<RoomFive />} />
