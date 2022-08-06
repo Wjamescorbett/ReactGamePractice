@@ -77,6 +77,10 @@ class App extends Component {
         enemyHealth: this.state.enemyHealth - playerDamage,
         })
         this.deadCheck(currentPlayerAttack)
+        if(this.state.enemyHealth - currentPlayerAttack >= 0) {
+            this.enemyAttack()
+        }
+        
     }
 
     deadCheck = (playerLastAttack) => {
@@ -90,6 +94,21 @@ class App extends Component {
 
     typeOfEnemyAttack = () => {
 
+    }
+
+    enemyAttack = () => {
+        var enemyDamage = 0
+        var currentEnemyAttack = this.state.enemyAttack - this.state.playerArmor
+        if(currentEnemyAttack <= 0){
+            enemyDamage = 1
+        }
+        else{
+            enemyDamage = currentEnemyAttack
+            currentEnemyAttack = enemyDamage
+        }
+        this.setState({
+            playerHealth: this.state.playerHealth - enemyDamage,
+        })
     }
 
     render() {
