@@ -15,7 +15,7 @@ const GameBoard = (props) => {
             <ul>
                 <li>
                     <Link to="/RoomTwo" >
-                        <button className="circle" onClick={() => props.createCircleEnemy(20, 2, 0, 1, 1)}>Go to room Two</button>
+                        <button className="circle" onClick={() => props.createEnemy(20, 2, 0, 1, 1)}>Go to room Two</button>
                     </Link>
                 </li>
             </ul>

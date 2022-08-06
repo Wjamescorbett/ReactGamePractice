@@ -22,7 +22,9 @@ const RoomTwo = (props) => {
                         <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
                     </Link>
                 <li>
-                    <Link to="/RoomThree">Link to RoomThree</Link>
+                    <Link to="/RoomThree" >
+                        <button className="square" onClick={() => props.createEnemy(15, 4, 1, 2, 2)}>Go to room Three</button>
+                    </Link>
                 </li>
                 <li>
                     <Link to="/RoomSix">Link to RoomSix</Link>
