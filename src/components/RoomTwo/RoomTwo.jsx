@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 
 const RoomTwo = (props) => {
-    if(props.enemyHealth > 0){
+    if(props.roomTwoStatus === 0){
         return (
             <nav>
                 <div>
@@ -11,7 +11,6 @@ const RoomTwo = (props) => {
                 </div>
             <div>
                 <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
-                {/* <button className="circle" onClick={() => makeCircleEnemy(20, 2, 0, 1)}>EncounterCircleEnemy</button> */}
             </div>
             <div>
                 <button className="attackMove" onClick={() => props.playerAttackMove()}>Attack</button>
@@ -19,9 +18,9 @@ const RoomTwo = (props) => {
                 <button className="healMove">Heal</button>
             </div>
             <ul>
-                <li>
-                    <Link to="/GameBoard">Link to RoomOne</Link>
-                </li>
+                    <Link to="/GameBoard" >
+                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
+                    </Link>
                 <li>
                     <Link to="/RoomThree">Link to RoomThree</Link>
                 </li>
@@ -35,19 +34,22 @@ const RoomTwo = (props) => {
             </nav>
         )
     }
-    else {
+
+    if (props.roomTwoStatus === 1 ) {
         return(
             <nav>
                 <div>
                     <h2>This Is The GameBoard Room Two</h2>
                 </div>
             <div>
-                <h2>You killed a dangerous circle. It rewarded you with  a {props.enemyReward} coin. </h2>
+                <h2>You killed a dangerous circle. It rewarded you with {props.enemyReward} coin. </h2>
                 {/* <button className="circle" onClick={() => makeCircleEnemy(20, 2, 0, 1)}>EncounterCircleEnemy</button> */}
             </div>
             <ul>
                 <li>
-                    <Link to="/GameBoard">Link to RoomOne</Link>
+                    <Link to="/GameBoard" >
+                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
+                    </Link>
                 </li>
                 <li>
                     <Link to="/RoomThree">Link to RoomThree</Link>

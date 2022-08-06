@@ -12,7 +12,9 @@ const Navbar = (props) => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/GameBoard">Go To Room One</Link>
+                        <Link to="/GameBoard" >
+                            <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
+                        </Link>
                         </li>
                     </ul>
                 </nav>
