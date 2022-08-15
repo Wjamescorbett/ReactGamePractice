@@ -34,6 +34,7 @@ class App extends Component {
             enemyReward: 0,
             roomTwoStatus: 0,
             roomThreeStatus: 0,
+            goingToRoom: 0,
         }
     }
 
@@ -71,11 +72,15 @@ class App extends Component {
         })
     }
 
-    roomMovement = () => {
+    roomMovement = (nextRoomNumber) => {
+        var goingToRoom = nextRoomNumber
         if(this.state.playerSpeed > 0){
             this.setState({
                 playerSpeed: this.state.playerSpeed - 1,
             })
+            if(goingToRoom === 2){
+            this.createEnemy(20, 2, 0, 1, 1)
+            }
         }
         else{
             this.playerHasNoSpeed()
