@@ -64,6 +64,24 @@ class App extends Component {
         })
     }
 
+    playerHasNoSpeed = () => {
+        alert("You have no more speed!")
+        this.setState({
+            playerSpeed: -100,
+        })
+    }
+
+    roomMovement = () => {
+        if(this.state.playerSpeed > 0){
+            this.setState({
+                playerSpeed: this.state.playerSpeed - 1,
+            })
+        }
+        else{
+            this.playerHasNoSpeed()
+        }
+    }
+
     playerAttackMove = () => {
         var playerDamage = 0
         var currentPlayerAttack = this.state.playerAttack - this.state.enemyArmor
@@ -118,8 +136,8 @@ class App extends Component {
             <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
-                    <Route path="/GameBoard" element={<GameBoard createEnemy={this.createEnemy} />} />
-                    <Route path="/RoomTwo" element={<RoomTwo createEnemy={this.createEnemy} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} />
+                    <Route path="/GameBoard" element={<GameBoard roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo roomMovement={this.roomMovement} createEnemy={this.createEnemy} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} />
                     <Route path="/RoomThree" element={<RoomThree createEnemy={this.createEnemy} playerAttackMove={this.playerAttackMove} roomThreeStatus ={this.state.roomThreeStatus} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} />
                     <Route path="/RoomFour" element={<RoomFour />} />
                     <Route path="/RoomFive" element={<RoomFive />} />

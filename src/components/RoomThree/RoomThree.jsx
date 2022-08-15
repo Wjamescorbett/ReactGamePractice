@@ -22,10 +22,10 @@ const RoomThree = (props) => {
                         <button className="roomButton">Go to room Two</button>
                     </Link>
                 <li>
-                    <Link to="/RoomThree">Link to RoomFour</Link>
+                    <Link to="/RoomFour">Link to RoomFour</Link>
                 </li>
                 <li>
-                    <Link to="/RoomSix">Link to RoomFive</Link>
+                    <Link to="/RoomFive">Link to RoomFive</Link>
                 </li>
             </ul>
             <div>
