@@ -14,11 +14,11 @@ const GameBoard = (props) => {
             <ul>
                 <h3>Health is 5 coins.</h3>
                 <li>
-                    <button className="storeButton"> Buy 10 Health </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore(1)}> Buy 10 Health </button>
                 </li>
                 <h3>Attack is 3 coins.</h3>
                 <li>
-                    <button className="storeButton"> Buy 1 Attack </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore(2)}> Buy 1 Attack </button>
                 </li>
                 <h3>Speed is 2 coins.</h3>
                 <li>
