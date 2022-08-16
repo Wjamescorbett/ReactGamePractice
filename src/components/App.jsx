@@ -30,6 +30,8 @@ class App extends Component {
             maxPlayerSpeed: 0,
             playerArmor: 0,
             playerCoins: 0,
+            playerHealthPotion: 0,
+            playerStaminaPotion: 0,
             enemyHealth: 0,
             enemyAttack: 0,
             enemySpeed: 0,
@@ -45,6 +47,10 @@ class App extends Component {
         }
     }
 
+    buyFromStore = (item) => {
+        
+    }
+
     resetRoomStatus = () => {
         this.setState({
             roomTwoStatus: 0,
@@ -56,8 +62,8 @@ class App extends Component {
         })
     }
 
-    pickClass = (health, maxHealth, attack, speed, maxSpeed, armor, coins) => {
-        console.log(health, maxHealth, attack, speed, maxSpeed, armor, coins)
+    pickClass = (health, maxHealth, attack, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) => {
+        console.log(health, maxHealth, attack, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
         this.setState({
             playerHealth: health,
             maxPlayerHealth: maxHealth,
@@ -66,6 +72,8 @@ class App extends Component {
             maxPlayerSpeed: maxSpeed,
             playerArmor: armor,
             playerCoins: coins,
+            playerHealthPotion: healthPotion,
+            playerStaminaPotion: staminaPotion,
         })
     }
 
@@ -170,7 +178,7 @@ class App extends Component {
     render() {
         return(
             <BrowserRouter>
-            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} resetRoomStatus={this.resetRoomStatus} />
+            <Navbar playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
                     <Route path="/GameBoard" element={<GameBoard roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
