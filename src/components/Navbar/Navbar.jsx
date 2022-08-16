@@ -18,6 +18,9 @@ const Navbar = (props) => {
                             <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
                         </Link>
                         </li>
+                        <li>
+                            <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
+                        </li>
                     </ul>
                 </nav>
             </div>

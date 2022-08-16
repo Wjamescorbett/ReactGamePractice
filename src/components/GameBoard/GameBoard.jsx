@@ -12,29 +12,29 @@ const GameBoard = (props) => {
                 <h2>Here is the store! Spend coins to upgrade yourself.</h2>
             </div>
             <ul>
-                <h3>Health is 5 coins.</h3>
+                <h3>Health is 5 coins. (Gives you +10 max health) </h3>
                 <li>
-                    <button className="storeButton" onClick={() => props.buyFromStore(1)}> Buy 10 Health </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("health")}> Buy 10 Health </button>
                 </li>
-                <h3>Attack is 3 coins.</h3>
+                <h3>Attack is 3 coins. (Upgrades your attack by 1) </h3>
                 <li>
-                    <button className="storeButton" onClick={() => props.buyFromStore(2)}> Buy 1 Attack </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("attack")}> Buy 1 Attack </button>
                 </li>
-                <h3>Speed is 2 coins.</h3>
+                <h3>Speed is 2 coins. (Upgrades your speed by 1) </h3>
                 <li>
-                    <button className="storeButton"> Buy 1 Speed </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("speed")}> Buy 1 Speed </button>
                 </li>
-                <h3>Armor is 3 coins.</h3>
+                <h3>Armor is 3 coins. (Upgrades your armor by 1) </h3>
                 <li>
-                    <button className="storeButton"> Buy 1 Armor </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("armor")}> Buy 1 Armor </button>
                 </li>
-                <h3>Health Potion is 2 coins.</h3>
+                <h3>Health Potion is 2 coins. (Gives you another health potion, max 10) </h3>
                 <li>
-                    <button className="storeButton"> Buy 1 Health Potion </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("healthPotion")}> Buy 1 Health Potion </button>
                 </li>
-                <h3>Stamina Potion is 1 coin.</h3>
+                <h3>Stamina Potion is 1 coin. (Gives you another stamina potion, max 8) </h3>
                 <li>
-                    <button className="storeButton"> Buy 1 Stamina Potion </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("staminaPotion")}> Buy 1 Stamina Potion </button>
                 </li>
             </ul>
             <ul>
