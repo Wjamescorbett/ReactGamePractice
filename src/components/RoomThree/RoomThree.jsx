@@ -7,7 +7,7 @@ const RoomThree = (props) => {
         return (
             <nav>
                 <div>
-                    <h2>This Is The GameBoard Room Three</h2>
+                    <h2>This Is Room Three</h2>
                 </div>
             <div>
                 <h2>You are encountering a dangerous Square. It has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coins. </h2>
@@ -17,13 +17,31 @@ const RoomThree = (props) => {
                 <button className="dodgeMove">Dodge</button>
                 <button className="healMove">Heal</button>
             </div>
-            <ul>
-                    <Link to="/RoomTwo" >
-                        <button className="roomButton">Go to room Two</button>
-                    </Link>
+
+            <div>
+                <img src={GameRoomThreePNG} alt="GameRoomOnePNG" />
+            </div>
+            </nav>
+        )
+    }
+    if(props.roomThreeStatus === 1){
+        return (
+            <nav>
+                <div>
+                    <h2>This is Room Three</h2>
+                </div>
+                <div>
+                    <h2>You killed the dangerous Square! It rewarded you with {props.enemyReward} coins.</h2>
+                </div>
+                <ul>
                 <li>
-                    <Link to="/RoomFour">Link to RoomFour</Link>
+                    <Link to="/RoomTwo" >
+                        <button className="circle" onClick={() => props.roomMovement(2)}>Go to room Two</button>
+                    </Link>
                 </li>
+                <Link to="/RoomFour" >
+                        <button className="circle" onClick={() => props.roomMovement(4)}>Go to room Four</button>
+                    </Link>
                 <li>
                     <Link to="/RoomFive">Link to RoomFive</Link>
                 </li>
@@ -34,31 +52,6 @@ const RoomThree = (props) => {
             </nav>
         )
     }
-        // return (
-        //     <nav>
-        //     <div>
-        //         <h2>This Is The GameBoard Room Three</h2>
-        //         <h2>Change-----------Here</h2>
-        //     </div>
-        //     <h1>filler</h1>
-        //     <ul>
-        //         <li>
-        //             <Link to="/RoomTwo" >
-        //                 <button className="circle" onClick={() => props.createCircleEnemy(20, 2, 0, 1, 1)}>Go to room Two</button>
-        //             </Link>
-        //         </li>
-        //         <li>
-        //             <Link to="/RoomFour">Link to RoomFour</Link>
-        //         </li>
-        //         <li>
-        //             <Link to="/RoomFive">Link to RoomFive</Link>
-        //         </li>
-        //     </ul>
-        //     <div>
-        //         <img src={GameRoomThreePNG} alt="GameRoomThreePNG" />
-        //     </div>
-        //     </nav>
-        // )
 }
 
 export default RoomThree;
