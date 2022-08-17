@@ -17,11 +17,6 @@ const RoomFour = (props) => {
                 <button className="dodgeMove">Dodge</button>
                 <button className="healMove">Heal</button>
             </div>
-            <ul>
-                    <Link to="/GameBoard" >
-                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
-                    </Link>
-            </ul>
             <div>
                 <img src={GameRoomFourPNG} alt="GameRoomOnePNG" />
             </div>
@@ -41,17 +36,9 @@ const RoomFour = (props) => {
             </div>
             <ul>
                 <li>
-                    <Link to="/GameBoard" >
-                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
-                    </Link>
-                </li>
-                <li>
                     <Link to="/RoomThree" >
                     <button className="square" onClick={() => props.roomMovement(3)}>Go to room Three</button>
                     </Link>
-                </li>
-                <li>
-                    <Link to="/RoomSix">Link to RoomSix</Link>
                 </li>
             </ul>
             <div>

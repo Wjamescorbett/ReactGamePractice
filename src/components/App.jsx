@@ -46,6 +46,13 @@ class App extends Component {
             currentRoomStatus: 0,
         }
     }
+    devButton = () => {
+        this.setState({
+            playerHealth: this.state.maxPlayerHealth,
+            playerAttack: this.state.playerAttack + 5,
+            playerCoins: this.state.playerCoins + 100,
+        })
+    }
 
     useHealthPotion = () => {
         if(this.state.playerHealthPotion <= 0){
@@ -170,7 +177,7 @@ class App extends Component {
     }
 
     playerHasNoSpeed = () => {
-        alert("You have no more speed! You took 10 damage. Return to Room One to regain your speed.")
+        alert("You have no more speed! You took 10 damage. Return to Room One or use a stamina potion to regain your speed.")
         this.setState({
             playerHealth: this.state.playerHealth - 10,
         })
@@ -185,10 +192,10 @@ class App extends Component {
             if(currentRoom === 2 & this.state.roomTwoStatus === 0){
             this.createEnemy(20, 2, 0, 1, 1)
             }
-            if(currentRoom === 3){
+            if(currentRoom === 3 & this.state.roomThreeStatus === 0){
                 this.createEnemy(15, 4, 1, 2, 2)
             }
-            if(currentRoom === 4){
+            if(currentRoom === 4 & this.state.roomFourStatus === 0){
                 this.createEnemy(50, 5, 4, 3, 30)
             }
         }
@@ -236,6 +243,11 @@ class App extends Component {
                 roomThreeStatus: 1,
             })
         }
+        if(this.state.currentRoom === 4){
+            this.setState({
+                roomFourStatus: 1,
+            })
+        }
     }
 
     typeOfEnemyAttack = () => {
@@ -260,7 +272,7 @@ class App extends Component {
     render() {
         return(
             <BrowserRouter>
-            <Navbar useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
+            <Navbar maxHealth={this.state.maxPlayerHealth} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
