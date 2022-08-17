@@ -22,6 +22,9 @@ const Navbar = (props) => {
                             <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                         </li>
                         <li>
+                            <button className="staminaPotion" onClick={() => props.useStaminaPotion()}>Use stamina potion</button>
+                        </li>
+                        <li>
                             <button className="devButton" onClick={() => props.devButton()}>DEV BUTTON</button>
                         </li>
                     </ul>

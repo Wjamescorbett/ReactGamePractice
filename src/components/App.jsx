@@ -33,7 +33,7 @@ class App extends Component {
             playerHealthPotion: 0,
             playerStaminaPotion: 0,
             enemyHealth: 0,
-            enemyAttack: 0,
+            enemyAttack: -1,
             enemySpeed: 0,
             enemyArmor: 0,
             enemyReward: 0,
@@ -46,6 +46,7 @@ class App extends Component {
             currentRoomStatus: 0,
         }
     }
+
     devButton = () => {
         this.setState({
             playerHealth: this.state.maxPlayerHealth,
@@ -60,13 +61,27 @@ class App extends Component {
         }
         if(this.state.playerHealth + 25 > this.state.maxPlayerHealth){
             this.setState({
-                playerHealthPotion: this.state.playerHealthPotion -1,
+                playerHealthPotion: this.state.playerHealthPotion - 1,
                 playerHealth: this.state.maxPlayerHealth,
             })
         } else {
             this.setState({
-                playerHealthPotion: this.state.playerHealthPotion -1,
+                playerHealthPotion: this.state.playerHealthPotion - 1,
                 playerHealth: this.state.playerHealth + 25,
+            })
+        }
+    }
+
+    useStaminaPotion = () => {
+        if(this.state.playerStaminaPotion <= 0){
+            return(alert("You are out of stamina potions!"))
+        }
+        if(this.state.playerSpeed === this.state.maxPlayerSpeed){
+            return(alert("You're already at max speed!"))
+        } else {
+            this.setState({
+                playerStaminaPotion: this.state.playerStaminaPotion - 1,
+                playerSpeed: this.state.maxPlayerSpeed,
             })
         }
     }
@@ -196,7 +211,7 @@ class App extends Component {
                 this.createEnemy(15, 4, 1, 2, 2)
             }
             if(currentRoom === 4 & this.state.roomFourStatus === 0){
-                this.createEnemy(50, 5, 4, 3, 30)
+                this.createEnemy(50, 5, 4, 3, 15)
             }
         }
         else{
@@ -227,7 +242,11 @@ class App extends Component {
         if(this.state.enemyHealth - playerLastAttack <= 0){
             this.setState({
                 playerCoins: this.state.playerCoins + this.state.enemyReward,
+                enemyAttack: -1,
+                enemyHealth: 0,
             })
+        }
+        if(this.state.enemyAttack === -1){
             this.setCurrentRoomStatusClearEnemy()
         }
     }
@@ -272,7 +291,7 @@ class App extends Component {
     render() {
         return(
             <BrowserRouter>
-            <Navbar maxHealth={this.state.maxPlayerHealth} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
+            <Navbar maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />

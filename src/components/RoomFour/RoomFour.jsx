@@ -31,8 +31,7 @@ const RoomFour = (props) => {
                     <h2>This Is The GameBoard Room Two</h2>
                 </div>
             <div>
-                <h2>You killed a dangerous circle. It rewarded you with {props.enemyReward} coin. </h2>
-                {/* <button className="circle" onClick={() => makeCircleEnemy(20, 2, 0, 1)}>EncounterCircleEnemy</button> */}
+                <h2>You killed a dangerous circle. It rewarded you with {props.enemyReward} coins. </h2>
             </div>
             <ul>
                 <li>
