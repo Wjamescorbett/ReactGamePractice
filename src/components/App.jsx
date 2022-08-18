@@ -34,10 +34,20 @@ class App extends Component {
             playerStaminaPotion: 0,
             enemyAlive: 0,
             enemyHealth: 0,
-            enemyAttack: -1,
+            enemyAttack: 0,
             enemySpeed: 0,
             enemyArmor: 0,
             enemyReward: 0,
+            enemy2Health: 0,
+            enemy2Attack: 0,
+            enemy2Speed: 0,
+            enemy2Armor: 0,
+            enemy2Reward: 0,
+            enemy3Health: 0,
+            enemy3Attack: 0,
+            enemy3Speed: 0,
+            enemy3Armor: 0,
+            enemy3Reward: 0,
             roomTwoStatus: 0,
             roomThreeStatus: 0,
             roomFourStatus: 0,
@@ -182,13 +192,23 @@ class App extends Component {
         })
     }
 
-    createEnemy = (health, attack, speed, armor, reward) => {
+    createEnemy = (health, attack, speed, armor, reward, health2, attack2, speed2, armor2, reward2, health3, attack3, speed3, armor3, reward3) => {
         this.setState({
             enemyHealth: health,
             enemyAttack: attack,
             enemySpeed: speed,
             enemyArmor: armor,
             enemyReward: reward,
+            enemy2Health: health2,
+            enemy2Attack: attack2,
+            enemy2Speed: speed2,
+            enemy2Armor: armor2,
+            enemy2Reward: reward2,
+            enemy3Health: health3,
+            enemy3Attack: attack3,
+            enemy3Speed: speed3,
+            enemy3Armor: armor3,
+            enemy3Reward: reward3,
         })
     }
 
@@ -206,13 +226,13 @@ class App extends Component {
                 playerSpeed: this.state.playerSpeed - 1,
             })
             if(currentRoom === 2 & this.state.roomTwoStatus === 0){
-            this.createEnemy(20, 2, 0, 1, 1)
+            this.createEnemy(20, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             }
             if(currentRoom === 3 & this.state.roomThreeStatus === 0){
-                this.createEnemy(15, 4, 1, 2, 2)
+                this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             }
             if(currentRoom === 4 & this.state.roomFourStatus === 0){
-                this.createEnemy(50, 5, 4, 3, 15)
+                this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             }
         }
         else{
@@ -243,12 +263,12 @@ class App extends Component {
         if(this.state.enemyHealth - playerLastAttack <= 0){
             this.setState({
                 playerCoins: this.state.playerCoins + this.state.enemyReward,
-                enemyAttack: -1,
+                enemyAttack: 0,
                 enemyHealth: 0,
             })
-        }
-        if(this.state.enemyAttack === -1){
-            this.setCurrentRoomStatusClearEnemy()
+            if(this.state.enemyHealth <= 0 & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0){
+                this.setCurrentRoomStatusClearEnemy()
+            }
         }
     }
 
