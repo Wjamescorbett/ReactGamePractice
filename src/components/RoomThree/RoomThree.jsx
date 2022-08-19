@@ -13,7 +13,7 @@ const RoomThree = (props) => {
                 <h2>You are encountering a dangerous Square. It has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coins. </h2>
             </div>
             <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove()}>Attack</button>
+                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack</button>
                 <button className="dodgeMove">Dodge</button>
                 <button className="healMove">Heal</button>
             </div>

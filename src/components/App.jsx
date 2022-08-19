@@ -38,16 +38,19 @@ class App extends Component {
             enemySpeed: 0,
             enemyArmor: 0,
             enemyReward: 0,
+            enemyRewardCheck: 0,
             enemy2Health: 0,
             enemy2Attack: 0,
             enemy2Speed: 0,
             enemy2Armor: 0,
             enemy2Reward: 0,
+            enemy2RewardCheck: 0,
             enemy3Health: 0,
             enemy3Attack: 0,
             enemy3Speed: 0,
             enemy3Armor: 0,
             enemy3Reward: 0,
+            enemy3RewardCheck: 0,
             roomTwoStatus: 0,
             roomThreeStatus: 0,
             roomFourStatus: 0,
@@ -170,10 +173,13 @@ class App extends Component {
         this.setState({
             roomTwoStatus: 0,
             roomThreeStatus: 0,
-            roomFourStatus: 0,
             roomFiveStatus: 0,
             roomSixStatus: 0,
+            enemyRewardCheck: 0,
+            enemy2RewardCheck: 0,
+            enemy3RewardCheck: 0,
             playerSpeed: this.state.maxPlayerSpeed,
+
         })
     }
 
@@ -224,6 +230,9 @@ class App extends Component {
             this.setState({
                 currentRoom: currentRoom,
                 playerSpeed: this.state.playerSpeed - 1,
+                enemyRewardCheck: 0,
+                enemy2RewardCheck: 0,
+                enemy3RewardCheck: 0,
             })
             if(currentRoom === 2 & this.state.roomTwoStatus === 0){
             this.createEnemy(20, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -240,35 +249,92 @@ class App extends Component {
         }
     }
 
-    playerAttackMove = () => {
-        var playerDamage = 0
-        var currentPlayerAttack = this.state.playerAttack - this.state.enemyArmor
-        if(currentPlayerAttack <= 0){
-            playerDamage = 1
+    playerAttackMove = (attackEnemy) => {
+        var currentPlayerAttack = 0
+        if(attackEnemy === 1 & this.state.enemyHealth <= 0){
+            alert("You killed this enemy!")
         }
-        else{
-            playerDamage = currentPlayerAttack
-            currentPlayerAttack = playerDamage
+        if(attackEnemy === 1 & this.state.enemyHealth > 0){
+            currentPlayerAttack = this.state.playerAttack - this.state.enemyArmor
+            if(currentPlayerAttack <= 0){
+                currentPlayerAttack = 1
+            }
+            this.setState({
+                enemyHealth: this.state.enemyHealth - currentPlayerAttack,
+            })
         }
-        this.setState({
-        enemyHealth: this.state.enemyHealth - playerDamage,
-        })
+        if(attackEnemy === 2 & this.state.enemy2Health <= 0){
+            alert("You killed this enemy!")
+        }
+        if(attackEnemy === 2 & this.state.enemy2Health > 0){
+            currentPlayerAttack = this.state.playerAttack - this.state.enemy2Armor
+            if(currentPlayerAttack <= 0){
+                currentPlayerAttack = 1
+            }
+            this.setState({
+                enemy2Health: this.state.enemy2Health - currentPlayerAttack,
+            })
+        }
+        if(attackEnemy === 3 & this.state.enemy3Health <= 0){
+            alert("You killed this enemy!")
+        }
+        if(attackEnemy === 3 & this.state.enemy3Health > 0){
+            currentPlayerAttack = this.state.playerAttack - this.state.enemy3Armor
+            if(currentPlayerAttack <= 0){
+                currentPlayerAttack = 1
+            }
+            this.setState({
+                enemy3Health: this.state.enemy3Health - currentPlayerAttack,
+            })
+        }
         this.deadCheck(currentPlayerAttack)
-        if(this.state.enemyHealth - currentPlayerAttack >= 0) {
-            this.enemyAttack()
+    }
+
+    deadCheckSetState = (enemyNumber) => {
+        if(enemyNumber === 1){
+            this.setState({
+                playerCoins: this.state.playerCoins + this.state.enemyReward,
+                enemyRewardCheck: 1,
+                enemyHealth: 0,
+            })
+        }
+        if(enemyNumber === 2){
+            this.setState({
+                playerCoins: this.state.playerCoins + this.state.enemy2Reward,
+                enemy2RewardCheck: 1,
+                enemy2Health: 0,
+            })
+        }
+        if(enemyNumber === 3){
+            this.setState({
+                playerCoins: this.state.playerCoins + this.state.enemy3Reward,
+                enemy3RewardCheck: 1,
+                enemy3Health: 0,
+            })
         }
     }
 
-    deadCheck = (playerLastAttack) => {
-        if(this.state.enemyHealth - playerLastAttack <= 0){
-            this.setState({
-                playerCoins: this.state.playerCoins + this.state.enemyReward,
-                enemyAttack: 0,
-                enemyHealth: 0,
-            })
-            if(this.state.enemyHealth <= 0 & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0){
-                this.setCurrentRoomStatusClearEnemy()
+    deadCheck = (currentPlayerAttack) => {
+        if(this.state.enemyHealth - currentPlayerAttack <= 0){
+            if(this.state.enemyRewardCheck === 0){
+                this.deadCheckSetState(1)
             }
+        }
+        if(this.state.enemy2Health - currentPlayerAttack <= 0) {
+            if(this.state.enemy2RewardCheck === 0){
+                this.deadCheckSetState(2)
+            }
+        }
+        if(this.state.enemy3Health - currentPlayerAttack <= 0) {
+            if(this.state.enemy3RewardCheck === 0){
+                this.deadCheckSetState(3)
+            }
+        }
+        if(this.state.enemyHealth <= 0 & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0){
+            this.setCurrentRoomStatusClearEnemy()
+        }
+        if(this.state.enemyHealth + this.state.enemy2Health + this.state.enemy3Health > 0){
+            this.enemyCounterAttack()
         }
     }
 
@@ -294,19 +360,28 @@ class App extends Component {
 
     }
 
-    enemyAttack = () => {
-        var enemyDamage = 0
+    enemyCounterAttack = () => {
         var currentEnemyAttack = this.state.enemyAttack - this.state.playerArmor
+        var currentEnemy2Attack = this.state.enemy2Attack - this.state.playerArmor
+        var currentEnemy3Attack = this.state.enemy3Attack - this.state.playerArmor
         if(currentEnemyAttack <= 0){
-            enemyDamage = 1
+            currentEnemyAttack = 1
         }
-        else{
-            enemyDamage = currentEnemyAttack
-            currentEnemyAttack = enemyDamage
+        if(this.state.enemyHealth > 0){
+            this.setState({
+                playerHealth: this.state.playerHealth - currentEnemyAttack,
+            })
         }
-        this.setState({
-            playerHealth: this.state.playerHealth - enemyDamage,
-        })
+        if(this.state.enemy2Health > 0){
+            this.setState({
+                playerHealth: this.state.playerHealth - currentEnemy2Attack,
+            })
+        }
+        if(this.state.enemy3Health > 0){
+            this.setState({
+                playerHealth: this.state.playerHealth - currentEnemy3Attack,
+            })
+        }
     }
 
     openChest = () => {
