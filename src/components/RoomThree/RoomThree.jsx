@@ -17,7 +17,6 @@ const RoomThree = (props) => {
                 <button className="dodgeMove">Dodge</button>
                 <button className="healMove">Heal</button>
             </div>
-
             <div>
                 <img src={GameRoomThreePNG} alt="GameRoomOnePNG" />
             </div>

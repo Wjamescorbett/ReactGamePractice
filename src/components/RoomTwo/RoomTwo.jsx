@@ -17,11 +17,6 @@ const RoomTwo = (props) => {
                 <button className="dodgeMove">Dodge</button>
                 <button className="healMove">Heal</button>
             </div>
-            <ul>
-                    <Link to="/GameBoard" >
-                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
-                    </Link>
-            </ul>
             <div>
                 <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
             </div>

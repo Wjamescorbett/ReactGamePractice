@@ -20,11 +20,6 @@ const RoomSix = (props) => {
                 <button className="dodgeMove">Dodge</button>
                 <button className="healMove">Heal</button>
             </div>
-            <ul>
-                    <Link to="/GameBoard" >
-                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
-                    </Link>
-            </ul>
             <div>
                 <img src={GameRoomSixPNG} alt="GameRoomSixPNG" />
             </div>
@@ -40,7 +35,6 @@ const RoomSix = (props) => {
                 </div>
             <div>
                 <h2>You killed both dangerous circles. They rewarded you with {props.enemyReward} coins each. </h2>
-                {/* <button className="circle" onClick={() => makeCircleEnemy(20, 2, 0, 1)}>EncounterCircleEnemy</button> */}
             </div>
             <ul>
                 <li>
