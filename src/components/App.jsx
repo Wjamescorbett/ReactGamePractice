@@ -222,6 +222,9 @@ class App extends Component {
         alert("You have no more speed! You took 10 damage. Return to Room One or use a stamina potion to regain your speed.")
         this.setState({
             playerHealth: this.state.playerHealth - 10,
+            enemyRewardCheck: 0,
+            enemy2RewardCheck: 0,
+            enemy3RewardCheck: 0,
         })
     }
 
@@ -234,18 +237,21 @@ class App extends Component {
                 enemy2RewardCheck: 0,
                 enemy3RewardCheck: 0,
             })
-            if(currentRoom === 2 & this.state.roomTwoStatus === 0){
+        }
+        if(this.state.playerSpeed <= 0){
+            this.playerHasNoSpeed()
+        }
+        if(currentRoom === 2 & this.state.roomTwoStatus === 0){
             this.createEnemy(20, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             }
-            if(currentRoom === 3 & this.state.roomThreeStatus === 0){
-                this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            }
-            if(currentRoom === 4 & this.state.roomFourStatus === 0){
-                this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            }
+        if(currentRoom === 3 & this.state.roomThreeStatus === 0){
+            this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         }
-        else{
-            this.playerHasNoSpeed()
+        if(currentRoom === 4 & this.state.roomFourStatus === 0){
+            this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        }
+        if(currentRoom === 6 & this.state.roomSixStatus === 0){
+            this.createEnemy(20, 2, 0, 1, 1, 20, 2, 0, 1, 1, 0, 0, 0, 0, 0,)
         }
     }
 
@@ -334,7 +340,7 @@ class App extends Component {
             this.setCurrentRoomStatusClearEnemy()
         }
         if(this.state.enemyHealth + this.state.enemy2Health + this.state.enemy3Health > 0){
-            this.enemyCounterAttack()
+            this.enemyCounterAttack(currentPlayerAttack)
         }
     }
 
@@ -360,24 +366,24 @@ class App extends Component {
 
     }
 
-    enemyCounterAttack = () => {
+    enemyCounterAttack = (currentPlayerAttack) => {
         var currentEnemyAttack = this.state.enemyAttack - this.state.playerArmor
         var currentEnemy2Attack = this.state.enemy2Attack - this.state.playerArmor
         var currentEnemy3Attack = this.state.enemy3Attack - this.state.playerArmor
         if(currentEnemyAttack <= 0){
             currentEnemyAttack = 1
         }
-        if(this.state.enemyHealth > 0){
+        if(this.state.enemyHealth - currentPlayerAttack > 0){
             this.setState({
                 playerHealth: this.state.playerHealth - currentEnemyAttack,
             })
         }
-        if(this.state.enemy2Health > 0){
+        if(this.state.enemy2Health - currentPlayerAttack > 0){
             this.setState({
                 playerHealth: this.state.playerHealth - currentEnemy2Attack,
             })
         }
-        if(this.state.enemy3Health > 0){
+        if(this.state.enemy3Health - currentPlayerAttack > 0){
             this.setState({
                 playerHealth: this.state.playerHealth - currentEnemy3Attack,
             })

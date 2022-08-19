@@ -51,7 +51,9 @@ const RoomTwo = (props) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/RoomSix">Link to RoomSix</Link>
+                    <Link to="/RoomSix">
+                        <button className="circle" onClick={() => props.roomMovement(6)}>Go to room Six</button>
+                    </Link>
                 </li>
             </ul>
             <div>
