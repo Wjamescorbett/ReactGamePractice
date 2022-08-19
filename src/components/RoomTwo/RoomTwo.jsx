@@ -23,7 +23,7 @@ const RoomTwo = (props) => {
                     </Link>
             </ul>
             <div>
-                <img src={GameRoomTwoPNG} alt="GameRoomOnePNG" />
+                <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
             </div>
             </nav>
         )
@@ -57,7 +57,7 @@ const RoomTwo = (props) => {
                 </li>
             </ul>
             <div>
-                <img src={GameRoomTwoPNG} alt="GameRoomOnePNG" />
+                <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
             </div>
             </nav>
         )
