@@ -32,6 +32,7 @@ class App extends Component {
             playerCoins: 0,
             playerHealthPotion: 0,
             playerStaminaPotion: 0,
+            healthPotionEffect: 25,
             enemyAlive: 0,
             enemyHealth: 0,
             enemyAttack: 0,
@@ -74,7 +75,7 @@ class App extends Component {
         if(this.state.playerHealthPotion <= 0){
             return(alert("You are out of health potions!"))
         }
-        if(this.state.playerHealth + 25 > this.state.maxPlayerHealth){
+        if(this.state.playerHealth + this.state.healthPotionEffect > this.state.maxPlayerHealth){
             this.setState({
                 playerHealthPotion: this.state.playerHealthPotion - 1,
                 playerHealth: this.state.maxPlayerHealth,
@@ -82,7 +83,7 @@ class App extends Component {
         } else {
             this.setState({
                 playerHealthPotion: this.state.playerHealthPotion - 1,
-                playerHealth: this.state.playerHealth + 25,
+                playerHealth: this.state.playerHealth + this.state.healthPotionEffect,
             })
         }
     }
@@ -252,9 +253,9 @@ class App extends Component {
             this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         }
         if(currentRoom === 6 & this.state.roomSixStatus === 0){
-            this.createEnemy(20, 2, 0, 1, 1, 20, 2, 0, 1, 1, 0, 0, 0, 0, 0,)
+            this.createEnemy(20, 2, 0, 1, 1, 20, 2, 0, 1, 1, 0, 0, 0, 0, 0)
         }
-        if(currentRoom === 7 % this.state.roomSevenStatus === 0){
+        if(currentRoom === 7 & this.state.roomSevenStatus === 0){
             this.createEnemy(15, 4, 1, 2, 2, 15, 4, 1, 2, 2, 0, 0, 0, 0, 0)
         }
     }
@@ -421,7 +422,7 @@ class App extends Component {
     openChest = () => {
         if(this.state.currentRoom === 4){
             this.setState({
-                playerArmor: this.state.playerArmor + 2,
+                healthPotionEffect: this.state.healthPotionEffect + 15,
                 roomFourStatus: 2,
             })
         }
@@ -430,7 +431,7 @@ class App extends Component {
     render() {
         return(
             <BrowserRouter>
-            <Navbar maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
+            <Navbar healthPotionEffect={this.state.healthPotionEffect} maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
 
@@ -446,7 +447,7 @@ class App extends Component {
 
                     <Route path="/RoomSix" element={<RoomSix resetRoomStatus={this.resetRoomStatus} roomSixStatus={this.state.roomSixStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
-                    <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} roomSevenStatus={this.state.roomSixStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
+                    <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} roomSevenStatus={this.state.roomSevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
                     <Route path="/RoomEight" element={<RoomEight />} />
                     <Route path="/RoomNine" element={<RoomNine />} />

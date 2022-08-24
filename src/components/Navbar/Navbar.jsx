@@ -9,7 +9,7 @@ const Navbar = (props) => {
                 <h5>Your Speed is {props.playerSpeed}. </h5>
                 <h5>Your Armor is {props.playerArmor}. </h5>
                 <h5>You have {props.playerCoins} coins. </h5>
-                <h5>You have {props.playerHealthPotion} health potions. </h5>
+                <h5>You have {props.playerHealthPotion} health potions. {props.healthPotionEffect} healing per. </h5>
                 <h5>You have {props.playerStaminaPotion} stamina potions. </h5>
                 <nav>
                     <ul>
