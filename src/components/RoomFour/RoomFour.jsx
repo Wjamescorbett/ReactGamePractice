@@ -54,7 +54,7 @@ const RoomFour = (props) => {
                     <h2>This Is The GameBoard Room Four</h2>
                 </div>
                 <div>
-                    <h2>You killed the boss triangle. It rewarded you with {props.enemyReward} and left a chest. </h2>
+                    <h2>You killed the boss triangle. It rewarded you with {props.enemyReward} coins and left a chest. </h2>
                     <h2>You opened the chest in this room. It rewarded you with +15 health per health potion.</h2>
                 </div>
                 <ul>
