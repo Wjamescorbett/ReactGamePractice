@@ -10,9 +10,10 @@ const RoomNine = (props) => {
                     <h2>This Is Room Nine</h2>
                 </div>
             <div>
-                <h2>You are encountering two dangerous Squares. </h2>
-                <h2>The first square has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
-                <h2>The second dangerous square has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
+                <h2>You are encountering three different shapes! Be careful and think about what you should attack first. </h2>
+                <h2>Enemy one is a ----, it has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
+                <h2>The second enemy is a ---, it has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
+                <h2>The third enemy is a ---, it has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
             </div>
             <div>
                 <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
