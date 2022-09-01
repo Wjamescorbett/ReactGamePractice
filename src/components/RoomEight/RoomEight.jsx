@@ -59,8 +59,8 @@ const RoomEight = (props) => {
                 </div>
                 <ul>
                     <li>
-                        <Link to="/RoomThree" >
-                        <button className="square" onClick={() => props.roomMovement(3)}>Go to room Three</button>
+                        <Link to="/RoomSix" >
+                        <button className="square" onClick={() => props.roomMovement(6)}>Go to room Six</button>
                         </Link>
                     </li>
                 </ul>
