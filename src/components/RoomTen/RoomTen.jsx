@@ -10,9 +10,9 @@ const RoomTen = (props) => {
                     <h2>This Is Room Ten</h2>
                 </div>
             <div>
-                <h2>You are encountering two dangerous circles. </h2>
-                <h2>The first circle has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
-                <h2>The second dangerous circle has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
+                <h2>You are encountering two very dangerous hexagons. </h2>
+                <h2>The first hexagon has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
+                <h2>The second dangerous hexagon has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
             </div>
             <div>
                 <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
@@ -34,7 +34,7 @@ const RoomTen = (props) => {
                     <h2>This Is The GameBoard Room Ten</h2>
                 </div>
             <div>
-                <h2>You killed both dangerous circles. They rewarded you with {props.enemyReward} coins each. </h2>
+                <h2>You killed both dangerous hexagons. They rewarded you with {props.enemyReward} coins each. </h2>
             </div>
             <ul>
                 <li>

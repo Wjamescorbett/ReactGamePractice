@@ -253,31 +253,31 @@ class App extends Component {
             this.playerHasNoSpeed()
         }
         if(currentRoom === 2 & this.state.roomTwoStatus === 0){
-            this.createEnemy(20, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            this.createEnemy(20, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Circle
             }
         if(currentRoom === 3 & this.state.roomThreeStatus === 0){
-            this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Square
         }
         if(currentRoom === 4 & this.state.roomFourStatus === 0){
-            this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Boss Triangle
         }
         if(currentRoom === 5 & this.state.roomFiveStatus === 0){
-            this.createEnemy(15, 10, 0, 0, 5, 25, 4, 0, 5, 10, 0, 0, 0, 0, 0)
+            this.createEnemy(15, 10, 0, 0, 5, 25, 4, 0, 5, 10, 0, 0, 0, 0, 0) //Parallelogram - Trapezium
         }
         if(currentRoom === 6 & this.state.roomSixStatus === 0){
-            this.createEnemy(20, 2, 0, 1, 1, 20, 2, 0, 1, 1, 0, 0, 0, 0, 0)
+            this.createEnemy(20, 2, 0, 1, 1, 20, 2, 0, 1, 1, 0, 0, 0, 0, 0) //Two Circles
         }
         if(currentRoom === 7 & this.state.roomSevenStatus === 0){
-            this.createEnemy(15, 4, 1, 2, 2, 15, 4, 1, 2, 2, 0, 0, 0, 0, 0)
+            this.createEnemy(15, 4, 1, 2, 2, 15, 4, 1, 2, 2, 0, 0, 0, 0, 0) // Two Squares
         }
         if(currentRoom === 8 & this.state.roomEightStatus === 0){
-            this.createEnemy(80, 6, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            this.createEnemy(80, 6, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One BOSS pentagon
         }
         if(currentRoom === 9 & this.state.roomNineStatus === 0){
-            this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 5, 10)
+            this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 5, 10) //Semi-Circle - Parallelogram - Trapezium
         }
         if(currentRoom === 10 & this.state.roomTenStatus === 0){
-            this.createEnemy(100, 4, 2, 2, 20, 100, 4, 2, 2, 20, 0, 0, 0, 0, 0)
+            this.createEnemy(100, 4, 2, 2, 20, 100, 4, 2, 2, 20, 0, 0, 0, 0, 0) //Two Hexagons
         }
         if(currentRoom === 11 & this.state.roomElevenStatus === 0){
             this.createEnemy(50, 5, 4, 3, 15, 50, 5, 4, 3, 15, 0, 0, 0, 0, 0)
@@ -522,9 +522,9 @@ class App extends Component {
 
                     <Route path="/RoomNine" element={<RoomNine resetRoomStatus={this.resetRoomStatus} roomNineStatus={this.state.roomNineStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward} enemy3Health={this.state.enemy3Health} enemy3Attack={this.state.enemy3Attack} enemy3Speed={this.state.enemy3Speed} enemy3Armor={this.state.enemy3Armor} enemy3Reward={this.state.enemy3Reward}/>} />
 
-                    <Route path="/RoomTen" element={<RoomTen />} />
+                    <Route path="/RoomTen" element={<RoomTen resetRoomStatus={this.resetRoomStatus} roomTenStatus={this.state.roomTenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
-                    <Route path="/RoomEleven" element={<RoomEleven />} />
+                    <Route path="/RoomEleven" element={<RoomEleven resetRoomStatus={this.resetRoomStatus} roomElevenStatus={this.state.roomElevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
                     <Route path="/RoomTwelve" element={<RoomTwelve />} />
                 </Routes>
