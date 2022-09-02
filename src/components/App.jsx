@@ -401,6 +401,11 @@ class App extends Component {
                 roomFourStatus: 1,
             })
         }
+        if(this.state.currentRoom === 5){
+            this.setState({
+                roomFiveStatus: 1,
+            })
+        }
         if(this.state.currentRoom === 6){
             this.setState({
                 roomSixStatus: 1,
@@ -496,7 +501,7 @@ class App extends Component {
                     <Route path="/RoomTen" element={<RoomTen />} />
 
                     <Route path="/RoomEleven" element={<RoomEleven />} />
-                    
+
                     <Route path="/RoomTwelve" element={<RoomTwelve />} />
                 </Routes>
             </BrowserRouter>

@@ -33,18 +33,22 @@ const RoomThree = (props) => {
                     <h2>You killed the dangerous Square! It rewarded you with {props.enemyReward} coins.</h2>
                 </div>
                 <ul>
-                <li>
-                    <Link to="/RoomTwo" >
-                        <button className="circle" onClick={() => props.roomMovement(2)}>Go to room Two</button>
-                    </Link>
-                </li>
-                <Link to="/RoomFour" >
-                        <button className="circle" onClick={() => props.roomMovement(4)}>Go to room Four</button>
-                    </Link>
-                <li>
-                    <Link to="/RoomFive">Link to RoomFive</Link>
-                </li>
-            </ul>
+                    <li>
+                        <Link to="/RoomTwo" >
+                            <button className="circle" onClick={() => props.roomMovement(2)}>Go to room Two</button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/RoomFour" >
+                            <button className="circle" onClick={() => props.roomMovement(4)}>Go to room Four</button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/RoomFive" >
+                            <button className="circle" onClick={() => props.roomMovement(5)}>Go to room Five</button>
+                        </Link>
+                    </li>
+                </ul>
             <div>
                 <img src={GameRoomThreePNG} alt="GameRoomOnePNG" />
             </div>
