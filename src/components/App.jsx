@@ -435,6 +435,21 @@ class App extends Component {
                 roomNineStatus: 1,
             })
         }
+        if(this.state.currentRoom === 10){
+            this.setState({
+                roomTenStatus: 1,
+            })
+        }
+        if(this.state.currentRoom === 11){
+            this.setState({
+                roomElevenStatus: 1,
+            })
+        }
+        if(this.state.currentRoom === 12){
+            this.setState({
+                roomTwelveStatus: 1,
+            })
+        }
     }
 
     typeOfEnemyAttack = () => {
