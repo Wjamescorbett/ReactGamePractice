@@ -271,7 +271,7 @@ class App extends Component {
             this.createEnemy(80, 6, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         }
         if(currentRoom === 9 & this.state.roomNineStatus === 0){
-            this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 2, 10)
+            this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 5, 10)
         }
     }
 
