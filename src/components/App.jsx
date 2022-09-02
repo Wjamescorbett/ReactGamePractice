@@ -276,6 +276,15 @@ class App extends Component {
         if(currentRoom === 9 & this.state.roomNineStatus === 0){
             this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 5, 10)
         }
+        if(currentRoom === 10 & this.state.roomTenStatus === 0){
+            this.createEnemy(100, 4, 2, 2, 20, 100, 4, 2, 2, 20, 0, 0, 0, 0, 0)
+        }
+        if(currentRoom === 11 & this.state.roomElevenStatus === 0){
+            this.createEnemy(50, 5, 4, 3, 15, 50, 5, 4, 3, 15, 0, 0, 0, 0, 0)
+        }
+        if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
+            this.createEnemy(200, 10, 2, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        }
     }
 
     playerAttackMove = (attackEnemy) => {
