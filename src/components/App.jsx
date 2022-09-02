@@ -283,7 +283,7 @@ class App extends Component {
             this.createEnemy(50, 5, 4, 3, 15, 50, 5, 4, 3, 15, 0, 0, 0, 0, 0)
         }
         if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
-            this.createEnemy(200, 10, 2, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            this.createEnemy(500, 15, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         }
     }
 
@@ -495,6 +495,12 @@ class App extends Component {
                 roomEightStatus: 2,
             })
         }
+        if(this.state.currentRoom === 12){
+            this.setState({
+                healthPotionEffect: this.state.healthPotionEffect + 15,
+                roomTwelveStatus: 2,
+            })
+        }
     }
 
     render() {
@@ -526,7 +532,7 @@ class App extends Component {
 
                     <Route path="/RoomEleven" element={<RoomEleven resetRoomStatus={this.resetRoomStatus} roomElevenStatus={this.state.roomElevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
-                    <Route path="/RoomTwelve" element={<RoomTwelve />} />
+                    <Route path="/RoomTwelve" element={<RoomTwelve openChest={this.openChest} roomTwelveStatus={this.state.roomTwelveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward}/>} />
                 </Routes>
             </BrowserRouter>
         )
