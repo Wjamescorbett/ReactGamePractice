@@ -470,6 +470,12 @@ class App extends Component {
         if(currentEnemyAttack <= 0){
             currentEnemyAttack = 1
         }
+        if(currentEnemy2Attack <= 0){
+            currentEnemy2Attack = 1
+        }
+        if(currentEnemy3Attack <= 0){
+            currentEnemy3Attack = 1
+        }
         if(this.state.enemyHealth - currentPlayerAttack > 0){
             playerDamageTaken = playerDamageTaken + currentEnemyAttack
         }
