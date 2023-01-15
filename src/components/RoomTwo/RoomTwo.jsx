@@ -10,7 +10,7 @@ const RoomTwo = (props) => {
                     <h2>This Is Room Two</h2>
                 </div>
             <div>
-                <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
+                <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
             </div>
             <div>
                 <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack</button>

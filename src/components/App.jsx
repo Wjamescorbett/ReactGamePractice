@@ -35,19 +35,22 @@ class App extends Component {
             healthPotionEffect: 25,
             enemyAlive: 0,
             enemyHealth: 0,
-            enemyAttack: 0,
+            enemyAttackLow: 0,
+            enemyAttackHigh: 0,
             enemySpeed: 0,
             enemyArmor: 0,
             enemyReward: 0,
             enemyRewardCheck: 0,
             enemy2Health: 0,
-            enemy2Attack: 0,
+            enemy2AttackLow: 0,
+            enemy2AttackHigh: 0,
             enemy2Speed: 0,
             enemy2Armor: 0,
             enemy2Reward: 0,
             enemy2RewardCheck: 0,
             enemy3Health: 0,
-            enemy3Attack: 0,
+            enemy3AttackLow: 0,
+            enemy3AttackHigh: 0,
             enemy3Speed: 0,
             enemy3Armor: 0,
             enemy3Reward: 0,
@@ -209,35 +212,30 @@ class App extends Component {
         })
     }
 
-    createEnemy = (health, attack, speed, armor, reward, health2, attack2, speed2, armor2, reward2, health3, attack3, speed3, armor3, reward3) => {
+    createEnemy = (health, attackLow, attackHigh, speed, armor, reward, health2, attack2Low, attack2High, speed2, armor2, reward2, health3, attack3Low, attack3High, speed3, armor3, reward3) => {
         this.setState({
             enemyHealth: health,
-            enemyAttack: attack,
+            enemyAttackLow: attackLow,
+            enemyAttackHigh: attackHigh,
             enemySpeed: speed,
             enemyArmor: armor,
             enemyReward: reward,
             enemy2Health: health2,
-            enemy2Attack: attack2,
+            enemy2AttackLow: attack2Low,
+            enemy2AttackHigh: attack2High,
             enemy2Speed: speed2,
             enemy2Armor: armor2,
             enemy2Reward: reward2,
             enemy3Health: health3,
-            enemy3Attack: attack3,
+            enemy3AttackLow: attack3Low,
+            enemy3AttackHigh: attack3High,
             enemy3Speed: speed3,
             enemy3Armor: armor3,
             enemy3Reward: reward3,
         })
     }
 
-    playerHasNoSpeed = () => {
-        alert("You have no more speed! You took 10 damage. Return to Room One or use a stamina potion to regain your speed.")
-        this.setState({
-            playerHealth: this.state.playerHealth - 10,
-            enemyRewardCheck: 0,
-            enemy2RewardCheck: 0,
-            enemy3RewardCheck: 0,
-        })
-    }
+                                            // *ROOM MOVEMENT, CREATES ENEMIES FOR NEXT ROOM, ACCOUNTS FOR AND CHANGES PLAYER SPEED
 
     roomMovement = (currentRoom) => {
         if(this.state.playerSpeed > 0){
@@ -253,39 +251,53 @@ class App extends Component {
             this.playerHasNoSpeed()
         }
         if(currentRoom === 2 & this.state.roomTwoStatus === 0){
-            this.createEnemy(20, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Circle
+            this.createEnemy(20, 2, 3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Circle
             }
         if(currentRoom === 3 & this.state.roomThreeStatus === 0){
-            this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Square
+            this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Square
         }
         if(currentRoom === 4 & this.state.roomFourStatus === 0){
-            this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Boss Triangle
+            this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One Boss Triangle
         }
         if(currentRoom === 5 & this.state.roomFiveStatus === 0){
-            this.createEnemy(15, 10, 0, 0, 5, 25, 4, 0, 5, 10, 0, 0, 0, 0, 0) //Parallelogram - Trapezium
+            this.createEnemy(15, 10, 0, 0, 5, 25, 4, 0, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0) //Parallelogram - Trapezium
         }
         if(currentRoom === 6 & this.state.roomSixStatus === 0){
-            this.createEnemy(20, 2, 0, 1, 1, 20, 2, 0, 1, 1, 0, 0, 0, 0, 0) //Two Circles
+            this.createEnemy(20, 2, 3, 0, 1, 1, 20, 2, 3, 0, 1, 1, 0, 0, 0, 0, 0, 0) //Two Circles
         }
         if(currentRoom === 7 & this.state.roomSevenStatus === 0){
-            this.createEnemy(15, 4, 1, 2, 2, 15, 4, 1, 2, 2, 0, 0, 0, 0, 0) // Two Squares
+            this.createEnemy(15, 4, 1, 2, 2, 15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0) // Two Squares
         }
         if(currentRoom === 8 & this.state.roomEightStatus === 0){
-            this.createEnemy(80, 6, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One BOSS pentagon
+            this.createEnemy(80, 6, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) //One BOSS pentagon
         }
         if(currentRoom === 9 & this.state.roomNineStatus === 0){
-            this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 5, 10) //Semi-Circle - Parallelogram - Trapezium
+            this.createEnemy(30, 4, 2, 2, 10, 15, 10, 0, 0, 5, 25, 4, 0, 5, 10, 0, 0, 0) //Semi-Circle - Parallelogram - Trapezium
         }
         if(currentRoom === 10 & this.state.roomTenStatus === 0){
-            this.createEnemy(100, 4, 2, 2, 20, 100, 4, 2, 2, 20, 0, 0, 0, 0, 0) //Two Hexagons
+            this.createEnemy(100, 4, 2, 2, 20, 100, 4, 2, 2, 20, 0, 0, 0, 0, 0, 0, 0, 0) //Two Hexagons
         }
         if(currentRoom === 11 & this.state.roomElevenStatus === 0){
-            this.createEnemy(50, 5, 4, 3, 15, 50, 5, 4, 3, 15, 0, 0, 0, 0, 0)
+            this.createEnemy(50, 5, 4, 3, 15, 50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0)
         }
         if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
-            this.createEnemy(500, 15, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            this.createEnemy(500, 15, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         }
     }
+
+    playerHasNoSpeed = () => {
+        alert("You have no more speed! You took 10 damage. Return to Room One or use a stamina potion to regain your speed.")
+        this.setState({
+            playerHealth: this.state.playerHealth - 10,
+            enemyRewardCheck: 0,
+            enemy2RewardCheck: 0,
+            enemy3RewardCheck: 0,
+        })
+    }
+
+                                            // !END ROOM MOVEMENT AND PLAYER SPEED
+
+                                            // *BEGINNING OF COMBAT SEQUENCE
 
     playerAttackMove = (attackEnemy) => {
         var currentPlayerAttack = 0
@@ -325,7 +337,6 @@ class App extends Component {
             this.playerAttackMoveSetState(3, currentPlayerAttack)
             this.deadCheck(currentPlayerAttack, attackEnemy)
         }
-        // this.deadCheck(currentPlayerAttack)
     }
 
     playerAttackMoveSetState = (attackEnemyNumber, currentPlayerAttack) => {
@@ -343,6 +354,30 @@ class App extends Component {
             this.setState({
                 enemy3Health: this.state.enemy3Health - currentPlayerAttack,
                 })
+        }
+    }
+
+    deadCheck = (currentPlayerAttack, attackEnemy) => {
+        if(this.state.enemyHealth - currentPlayerAttack <= 0){
+            if(this.state.enemyRewardCheck === 0 & attackEnemy === 1){
+                this.deadCheckSetState(1)
+            }
+        }
+        if(this.state.enemy2Health - currentPlayerAttack <= 0) {
+            if(this.state.enemy2RewardCheck === 0 & attackEnemy === 2){
+                this.deadCheckSetState(2)
+            }
+        }
+        if(this.state.enemy3Health - currentPlayerAttack <= 0 & attackEnemy === 3) {
+            if(this.state.enemy3RewardCheck === 0){
+                this.deadCheckSetState(3)
+            }
+        }
+        if(this.state.enemyHealth <= 0 & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0){
+            this.setCurrentRoomStatusClearEnemy()
+        }
+        if(this.state.enemyHealth + this.state.enemy2Health + this.state.enemy3Health > 0){
+            this.enemyCounterAttack(currentPlayerAttack)
         }
     }
 
@@ -370,28 +405,40 @@ class App extends Component {
         }
     }
 
-    deadCheck = (currentPlayerAttack, attackEnemy) => {
-        if(this.state.enemyHealth - currentPlayerAttack <= 0){
-            if(this.state.enemyRewardCheck === 0 & attackEnemy === 1){
-                this.deadCheckSetState(1)
-            }
+    enemyCounterAttack = (currentPlayerAttack) => {
+        var currentEnemyAttack = this.currentEnemyAttackRandomizer(this.state.enemyAttackLow, this.state.enemyAttackHigh) - this.state.playerArmor
+        var currentEnemy2Attack = this.currentEnemyAttackRandomizer(this.state.enemy2AttackLow, this.state.enemy2AttackHigh) - this.state.playerArmor
+        var currentEnemy3Attack = this.currentEnemyAttackRandomizer(this.state.enemy3AttackLow, this.state.enemy3AttackHigh) - this.state.playerArmor
+        var playerDamageTaken = 0
+        if(currentEnemyAttack <= 0){
+            currentEnemyAttack = 1
         }
-        if(this.state.enemy2Health - currentPlayerAttack <= 0) {
-            if(this.state.enemy2RewardCheck === 0 & attackEnemy === 2){
-                this.deadCheckSetState(2)
-            }
+        if(currentEnemy2Attack <= 0){
+            currentEnemy2Attack = 1
         }
-        if(this.state.enemy3Health - currentPlayerAttack <= 0 & attackEnemy === 3) {
-            if(this.state.enemy3RewardCheck === 0){
-                this.deadCheckSetState(3)
-            }
+        if(currentEnemy3Attack <= 0){
+            currentEnemy3Attack = 1
         }
-        if(this.state.enemyHealth <= 0 & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0){
-            this.setCurrentRoomStatusClearEnemy()
+        if(this.state.enemyHealth - currentPlayerAttack > 0){
+            playerDamageTaken = playerDamageTaken + currentEnemyAttack
         }
-        if(this.state.enemyHealth + this.state.enemy2Health + this.state.enemy3Health > 0){
-            this.enemyCounterAttack(currentPlayerAttack)
+        if(this.state.enemy2Health - currentPlayerAttack > 0){
+            playerDamageTaken = playerDamageTaken + currentEnemy2Attack
         }
+        if(this.state.enemy3Health - currentPlayerAttack > 0){
+            playerDamageTaken = playerDamageTaken + currentEnemy3Attack
+        }
+        this.playerTakeDamage(playerDamageTaken)
+    }
+
+    currentEnemyAttackRandomizer = (enemyAttackLow, enemyAttackHigh) => {
+        return Math.floor(Math.random() * (enemyAttackHigh - enemyAttackLow + 1) + enemyAttackLow)
+    }
+
+    playerTakeDamage = (damageTaken) => {
+        this.setState({
+            playerHealth: this.state.playerHealth - damageTaken,
+        })
     }
 
     setCurrentRoomStatusClearEnemy = () => {
@@ -452,41 +499,13 @@ class App extends Component {
         }
     }
 
+                                            // !END OF ATTACK SEQUENCE
+
     typeOfEnemyAttack = () => {
 
     }
 
-    playerTakeDamage = (damageTaken) => {
-        this.setState({
-            playerHealth: this.state.playerHealth - damageTaken,
-        })
-    }
 
-    enemyCounterAttack = (currentPlayerAttack) => {
-        var currentEnemyAttack = this.state.enemyAttack - this.state.playerArmor
-        var currentEnemy2Attack = this.state.enemy2Attack - this.state.playerArmor
-        var currentEnemy3Attack = this.state.enemy3Attack - this.state.playerArmor
-        var playerDamageTaken = 0
-        if(currentEnemyAttack <= 0){
-            currentEnemyAttack = 1
-        }
-        if(currentEnemy2Attack <= 0){
-            currentEnemy2Attack = 1
-        }
-        if(currentEnemy3Attack <= 0){
-            currentEnemy3Attack = 1
-        }
-        if(this.state.enemyHealth - currentPlayerAttack > 0){
-            playerDamageTaken = playerDamageTaken + currentEnemyAttack
-        }
-        if(this.state.enemy2Health - currentPlayerAttack > 0){
-            playerDamageTaken = playerDamageTaken + currentEnemy2Attack
-        }
-        if(this.state.enemy3Health - currentPlayerAttack > 0){
-            playerDamageTaken = playerDamageTaken + currentEnemy3Attack
-        }
-        this.playerTakeDamage(playerDamageTaken)
-    }
 
     openChest = () => {
         if(this.state.currentRoom === 4){
@@ -518,7 +537,7 @@ class App extends Component {
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} />
 
                     <Route path="/RoomThree" element={<RoomThree roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} roomThreeStatus ={this.state.roomThreeStatus} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} />
 
@@ -526,7 +545,7 @@ class App extends Component {
 
                     <Route path="/RoomFive" element={<RoomFive resetRoomStatus={this.resetRoomStatus} roomFiveStatus={this.state.roomFiveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward} />} />
 
-                    <Route path="/RoomSix" element={<RoomSix resetRoomStatus={this.resetRoomStatus} roomSixStatus={this.state.roomSixStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
+                    <Route path="/RoomSix" element={<RoomSix resetRoomStatus={this.resetRoomStatus} roomSixStatus={this.state.roomSixStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
                     <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} roomSevenStatus={this.state.roomSevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} enemyHealth={this.state.enemyHealth} enemyAttack={this.state.enemyAttack} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2Attack={this.state.enemy2Attack} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} />
 
