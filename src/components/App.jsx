@@ -25,7 +25,8 @@ class App extends Component {
         this.state = {
             playerHealth: 0,
             maxPlayerHealth: 0,
-            playerAttack: 0,
+            playerAttackLow: 0,
+            playerAttackHigh: 0,
             playerSpeed: 0,
             maxPlayerSpeed: 0,
             playerArmor: 0,
@@ -197,12 +198,13 @@ class App extends Component {
         })
     }
 
-    pickClass = (health, maxHealth, attack, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) => {
-        console.log(health, maxHealth, attack, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
+    pickClass = (health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) => {
+        console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
         this.setState({
             playerHealth: health,
             maxPlayerHealth: maxHealth,
-            playerAttack: attack,
+            playerAttackLow: attackLow,
+            playerAttackHigh: attackHigh,
             playerSpeed: speed,
             maxPlayerSpeed: maxSpeed,
             playerArmor: armor,
@@ -300,13 +302,13 @@ class App extends Component {
                                             // *BEGINNING OF COMBAT SEQUENCE
 
     playerAttackMove = (attackEnemy) => {
-        var currentPlayerAttack = 0
+        var currentPlayerAttack = this.playerAttackRandomizer(this.state.playerAttackLow, this.state.playerAttackHigh)
         if(attackEnemy === 1 & this.state.enemyHealth <= 0){
             this.deadCheck(currentPlayerAttack, attackEnemy)
             alert("You killed this enemy!")
         }
         if(attackEnemy === 1 & this.state.enemyHealth > 0){
-            currentPlayerAttack = this.state.playerAttack - this.state.enemyArmor
+            currentPlayerAttack = currentPlayerAttack - this.state.enemyArmor
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
@@ -318,7 +320,7 @@ class App extends Component {
             alert("You killed this enemy!")
         }
         if(attackEnemy === 2 & this.state.enemy2Health > 0){
-            currentPlayerAttack = this.state.playerAttack - this.state.enemy2Armor
+            currentPlayerAttack = currentPlayerAttack - this.state.enemy2Armor
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
@@ -330,13 +332,17 @@ class App extends Component {
             alert("You killed this enemy!")
         }
         if(attackEnemy === 3 & this.state.enemy3Health > 0){
-            currentPlayerAttack = this.state.playerAttack - this.state.enemy3Armor
+            currentPlayerAttack = currentPlayerAttack - this.state.enemy3Armor
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
             this.playerAttackMoveSetState(3, currentPlayerAttack)
             this.deadCheck(currentPlayerAttack, attackEnemy)
         }
+    }
+
+    playerAttackRandomizer = (playerAttackLow, playerAttackHigh) => {
+        return Math.floor(Math.random() * (playerAttackHigh - playerAttackLow + 1) + playerAttackLow)
     }
 
     playerAttackMoveSetState = (attackEnemyNumber, currentPlayerAttack) => {
@@ -531,7 +537,7 @@ class App extends Component {
     render() {
         return(
             <BrowserRouter>
-            <Navbar healthPotionEffect={this.state.healthPotionEffect} maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
+            <Navbar healthPotionEffect={this.state.healthPotionEffect} maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttack={this.state.playerAttack} playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
 
