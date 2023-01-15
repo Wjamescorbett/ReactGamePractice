@@ -16,9 +16,12 @@ const GameBoard = (props) => {
                 <li>
                     <button className="storeButton" onClick={() => props.buyFromStore("health")}> Buy 10 Health </button>
                 </li>
-                <h3>Attack is 3 coins. (Upgrades your attack by 1) </h3>
+                <h3>Minimum Attack is 6 coins. Maximum attack is 3 coins. (Upgrades your minimum or maximum attack by 1) </h3>
                 <li>
-                    <button className="storeButton" onClick={() => props.buyFromStore("attack")}> Buy 1 Attack </button>
+                    <button className="storeButton" onClick={() => props.buyFromStore("attackLow")}> Increase Minimum Attack By 1 </button>
+                </li>
+                <li>
+                    <button className="storeButton" onClick={() => props.buyFromStore("attackHigh")}> Increase Maximum Attack By 1 </button>
                 </li>
                 <h3>Speed is 2 coins. (Upgrades your speed by 1) </h3>
                 <li>
