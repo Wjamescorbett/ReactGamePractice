@@ -6,7 +6,7 @@ const Navbar = (props) => {
             <div>
                 <h5>Your Heath is {props.playerHealth}. Your max health is {props.maxHealth}.</h5>
                 <h5>Your Attack is {props.playerAttackLow} - {props.playerAttackHigh}. </h5> 
-                <h5>Your Speed is {props.playerSpeed}. </h5>
+                <h5>Your Speed is {props.playerSpeed}. !!CAP AT TEN!!</h5>
                 <h5>Your Armor is {props.playerArmor}. </h5>
                 <h5>You have {props.playerCoins} coins. </h5>
                 <h5>You have {props.playerHealthPotion} health potions. {props.healthPotionEffect} healing per. </h5>
