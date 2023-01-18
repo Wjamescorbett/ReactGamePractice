@@ -18,7 +18,7 @@ const RoomTwo = (props) => {
                 </div>
                 <div>
                     <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack</button>
-                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge</button>
+                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
                     <button className="healMove">Heal</button>
                 </div>
                 <div>

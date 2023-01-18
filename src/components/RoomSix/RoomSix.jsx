@@ -17,7 +17,7 @@ const RoomSix = (props) => {
             <div>
                 <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
                 <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge</button>
+                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
                 <button className="healMove">Heal</button>
             </div>
             <div>
