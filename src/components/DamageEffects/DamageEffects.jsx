@@ -5,6 +5,7 @@ const DamageEffects = (props) => {
         return(
             <div>
                 <h1>You did {props.playerDamageDone} damage.</h1>
+                <h1>You took {props.enemyDamageDone} damage.</h1>
             </div>
         )
 }

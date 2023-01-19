@@ -33,6 +33,7 @@ class App extends Component {
             playerStaminaPotion: 0,
             healthPotionEffect: 25,
             playerDamageDone: 0,
+            enemyDamageDone: 0,
             enemyAlive: 0,
             enemyHealth: 0,
             enemyAttackLow: 0,
@@ -262,6 +263,7 @@ class App extends Component {
                 enemy2RewardCheck: 0,
                 enemy3RewardCheck: 0,
                 playerDamageDone: 0,
+                enemyDamageDone: 0,
             })
         }
         if(this.state.playerSpeed <= 0){
@@ -370,11 +372,13 @@ class App extends Component {
         if(attackEnemyNumber === 2){
             this.setState({
                 enemy2Health: this.state.enemy2Health - currentPlayerAttack,
+                playerDamageDone: currentPlayerAttack,
                 })
         }
         if(attackEnemyNumber === 3){
             this.setState({
                 enemy3Health: this.state.enemy3Health - currentPlayerAttack,
+                playerDamageDone: currentPlayerAttack,
                 })
         }
     }
@@ -460,6 +464,7 @@ class App extends Component {
     playerTakeDamage = (damageTaken) => {
         this.setState({
             playerHealth: this.state.playerHealth - damageTaken,
+            enemyDamageDone: damageTaken,
         })
     }
 
@@ -562,21 +567,24 @@ class App extends Component {
         if(highEnemyHealth === this.state.enemyHealth){
             this.setState({
                 enemyHealth: this.state.enemyHealth - (this.state.playerAttackHigh - this.state.enemyArmor),
-                playerSpeed: this.state.playerSpeed - 1
+                playerSpeed: this.state.playerSpeed - 1,
+                playerDamageDone: this.state.playerAttackHigh - this.state.enemyArmor,
                 })
                 return
         }
         if(highEnemyHealth === this.state.enemy2Health){
             this.setState({
                 enemy2Health: this.state.enemy2Health - (this.state.playerAttackHigh - this.state.enemy2Armor),
-                playerSpeed: this.state.playerSpeed - 1
+                playerSpeed: this.state.playerSpeed - 1,
+                playerDamageDone: this.state.playerAttackHigh - this.state.enemyArmor,
                 })
                 return
         }
         if(highEnemyHealth === this.state.enemy3Health){
             this.setState({
                 enemy3Health: this.state.enemy3Health - (this.state.playerAttackHigh - this.state.enemy3Armor),
-                playerSpeed: this.state.playerSpeed - 1
+                playerSpeed: this.state.playerSpeed - 1,
+                playerDamageDone: this.state.playerAttackHigh - this.state.enemyArmor,
                 })
                 return
         }
@@ -589,7 +597,8 @@ class App extends Component {
         var playerDamage = currentEnemyAttack + currentEnemy2Attack + currentEnemy3Attack
         this.setState({
             playerHealth: this.state.playerHealth - playerDamage,
-            playerSpeed: this.state.playerSpeed - 1
+            playerSpeed: this.state.playerSpeed - 1,
+            enemyDamageDone: playerDamage,
             })
     }
 
@@ -631,7 +640,7 @@ class App extends Component {
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} playerDamageDone={this.state.playerDamageDone} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} playerDamageDone={this.state.playerDamageDone} enemyDamageDone={this.state.enemyDamageDone} />} />
 
                     <Route path="/RoomThree" element={<RoomThree roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} roomThreeStatus ={this.state.roomThreeStatus} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} />
 
