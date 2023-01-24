@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 const DamageEffects = (props) => {
         return(
