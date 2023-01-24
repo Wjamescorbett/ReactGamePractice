@@ -3,10 +3,16 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const RoomTwo = (props) => {
+    const showToastMessage = () => {
+        toast.success('Success Notification !', {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
     if(props.roomTwoStatus === 0){
         return (
             <nav>
@@ -17,25 +23,11 @@ const RoomTwo = (props) => {
                     <DamageEffects playerDamageDone={props.playerDamageDone} enemyDamageDone={props.enemyDamageDone} />
                 </div>
                 <div>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="light"
-                    />
-                    <ToastContainer />
-                </div>
-                <div>
                     <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
                 </div>
                 <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack</button>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1), showToastMessage}>Attack</button>
+                    <ToastContainer />
                     <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
                     <button className="healMove">Heal</button>
                 </div>
