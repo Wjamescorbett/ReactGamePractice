@@ -636,7 +636,7 @@ class App extends Component {
             <BrowserRouter>
             <Navbar healthPotionEffect={this.state.healthPotionEffect} maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
-                    <Route path="/" element={<Layout playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh}playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
+                    <Route path="/" element={<Layout showToastMessage={this.showToastMessage} playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh}playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
 
