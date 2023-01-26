@@ -2,16 +2,12 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const RoomTwo = (props) => {
-    // const showToastMessage = () => {
-    //     toast.success('Success Notification !', {
-    //         position: toast.POSITION.TOP_RIGHT
-    //     });
-    // }
 
     if(props.roomTwoStatus === 0){
         return (
@@ -26,8 +22,7 @@ const RoomTwo = (props) => {
                     <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
                 </div>
                 <div>
-                    {/* <button className="attackMove" onClick={() => props.playerAttackMove(1), showToastMessage}>Attack</button> */}
-                    <ToastContainer />
+                    <button className="attackMove" onClick={() =>props.playerAttackMove(1)}>Attack enemy 1</button>
                     <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
                     <button className="healMove">Heal</button>
                 </div>

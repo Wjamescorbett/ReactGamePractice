@@ -17,6 +17,7 @@ import RoomNine from './RoomNine/RoomNine';
 import RoomTen from './RoomTen/RoomTen';
 import RoomEleven from './RoomEleven/RoomEleven';
 import RoomTwelve from './RoomTwelve/RoomTwelve';
+import DamageEffects from './DamageEffects/DamageEffects';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -368,6 +369,7 @@ class App extends Component {
                 enemyHealth: this.state.enemyHealth - currentPlayerAttack,
                 playerDamageDone: currentPlayerAttack,
                 })
+                return <DamageEffects playerDamageDone={this.state.playerDamageDone} enemyDamageDone={this.state.enemyDamageDone} />
         }
         if(attackEnemyNumber === 2){
             this.setState({
