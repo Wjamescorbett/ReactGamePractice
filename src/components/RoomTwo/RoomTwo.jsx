@@ -4,8 +4,6 @@ import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
 import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 
-
-
 const RoomTwo = (props) => {
 
     if(props.roomTwoStatus === 0){
@@ -16,9 +14,6 @@ const RoomTwo = (props) => {
                 </div>
                 <div>
                     <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} />
-                </div>
-                <div>
-                    
                 </div>
                 <div>
                     <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />

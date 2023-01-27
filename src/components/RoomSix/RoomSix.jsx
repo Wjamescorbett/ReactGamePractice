@@ -2,8 +2,10 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomSixPNG from './GameRoomSixPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
+import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 
 const RoomSix = (props) => {
+    
     if(props.roomSixStatus === 0){
         return (
             <nav>
@@ -11,9 +13,7 @@ const RoomSix = (props) => {
                     <h2>This Is Room Six</h2>
                 </div>
             <div>
-                <h2>You are encountering two dangerous circles. </h2>
-                <h2>The first circle It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
-                <h2>The second dangerous circle has {props.enemy2Health} health, {props.enemy2AttackLow} attackLow, {props.enemy2AttackHigh} attackHigh, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
+                <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} enemy2Health={props.enemy2Health} enemy2MaxHealth={props.enemy2MaxHealth} enemy2AttackLow={props.enemy2AttackLow} enemy2AttackHigh={props.enemy2AttackHigh} enemy2Speed={props.enemy2Speed} enemy2Armor={props.enemy2Armor} enemy2Reward={props.enemy2Reward}/>            
             </div>
             <div>
                 <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />

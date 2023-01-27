@@ -12,8 +12,10 @@ const Navbar = (props) => {
                 <h5>You have {props.playerCoins} coins. </h5>
                 <h5>You have {props.playerHealthPotion} health potions. {props.healthPotionEffect} healing per. </h5>
                 <h5>You have {props.playerStaminaPotion} stamina potions. </h5>
-                <ProgressBar variant="danger" min={0} max={props.maxHealth} now={props.playerHealth} label={`Health ${props.playerHealth}/${props.maxHealth}`}/>;
-                <ProgressBar variant="warning" min={0} max={props.maxPlayerSpeed} now={props.playerSpeed} label={`Speed ${props.playerSpeed}/${props.maxPlayerSpeed}`}/>;
+                <div className="w-25 p-3">
+                    <ProgressBar variant="danger" min={0} max={props.maxHealth} now={props.playerHealth} label={`Health ${props.playerHealth}/${props.maxHealth}`}/>;
+                    <ProgressBar variant="warning" min={0} max={props.maxPlayerSpeed} now={props.playerSpeed} label={`Speed ${props.playerSpeed}/${props.maxPlayerSpeed}`}/>;
+                </div>
                 <nav>
                     <ul>
                         <li>
