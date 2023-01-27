@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomSixPNG from './GameRoomSixPNG.png';
+import DamageEffects from "../DamageEffects/DamageEffects";
 
 const RoomSix = (props) => {
     if(props.roomSixStatus === 0){
@@ -15,10 +16,7 @@ const RoomSix = (props) => {
                 <h2>The second dangerous circle has {props.enemy2Health} health, {props.enemy2AttackLow} attackLow, {props.enemy2AttackHigh} attackHigh, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
             </div>
             <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                <button className="healMove">Heal</button>
+                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
             </div>
             <div>
                 <img src={GameRoomSixPNG} alt="GameRoomSixPNG" />

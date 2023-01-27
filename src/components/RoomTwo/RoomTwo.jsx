@@ -14,13 +14,10 @@ const RoomTwo = (props) => {
                     <h2>This Is Room Two</h2>
                 </div>
                 <div>
-                    
-                </div>
-                <div>
                     <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
                 </div>
                 <div>
-                    <DamageEffects showToastMessage={props.showToastMessage} playerDamageDone={props.playerDamageDone} enemyDamageDone={props.enemyDamageDone} playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove}/>
+                    <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
                 </div>
                 <div>
                     <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />

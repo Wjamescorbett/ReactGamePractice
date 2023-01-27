@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomNinePNG from './GameRoomNinePNG.png';
+import DamageEffects from "../DamageEffects/DamageEffects";
 
 const RoomNine = (props) => {
     if(props.roomNineStatus === 0){
@@ -16,11 +17,7 @@ const RoomNine = (props) => {
                 <h2>The third enemy is a Trapezium, it has {props.enemy3Health} health, {props.enemy3Attack} attack, {props.enemy3Speed} speed, {props.enemy3Armor} armor, and will reward you with {props.enemy3Reward} coin. </h2>
             </div>
             <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                <button className="healMove">Heal</button>
+                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
             </div>
             <div>
                 <img src={GameRoomNinePNG} alt="GameRoomNinePNG" />
