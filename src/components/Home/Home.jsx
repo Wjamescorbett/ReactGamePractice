@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DamageEffects from '../DamageEffects/DamageEffects';
 
 const Home = (props) => {
 

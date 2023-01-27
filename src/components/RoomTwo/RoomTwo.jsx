@@ -16,15 +16,13 @@ const RoomTwo = (props) => {
                     <h2>This Is Room Two</h2>
                 </div>
                 <div>
-                    <DamageEffects playerDamageDone={props.playerDamageDone} enemyDamageDone={props.enemyDamageDone} />
+                    
                 </div>
                 <div>
                     <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
                 </div>
                 <div>
-                    <button className="attackMove" onClick={() =>props.playerAttackMove(1)}>Attack enemy 1</button>
-                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                    <button className="healMove">Heal</button>
+                    <DamageEffects playerDamageDone={props.playerDamageDone} enemyDamageDone={props.enemyDamageDone} playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove}/>
                 </div>
                 <div>
                     <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
