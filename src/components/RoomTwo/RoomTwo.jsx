@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
+import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 
 
 
@@ -14,7 +15,10 @@ const RoomTwo = (props) => {
                     <h2>This Is Room Two</h2>
                 </div>
                 <div>
-                    <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
+                    <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} />
+                </div>
+                <div>
+                    
                 </div>
                 <div>
                     <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
@@ -34,7 +38,6 @@ const RoomTwo = (props) => {
                 </div>
             <div>
                 <h2>You killed a dangerous circle. It rewarded you with {props.enemyReward} coin. </h2>
-                {/* <button className="circle" onClick={() => makeCircleEnemy(20, 2, 0, 1)}>EncounterCircleEnemy</button> */}
             </div>
             <ul>
                 <li>
