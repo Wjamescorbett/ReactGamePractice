@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomElevenPNG from './GameRoomElevenPNG.png';
+import DamageEffects from "../DamageEffects/DamageEffects";
 
 const RoomEleven = (props) => {
+    
     if(props.roomElevenStatus === 0){
         return (
             <nav>
@@ -15,10 +17,7 @@ const RoomEleven = (props) => {
                 <h2>The second dangerous triangle has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
             </div>
             <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                <button className="healMove">Heal</button>
+                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
             </div>
             <div>
                 <img src={GameRoomElevenPNG} alt="GameRoomElevenPNG" />

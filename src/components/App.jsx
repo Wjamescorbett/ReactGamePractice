@@ -275,37 +275,37 @@ class App extends Component {
             this.playerHasNoSpeed()
         }
         if(currentRoom === 2 & this.state.roomTwoStatus === 0){
-            this.createEnemy(20, 2, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Circle
+            this.createEnemy(20, 2, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Circle 20, 2, 3, 1, 1, 1
             }
         if(currentRoom === 3 & this.state.roomThreeStatus === 0){
-            this.createEnemy(15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Square
+            this.createEnemy(15, 4, 5, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Square 15, 4, 5, 2, 2, 2
         }
         if(currentRoom === 4 & this.state.roomFourStatus === 0){
-            this.createEnemy(50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Boss Triangle
+            this.createEnemy(50, 5, 7, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Boss Triangle
         }
         if(currentRoom === 5 & this.state.roomFiveStatus === 0){
-            this.createEnemy(15, 10, 0, 0, 5, 25, 4, 0, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 2) //Parallelogram - Trapezium
+            this.createEnemy(15, 10, 12, 2, 5, 25, 10, 3, 5, 9, 4, 10, 0, 0, 0, 0, 0, 0, 2) //Parallelogram 15, 10, 12, 2, 5, 25 - Trapezium 10, 3, 5, 9, 4, 10
         }
         if(currentRoom === 6 & this.state.roomSixStatus === 0){
             this.createEnemy(20, 2, 3, 1, 1, 1, 20, 2, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 2) //Two Circles
         }
         if(currentRoom === 7 & this.state.roomSevenStatus === 0){
-            this.createEnemy(15, 4, 1, 2, 2, 15, 4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2) // Two Squares
+            this.createEnemy(15, 4, 5, 2, 2, 2, 15, 4, 5, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2) // Two Squares
         }
         if(currentRoom === 8 & this.state.roomEightStatus === 0){
-            this.createEnemy(80, 6, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One BOSS pentagon
+            this.createEnemy(80, 6, 8, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One BOSS pentagon
         }
         if(currentRoom === 9 & this.state.roomNineStatus === 0){
             this.createEnemy(30, 4, 5, 2, 2, 10, 15, 10, 14, 2, 5, 25, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
         }
         if(currentRoom === 10 & this.state.roomTenStatus === 0){
-            this.createEnemy(100, 4, 2, 2, 20, 100, 4, 2, 2, 20, 0, 0, 0, 0, 0, 0, 0, 0, 2) //Two Hexagons
+            this.createEnemy(100, 4, 7, 2, 2, 20, 100, 4, 7, 2, 2, 20, 0, 0, 0, 0, 0, 0, 2) //Two Hexagons
         }
         if(currentRoom === 11 & this.state.roomElevenStatus === 0){
-            this.createEnemy(50, 5, 4, 3, 15, 50, 5, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 2)
+            this.createEnemy(50, 5, 8, 4, 3, 15, 50, 5, 8, 4, 3, 15, 0, 0, 0, 0, 0, 0, 2)
         }
         if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
-            this.createEnemy(500, 15, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+            this.createEnemy(500, 15, 20, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
         }
     }
 
