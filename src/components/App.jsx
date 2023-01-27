@@ -371,6 +371,7 @@ class App extends Component {
                 enemyHealth: this.state.enemyHealth - currentPlayerAttack,
                 playerDamageDone: currentPlayerAttack,
                 })
+                this.showToastMessage(currentPlayerAttack)
         }
         if(attackEnemyNumber === 2){
             this.setState({
@@ -469,6 +470,7 @@ class App extends Component {
             playerHealth: this.state.playerHealth - damageTaken,
             enemyDamageDone: damageTaken,
         })
+        this.showToastMessageRed(damageTaken)
     }
 
     setCurrentRoomStatusClearEnemy = () => {
@@ -632,6 +634,18 @@ class App extends Component {
                 roomTwelveStatus: 2,
             })
         }
+    }
+
+    showToastMessage = (currentPlayerAttack) => {
+        toast.success("You did " + currentPlayerAttack + " damage !", {
+            position: toast.POSITION.TOP_CENTER
+        });
+    }
+
+    showToastMessageRed = (damageTaken) => {
+        toast.error("You took " + damageTaken + " damage !", {
+            position: toast.POSITION.TOP_RIGHT
+        });
     }
 
     render() {
