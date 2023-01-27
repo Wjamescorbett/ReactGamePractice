@@ -5,6 +5,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 const Navbar = (props) => {
         return(
             <div>
+                <h5>Here is the time {props.gameTick}</h5>
                 <h5>Your Heath is {props.playerHealth}. Your max health is {props.maxHealth}.</h5>
                 <h5>Your Attack is {props.playerAttackLow} - {props.playerAttackHigh}. </h5> 
                 <h5>Your Speed is {props.playerSpeed}. !!CAP AT TEN!!</h5>

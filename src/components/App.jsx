@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import './App.css';
 import Home from './Home/Home';
@@ -24,6 +25,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            breakLoop: 0,
+            gameTick: -1,
             playerHealth: 0,
             maxPlayerHealth: 0,
             playerAttackLow: 0,
@@ -234,6 +237,7 @@ class App extends Component {
             playerHealthPotion: healthPotion,
             playerStaminaPotion: staminaPotion,
         })
+        this.gameTime()
     }
 
     createEnemy = (maxHealth, health, attackLow, attackHigh, speed, armor, reward, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) => {
@@ -672,10 +676,27 @@ class App extends Component {
         });
     }
 
+                                            //  *GAME TIMER
+    gameTime = () => {
+        this.timeSetState()
+        if(this.state.breakLoop < 60){
+            console.log(`Break loop is at ${this.state.breakLoop}`);
+            setTimeout(() => {this.gameTime(); }, 1000);
+        }
+        console.log(`gameTime() is running. gameTick is at ${this.state.gameTick}`)
+    }
+
+    timeSetState = () => {
+        this.setState({
+            breakLoop: this.state.breakLoop + 1,
+            gameTick: this.state.gameTick + 1,
+        })
+    }
+                                            //  !END GAME TIMER
     render() {
         return(
             <BrowserRouter>
-            <Navbar maxPlayerSpeed={this.state.maxPlayerSpeed} healthPotionEffect={this.state.healthPotionEffect} maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
+            <Navbar gameTick={this.state.gameTick} maxPlayerSpeed={this.state.maxPlayerSpeed} healthPotionEffect={this.state.healthPotionEffect} maxHealth={this.state.maxPlayerHealth} useStaminaPotion={this.useStaminaPotion} devButton={this.devButton} useHealthPotion={this.useHealthPotion} playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh} playerSpeed={this.state.playerSpeed} playerArmor={this.state.playerArmor} playerCoins={this.state.playerCoins} playerHealthPotion={this.state.playerHealthPotion} playerStaminaPotion={this.state.playerStaminaPotion} resetRoomStatus={this.resetRoomStatus} />
                 <Routes>
                     <Route path="/" element={<Layout showToastMessage={this.showToastMessage} playerHealth={this.state.playerHealth} playerAttackLow={this.state.playerAttackLow} playerAttackHigh={this.state.playerAttackHigh}playerSpeed={this.state.playerSpeed} playerDefense={this.state.playerArmor} playerCoins={this.state.playerCoins} pickClass={this.pickClass} />} />
 
