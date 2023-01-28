@@ -10,7 +10,8 @@ const EnemyVisuals = (props) => {
             <div>
                 <h2>You are encountering a dangerous circle. It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
                 <div className="w-25 p-3">
-                    <ProgressBar variant="danger" min={0} max={props.enemyMaxHealth} now={props.enemyHealth} label={`Health ${props.enemyHealth}/${props.enemyMaxHealth}`}/>;
+                    <ProgressBar variant="danger" min={0} max={props.enemyMaxHealth} now={props.enemyHealth} label={`Health ${props.enemyHealth}/${props.enemyMaxHealth}`}/>
+                    <ProgressBar variant="warning" min={0} max={props.enemyMaxSpeed} now={props.enemySpeed} label={`Speed ${props.enemySpeed}/${props.enemyMaxSpeed}`}/>
                 </div>
             </div>
         )

@@ -25,6 +25,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            roomTime: 0,
+            roomBreakLoop: 0,
             breakLoop: 0,
             gameTick: -1,
             playerHealth: 0,
@@ -46,6 +48,7 @@ class App extends Component {
             enemyAttackLow: 0,
             enemyAttackHigh: 0,
             enemySpeed: 0,
+            enemyMaxSpeed: 0,
             enemyArmor: 0,
             enemyReward: 0,
             enemyRewardCheck: 0,
@@ -247,6 +250,7 @@ class App extends Component {
             enemyAttackLow: attackLow,
             enemyAttackHigh: attackHigh,
             enemySpeed: speed,
+            enemyMaxSpeed: speed,
             enemyArmor: armor,
             enemyReward: reward,
             enemy2MaxHealth: maxHealth2,
@@ -284,8 +288,9 @@ class App extends Component {
         if(this.state.playerSpeed <= 0){
             this.playerHasNoSpeed()
         }
+        // ?enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
         if(currentRoom === 2 & this.state.roomTwoStatus === 0){
-            this.createEnemy(20, 20, 2, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Circle 20, 2, 3, 1, 1, 1
+            this.createEnemy(20, 20, 2, 3, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Circle 20, 2, 3, 1, 1, 1
             }
         if(currentRoom === 3 & this.state.roomThreeStatus === 0){
             this.createEnemy(15, 15, 4, 5, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Square 15, 4, 5, 2, 2, 2
@@ -317,6 +322,7 @@ class App extends Component {
         if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
             this.createEnemy(500, 500, 15, 20, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
         }
+        this.roomTime()
     }
 
     playerHasNoSpeed = () => {
@@ -693,6 +699,25 @@ class App extends Component {
         })
     }
                                             //  !END GAME TIMER
+
+                                            //  *ROOM TIMER
+    roomTime = () => {
+        this.roomTimeSetState()
+        if(this.state.roomBreakLoop < 60){
+            console.log(`Break loop is at ${this.state.roomBreakLoop}`);
+            setTimeout(() => {this.roomTime(); }, 1000);
+        }
+        console.log(`gameTime() is running. roomTime is at ${this.state.roomTime}`)
+    }
+
+    roomTimeSetState = () => {
+        this.setState({
+            roomTime: this.state.roomTime + 1,
+            roomBreakLoop: this.state.roomBreakLoop + 1,
+        })
+    }
+
+                                            // !END ROOM TIMER
     render() {
         return(
             <BrowserRouter>
@@ -702,7 +727,7 @@ class App extends Component {
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed}  enemyMaxSpeed={this.state.enemyMaxSpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} />
 
                     <Route path="/RoomThree" element={<RoomThree roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} roomThreeStatus ={this.state.roomThreeStatus} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} />
 

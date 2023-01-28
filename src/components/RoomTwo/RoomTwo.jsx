@@ -13,7 +13,7 @@ const RoomTwo = (props) => {
                     <h2>This Is Room Two</h2>
                 </div>
                 <div>
-                    <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} />
+                    <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyMaxSpeed={props.enemyMaxSpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} />
                 </div>
                 <div>
                     <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
