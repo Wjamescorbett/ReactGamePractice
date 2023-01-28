@@ -271,9 +271,14 @@ class App extends Component {
         })
     }
 
-                                            // *ROOM MOVEMENT, CREATES ENEMIES FOR NEXT ROOM, ACCOUNTS FOR AND CHANGES PLAYER SPEED
+    // componentDidMount(){
+    //     this.createEnemy();
+    // }
+
+                            // *ROOM MOVEMENT, CREATES ENEMIES FOR NEXT ROOM, ACCOUNTS FOR AND CHANGES PLAYER SPEED, STARTS ROOM TIMER
 
     roomMovement = (currentRoom) => {
+        this.roomTime()
         if(this.state.playerSpeed > 0){
             this.setState({
                 currentRoom: currentRoom,
@@ -290,7 +295,7 @@ class App extends Component {
         }
         // ?enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
         if(currentRoom === 2 & this.state.roomTwoStatus === 0){
-            this.createEnemy(20, 20, 2, 3, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Circle 20, 2, 3, 1, 1, 1
+            this.createEnemy(20, 20, 2, 3, 500, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Circle 20, 2, 3, 1, 1, 1
             }
         if(currentRoom === 3 & this.state.roomThreeStatus === 0){
             this.createEnemy(15, 15, 4, 5, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Square 15, 4, 5, 2, 2, 2
@@ -322,7 +327,14 @@ class App extends Component {
         if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
             this.createEnemy(500, 500, 15, 20, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
         }
-        this.roomTime()
+        this.timedCombatSequenceTest()
+    }
+
+    timedCombatSequenceTest = () => {
+        // this.timedCombatSequenceTestSetState()
+        console.log(`timedCombatSequenceTest enemySpeed ${this.state.enemySpeed}`);
+        setTimeout(() => {this.timedCombatSequenceTest(); }, 1000);
+        console.log(`timedCombatSequenceTest() is running. EnemySpeed 2 ${this.state.enemySpeed}`)
     }
 
     playerHasNoSpeed = () => {
@@ -707,7 +719,7 @@ class App extends Component {
             console.log(`Break loop is at ${this.state.roomBreakLoop}`);
             setTimeout(() => {this.roomTime(); }, 1000);
         }
-        console.log(`gameTime() is running. roomTime is at ${this.state.roomTime}`)
+        console.log(`gameRoomTime() is running. roomTime is at ${this.state.roomTime}`)
     }
 
     roomTimeSetState = () => {
