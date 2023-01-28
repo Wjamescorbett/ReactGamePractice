@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import PlayerAttackButton from '../PlayerAttackButton/PlayerAttackButton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,7 @@ const DamageEffects = (props) => {
         if(props.numberOfEnemiesInRoom === 1){
             return(
                 <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <PlayerAttackButton playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
                     <ToastContainer />
                     <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
                     <button className="healMove">Heal</button>
