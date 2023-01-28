@@ -18,7 +18,7 @@ const DamageEffects = (props) => {
         if(props.numberOfEnemiesInRoom === 1){
             return(
                 <div>
-                    <PlayerAttackButton playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
+                    <PlayerAttackButton playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
                     <ToastContainer />
                     <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
                     <button className="healMove">Heal</button>
