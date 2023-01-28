@@ -6,41 +6,50 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const DamageEffects = (props) => {
-    if(props.numberOfEnemiesInRoom === 1){
+    if(props.startCombatCheck === false){
         return(
             <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                <ToastContainer />
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                <button className="healMove">Heal</button>
+                <button className="timedCombatSequenceTest" onClick={() => props.startCombat()}>Start Combat!</button>
             </div>
         )
     }
-    if(props.numberOfEnemiesInRoom === 2){
-        return(
-            <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                <ToastContainer />
-                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                <ToastContainer />
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                <button className="healMove">Heal</button>
-            </div>
-        )
-    }
-    if(props.numberOfEnemiesInRoom === 3){
-        return(
-            <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                <ToastContainer />
-                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                <ToastContainer />
-                <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
-                <ToastContainer />
-                <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                <button className="healMove">Heal</button>
-            </div>
-        )
+    if(props.startCombatCheck === true){
+        if(props.numberOfEnemiesInRoom === 1){
+            return(
+                <div>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <ToastContainer />
+                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
+                    <button className="healMove">Heal</button>
+                </div>
+            )
+        }
+        if(props.numberOfEnemiesInRoom === 2){
+            return(
+                <div>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <ToastContainer />
+                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                    <ToastContainer />
+                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
+                    <button className="healMove">Heal</button>
+                </div>
+            )
+        }
+        if(props.numberOfEnemiesInRoom === 3){
+            return(
+                <div>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <ToastContainer />
+                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                    <ToastContainer />
+                    <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+                    <ToastContainer />
+                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
+                    <button className="healMove">Heal</button>
+                </div>
+            )
+        }
     }
 }
 
