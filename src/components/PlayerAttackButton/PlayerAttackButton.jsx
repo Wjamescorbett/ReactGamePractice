@@ -7,15 +7,22 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const PlayerAttackButton = (props) => {
-    if(props.playerAttackTimerState > 0){
+    if(props.playerAttacked === 1){
         return(
             <ProgressBar variant="danger" min={0} max={props.playerAttackTimerStateMax} now={props.playerAttackTimerState} label={`Attack in ${props.playerAttackTimerState}/${props.playerAttackTimerStateMax}`}/>
         )
     }
-    if(props.playerAttackTimerState <= 0){
+    if(props.playerAttacked === 2){
         return(
             <div>
                 <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+            </div>
+        )
+    }
+    if(props.playerAttacked === 3){
+        return(
+            <div>
+                <button className="rechargeAttackMove" onClick={() => props.rechargeAttackMove()}>Recharge Attack Move</button>
             </div>
         )
     }
