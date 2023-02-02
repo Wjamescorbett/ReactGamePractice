@@ -19,17 +19,17 @@ const Navbar = (props) => {
                 </div>
                 <nav>
                     <ul>
-                        <li>
-                        <Link to="/GameBoard" >
+                        {/* <li> */}
+                        {/* <Link to="/GameBoard" >
                             <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
                         </Link>
                         </li>
                         <li>
                             <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                             <button className="staminaPotion" onClick={() => props.useStaminaPotion()}>Use stamina potion</button>
-                        </li>
+                        </li> */}
                         <li>
                             <button className="devButton" onClick={() => props.devButton()}>DEV BUTTON</button>
                         </li>
