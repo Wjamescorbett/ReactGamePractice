@@ -6,7 +6,7 @@ const Navbar = (props) => {
         return(
             <div>
                 <h5>Here is the time {props.gameTick}</h5>
-                <h5>Your Heath is {props.playerHealth}. Your max health is {props.maxHealth}.</h5>
+                <h5>Your Heath is {props.playerHealth}. Your max health is {props.playerMaxHealth}.</h5>
                 <h5>Your Attack is {props.playerAttackLow} - {props.playerAttackHigh}. </h5> 
                 <h5>Your Speed is {props.playerSpeed}. !!CAP AT TEN!!</h5>
                 <h5>Your Armor is {props.playerArmor}. </h5>
@@ -14,17 +14,17 @@ const Navbar = (props) => {
                 <h5>You have {props.playerHealthPotion} health potions. {props.healthPotionEffect} healing per. </h5>
                 <h5>You have {props.playerStaminaPotion} stamina potions. </h5>
                 <div className="w-25 p-3">
-                    <ProgressBar variant="danger" min={0} max={props.maxHealth} now={props.playerHealth} label={`Health ${props.playerHealth}/${props.maxHealth}`}/>
-                    <ProgressBar variant="warning" min={0} max={props.maxPlayerSpeed} now={props.playerSpeed} label={`Speed ${props.playerSpeed}/${props.maxPlayerSpeed}`}/>
+                    <ProgressBar variant="danger" min={0} max={props.playerMaxHealth} now={props.playerHealth} label={`Health ${props.playerHealth}/${props.playerMaxHealth}`}/>
+                    <ProgressBar variant="warning" min={0} max={props.playerMaxSpeed} now={props.playerSpeed} label={`Speed ${props.playerSpeed}/${props.playerMaxSpeed}`}/>
                 </div>
                 <nav>
                     <ul>
-                        {/* <li> */}
-                        {/* <Link to="/GameBoard" >
-                            <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
+                        <li>
+                        <Link to="/GameBoard" >
+                            <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
                         </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                         </li> */}
                         {/* <li>

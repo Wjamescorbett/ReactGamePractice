@@ -24,16 +24,30 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const [gameTick, setGameTick] = useState(0)
+    const [breakLoop, setBreakLoop] = useState(0)
     const [playerHealth, setPlayerHealth] = useState(0)
-    const [maxPlayerHealth, setPlayerMaxHealth] = useState(0)
+    const [playerMaxHealth, setPlayerMaxHealth] = useState(0)
     const [playerAttackLow, setPlayerAttackLow] = useState(0)
     const [playerAttackHigh, setPlayerAttackHigh] = useState(0)
     const [playerSpeed, setPlayerSpeed] = useState(0)
-    const [maxPlayerSpeed, setMaxPlayerSpeed] = useState(0)
+    const [playerMaxSpeed, setPlayerMaxSpeed] = useState(0)
     const [playerArmor, setPlayerArmor] = useState(0)
     const [playerCoins, setPlayerCoins] = useState(0)
     const [playerHealthPotion, setPlayerHealthPotion] = useState(0)
     const [playerStaminaPotion, setPlayerStaminaPotion] = useState(0)
+
+    const [enemyMaxHealth, setEnemyMaxHealth] = useState(0)
+    const [enemyHealth, setEnemyHealth] = useState(0)
+    const [enemyAttackLow, setEnemyAttackLow] = useState(0)
+    const [enemyAttackHigh, setEnemyAttackHigh] = useState(0)
+    const [enemySpeed, setEnemySpeed] = useState(0)
+    const [enemyMaxSpeed, setMaxEnemySpeed] = useState(0)
+    const [enemyArmor, setEnemyArmor] = useState(0)
+    const [enemyReward, setEnemyReward] = useState(0)
+
+    const[currentRoom, setCurrentRoom] = useState(0)
+
+    const [roomTwoStatus, setRoomTwoStatus] = useState(0)
 
 
 // class App extends Component {
@@ -104,11 +118,11 @@ function App() {
 //         }
 //     }
 
-function devButton() {
-    setPlayerHealth(playerHealth)
-    setPlayerAttackHigh(playerHealth + 5)
-    setPlayerCoins(playerCoins + 100)
-}
+    function devButton() {
+        setPlayerHealth(playerMaxHealth)
+        setPlayerAttackHigh(prevPlayerAttackHigh => prevPlayerAttackHigh + 5)
+        setPlayerCoins(playerCoins + 100)
+    }
 
     // useHealthPotion = () => {
     //     if(this.state.playerHealthPotion <= 0){
@@ -141,89 +155,87 @@ function devButton() {
     //     }
     // }
 
-    // buyFromStore = (item) => {
-    //     if(item === "health"){
-    //         if(this.state.playerCoins >= 5){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 5,
-    //                 maxPlayerHealth: this.state.maxPlayerHealth + 10,
-    //             })
-    //         } else {
-    //             alert("You can't afford a health upgrade.")
-    //         }
-    //     }
-    //     if(item === "attackLow"){
-    //         if(this.state.playerCoins >= 6 & this.state.playerAttackLow < this.state.playerAttackHigh){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 6,
-    //                 playerAttackLow: this.state.playerAttackLow + 1,
-    //             })
-    //         } 
-    //         if(this.state.playerAttackLow >= this.state.playerAttackHigh){
-    //             alert("Your minimum attack can not exceed you maximum attack.")
-    //         }
-    //         if(this.state.playerCoins < 6){
-    //             alert("You can't afford a minimum attack upgrade.")
-    //         }
-    //     }
-    //     if(item === "attackHigh"){
-    //         if(this.state.playerCoins >= 3){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 3,
-    //                 playerAttackHigh: this.state.playerAttackHigh + 1,
-    //             })
-    //         } else {
-    //             alert("You can't afford a maximum attack upgrade.")
-    //         }
-    //     }
-    //     if(item === "speed"){
-    //         if(this.state.playerCoins >= 2){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 2,
-    //                 maxPlayerSpeed: this.state.maxPlayerSpeed + 1,
-    //                 playerSpeed: this.state.playerSpeed + 1,
-    //             })
-    //         } else {
-    //             alert("You can't afford a speed upgrade.")
-    //         }
-    //     }
-    //     if(item === "armor"){
-    //         if(this.state.playerCoins >= 3){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 3,
-    //                 playerArmor: this.state.playerArmor + 1,
-    //             })
-    //         } else {
-    //             alert("You can't afford an armor upgrade.")
-    //         }
-    //     }
-    //     if(item === "healthPotion"){
-    //         if(this.state.playerHealthPotion >= 10){
-    //             return (alert ("You can only have up to ten health potions."))
-    //         }
-    //         if(this.state.playerCoins >= 2){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 2,
-    //                 playerHealthPotion: this.state.playerHealthPotion + 1,
-    //             })
-    //         } else {
-    //             alert("You can't afford a health potion.")
-    //         }
-    //     }
-    //     if(item === "staminaPotion"){
-    //         if(this.state.playerStaminaPotion >= 8){
-    //             return (alert("You can only have up to eight stamina potions."))
-    //         }
-    //         if(this.state.playerCoins >= 1){
-    //             this.setState({
-    //                 playerCoins: this.state.playerCoins - 1,
-    //                 playerStaminaPotion: this.state.playerStaminaPotion + 1,
-    //             })
-    //         } else {
-    //             alert("You can't afford a stamina potion.")
-    //         }
-    //     }
-    // }
+    function buyFromStore(item) {
+        if(item === "health"){
+            if(playerCoins >= 5){
+                setPlayerCoins(prevPlayerCoins => prevPlayerCoins - 5)
+                setPlayerMaxHealth(prevPlayerMaxHealth => prevPlayerMaxHealth + 10)
+            } else {
+                alert("You can't afford a health upgrade.")
+            }
+        }
+        // if(item === "attackLow"){
+        //     if(this.state.playerCoins >= 6 & this.state.playerAttackLow < this.state.playerAttackHigh){
+        //         this.setState({
+        //             playerCoins: this.state.playerCoins - 6,
+        //             playerAttackLow: this.state.playerAttackLow + 1,
+        //         })
+        //     } 
+        //     if(this.state.playerAttackLow >= this.state.playerAttackHigh){
+        //         alert("Your minimum attack can not exceed you maximum attack.")
+        //     }
+        //     if(this.state.playerCoins < 6){
+        //         alert("You can't afford a minimum attack upgrade.")
+        //     }
+        // }
+        // if(item === "attackHigh"){
+        //     if(this.state.playerCoins >= 3){
+        //         this.setState({
+        //             playerCoins: this.state.playerCoins - 3,
+        //             playerAttackHigh: this.state.playerAttackHigh + 1,
+        //         })
+        //     } else {
+        //         alert("You can't afford a maximum attack upgrade.")
+        //     }
+        // }
+        // if(item === "speed"){
+        //     if(this.state.playerCoins >= 2){
+        //         this.setState({
+        //             playerCoins: this.state.playerCoins - 2,
+        //             maxPlayerSpeed: this.state.maxPlayerSpeed + 1,
+        //             playerSpeed: this.state.playerSpeed + 1,
+        //         })
+        //     } else {
+        //         alert("You can't afford a speed upgrade.")
+        //     }
+        // }
+        // if(item === "armor"){
+        //     if(this.state.playerCoins >= 3){
+        //         this.setState({
+        //             playerCoins: this.state.playerCoins - 3,
+        //             playerArmor: this.state.playerArmor + 1,
+        //         })
+        //     } else {
+        //         alert("You can't afford an armor upgrade.")
+        //     }
+        // }
+        // if(item === "healthPotion"){
+        //     if(this.state.playerHealthPotion >= 10){
+        //         return (alert ("You can only have up to ten health potions."))
+        //     }
+        //     if(this.state.playerCoins >= 2){
+        //         this.setState({
+        //             playerCoins: this.state.playerCoins - 2,
+        //             playerHealthPotion: this.state.playerHealthPotion + 1,
+        //         })
+        //     } else {
+        //         alert("You can't afford a health potion.")
+        //     }
+        // }
+        // if(item === "staminaPotion"){
+        //     if(this.state.playerStaminaPotion >= 8){
+        //         return (alert("You can only have up to eight stamina potions."))
+        //     }
+        //     if(this.state.playerCoins >= 1){
+        //         this.setState({
+        //             playerCoins: this.state.playerCoins - 1,
+        //             playerStaminaPotion: this.state.playerStaminaPotion + 1,
+        //         })
+        //     } else {
+        //         alert("You can't afford a stamina potion.")
+        //     }
+        // }
+    }
 
     // resetRoomStatus = () => {
     //     this.setState({
@@ -246,24 +258,28 @@ function devButton() {
 
     function pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) {
         console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
+        setPlayerHealth(health)
+        setPlayerMaxHealth(maxHealth)
+        setPlayerAttackLow(attackLow)
+        setPlayerAttackHigh(attackHigh)
+        setPlayerSpeed(speed)
+        setPlayerMaxSpeed(maxSpeed)
+        setPlayerArmor(armor)
+        setPlayerCoins(coins)
+        setPlayerHealthPotion(healthPotion)
+        setPlayerStaminaPotion(staminaPotion)
+        gameTime()
     }
 
-    // pickClass = (health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) => {
-    //     console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
-    //     this.setState({
-    //         playerHealth: health,
-    //         maxPlayerHealth: maxHealth,
-    //         playerAttackLow: attackLow,
-    //         playerAttackHigh: attackHigh,
-    //         playerSpeed: speed,
-    //         maxPlayerSpeed: maxSpeed,
-    //         playerArmor: armor,
-    //         playerCoins: coins,
-    //         playerHealthPotion: healthPotion,
-    //         playerStaminaPotion: staminaPotion,
-    //     })
-    //     this.gameTime()
-    // }
+    function createEnemy(maxHealth, health, attackLow, attackHigh, speed, armor, reward, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) {
+        setEnemyMaxHealth(maxHealth)
+        setEnemyHealth(health)
+        setEnemyAttackLow(attackLow)
+        setEnemyAttackHigh(attackHigh)
+        setEnemySpeed(speed)
+        setEnemyArmor(armor)
+        setEnemyReward(reward)
+    }
 
     // createEnemy = (maxHealth, health, attackLow, attackHigh, speed, armor, reward, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) => {
     //     this.setState({
@@ -295,6 +311,16 @@ function devButton() {
 
     //                         // *ROOM MOVEMENT, CREATES ENEMIES FOR NEXT ROOM, ACCOUNTS FOR AND CHANGES PLAYER SPEED, STARTS ROOM TIMER
 
+    function roomMovement(nowCurrentRoom){
+        if(playerSpeed > 0){
+            setCurrentRoom(nowCurrentRoom)
+            setPlayerSpeed(prevPlayerSpeed => prevPlayerSpeed - 1)
+            setCurrentRoom(nowCurrentRoom)
+        }
+        if(currentRoom === 2) {
+            createEnemy(20, 20, 2, 3, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+        }
+    }
     // roomMovement = (currentRoom) => {
     //     this.roomTime()
     //     if(this.state.playerSpeed > 0){
@@ -755,23 +781,19 @@ function devButton() {
     //     });
     // }
 
-    //                                         //  *GAME TIMER
-    // gameTime = () => {
-    //     this.timeSetState()
-    //     if(this.state.breakLoop < 300){
-    //         console.log(`Break loop is at ${this.state.breakLoop}`);
-    //         setTimeout(() => {this.gameTime(); }, 1000);
-    //     }
-    //     console.log(`gameTime() is running. gameTick is at ${this.state.gameTick}`)
-    // }
+                                            // *GAME TIMER/BREAKLOOP TIMER
 
-    // timeSetState = () => {
-    //     this.setState({
-    //         breakLoop: this.state.breakLoop + 1,
-    //         gameTick: this.state.gameTick + 1,
-    //     })
-    // }
-    //                                         //  !END GAME TIMER
+    function gameTime() {
+        setBreakLoop(prevBreakLoop => prevBreakLoop + 1)
+        setGameTick(prevGameTick => prevGameTick + 1)
+        if(breakLoop < 300){
+            setTimeout(() => {gameTime(); }, 1000);
+        }
+        console.log(`gameTime() ran. gameTick is at ${gameTick}`)
+    }
+
+
+                                            //  !END GAME TIMER
 
     //                                         //  *ROOM TIMER
     // roomTime = () => {
@@ -793,13 +815,15 @@ function devButton() {
     // render() {
         return(
             <BrowserRouter>
-            <Navbar gameTick={gameTick} maxPlayerSpeed={maxPlayerSpeed} maxHealth={maxPlayerHealth} devButton={devButton} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion} />
+            <Navbar gameTick={gameTick} playerMaxSpeed={playerMaxSpeed} playerMaxHealth={playerMaxHealth} devButton={devButton} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion} />
                 <Routes>
                     <Route path="/" element={<Home playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh}playerSpeed={playerSpeed} playerDefense={playerArmor} playerCoins={playerCoins} pickClass={pickClass} />} />
 
-                    {/* <Route path="/GameBoard" element={<GameBoard buyFromStore={this.buyFromStore} roomMovement={this.roomMovement} createEnemy={this.createEnemy} />} />
+                    <Route path="/GameBoard" element={<GameBoard buyFromStore={buyFromStore} roomMovement={roomMovement} createEnemy={createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo rechargeAttackMove={this.rechargeAttackMove} playerAttacked={this.state.playerAttacked} playerAttackMove={this.playerAttackMove} playerAttackTimerState={this.state.playerAttackTimerState} playerAttackTimerStateMax={this.state.playerAttackTimerStateMax} startCombat={this.startCombat} startCombatCheck={this.state.startCombatCheck} currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed}  enemyMaxSpeed={this.state.enemyMaxSpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} /> */}
+                    <Route path="/RoomTwo" element={<RoomTwo roomTwoStatus={roomTwoStatus} currentRoom={currentRoom} enemyHealth={enemyHealth} enemyMaxHealth={enemyMaxHealth} enemyAttackLow={enemyAttackLow} enemyAttackHigh={enemyAttackHigh} enemySpeed={enemySpeed} enemyMaxSpeed={enemyMaxSpeed} enemyArmor={enemyArmor} enemyReward={enemyReward} />} />
+
+                    {/* <Route path="/RoomTwo" element={<RoomTwo rechargeAttackMove={this.rechargeAttackMove} playerAttacked={this.state.playerAttacked} playerAttackMove={this.playerAttackMove} playerAttackTimerState={this.state.playerAttackTimerState} playerAttackTimerStateMax={this.state.playerAttackTimerStateMax} startCombat={this.startCombat} startCombatCheck={this.state.startCombatCheck} currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed}  enemyMaxSpeed={this.state.enemyMaxSpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} /> */}
 
                     {/* <Route path="/RoomThree" element={<RoomThree roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} roomThreeStatus ={this.state.roomThreeStatus} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} />
 
