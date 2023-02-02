@@ -18,11 +18,14 @@ const DamageEffects = (props) => {
         if(props.numberOfEnemiesInRoom === 1){
             return(
                 <div>
-                    <PlayerAttackButton rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
-                    <ToastContainer />
-                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                    <button className="healMove">Heal</button>
+                    <h1>Combat Started</h1>
                 </div>
+                // <div>
+                //     <PlayerAttackButton rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
+                //     <ToastContainer />
+                //     <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
+                //     <button className="healMove">Heal</button>
+                // </div>
             )
         }
         if(props.numberOfEnemiesInRoom === 2){

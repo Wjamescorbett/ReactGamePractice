@@ -15,9 +15,9 @@ const RoomTwo = (props) => {
                 <div>
                     <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyMaxSpeed={props.enemyMaxSpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} />
                 </div>
-                {/* <div>
+                <div>
                     <DamageEffects rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
-                </div> */}
+                </div>
                 <div>
                     <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
                 </div>
