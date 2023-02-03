@@ -36,6 +36,10 @@ function App() {
     const [playerHealthPotion, setPlayerHealthPotion] = useState(0)
     const [playerStaminaPotion, setPlayerStaminaPotion] = useState(0)
 
+    const [playerAttackTimerState, setPlayerAttackTimerState] = useState(5)
+    const [playerAttackTimerStateMax, setPlayerAttackTimerStateMax] = useState(5)
+    const [playerAttacked, setPlayerAttacked] = useState(1)
+
     const [startCombatCheck, setStartCombatCheck] = useState(false)
 
     const [enemyMaxHealth, setEnemyMaxHealth] = useState(0)
@@ -382,6 +386,7 @@ function App() {
     function startCombat() {
         setStartCombatCheck(true)
         enemyTimedCombatSequence()
+        playerAttackTimer(1)
     }
 
     // startCombat = () => {
@@ -392,22 +397,19 @@ function App() {
     //     this.playerAttackTimer(1)
     // }
 
-    // playerAttackTimer = (charged) => {
-    //     if(this.state.breakLoop < 300 & this.state.playerAttackTimerState > 0 & charged === 1){
-    //         this.setState({
-    //             playerAttackTimerState: this.state.playerAttackTimerState - 1,
-    //         })
-    //         console.log("PLAYER ATTACK TIMER RUNNING")
-    //         setTimeout(() => {this.playerAttackTimer(1); }, 1000);
-    //     }
-    //     else{
-    //         this.setState({
-    //             playerAttackTimerState: this.state.playerAttackTimerStateMax,
-    //             playerAttacked: 2,
-    //         })
-    //         return
-    //     }
-    // }
+    function playerAttackTimer(charged) {
+        if(breakLoop < 300 & playerAttackTimerState > 0 & charged === 1){
+            setPlayerAttackTimerState(prevPlayerAttackTimerState => prevPlayerAttackTimerState -1)
+            console.log("PLAYER ATTACK TIMER RUNNING")
+            setTimeout(() => {playerAttackTimer(1); }, 1000);
+        }
+        else{
+            setPlayerAttackTimerState(playerAttackTimerStateMax)
+            setPlayerAttacked(2)
+            return
+        }
+    }
+
     // rechargeAttackMove = () => {
     //     this.setState({
     //         playerAttacked: 1,
