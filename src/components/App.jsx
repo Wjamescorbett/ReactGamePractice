@@ -47,6 +47,7 @@ function App() {
     const [enemyArmor, setEnemyArmor] = useState(0)
     const [enemyReward, setEnemyReward] = useState(0)
     const [numberOfEnemiesInRoom, setNumberOfEnemiesInRoom] = useState(0)
+    // const [enemyDamageDone, setEnemyDamageDone] = useState(0)
 
     const[currentRoom, setCurrentRoom] = useState(0)
 
@@ -417,37 +418,69 @@ function App() {
     function enemyTimedCombatSequence() {
         console.log("EnemyCombatTimer")
         if(breakLoop < 60) {
-            if(enemySpeed > 0 & enemyHealth > 0) {
+            if(enemySpeed >= 0 & enemyHealth > 0) {
                 setEnemySpeed(prevEnemySpeed => prevEnemySpeed -1)
             }
+            if(enemyHealth >= 0){
+                setTimeout(() => {enemyTimedCombatSequence(); }, 1000);
+            }
         }
-        setTimeout(() => {enemyTimedCombatSequence(); }, 1000);
     }
 
-    useEffect(() => {
-        if(enemySpeed <= 0){
-            setEnemySpeed(enemyMaxSpeed)
+    function playerAttackRandomizer(playerAttackLow, playerAttackHigh) {
+        return Math.floor(Math.random() * (playerAttackHigh - playerAttackLow + 1) + playerAttackLow)
+    }
+
+    function enemyCounterAttack(currentPlayerAttack) {
+        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyAttackLow, enemyAttackHigh) - playerArmor
+        // var currentEnemy2Attack = currentEnemyAttackRandomizer(enemy2AttackLow, enemy2AttackHigh) - playerArmor
+        // var currentEnemy3Attack = currentEnemyAttackRandomizer(enemy3AttackLow, enemy3AttackHigh) - playerArmor
+        if(currentEnemyAttack <= 0){
+            currentEnemyAttack = 1
         }
-        console.log("USE EFFECT RAN FOR ENEMY SPEED")
+        // if(currentEnemy2Attack <= 0){
+        //     currentEnemy2Attack = 1
+        // }
+        // if(currentEnemy3Attack <= 0){
+        //     currentEnemy3Attack = 1
+        // }
+        if(enemyHealth - currentPlayerAttack > 0){
+            playerTakeDamage(currentEnemyAttack)
+        }
+        // if(enemy2Health - currentPlayerAttack > 0){
+        //     playerDamageTaken = playerDamageTaken + currentEnemy2Attack
+        // }
+        // if(enemy3Health - currentPlayerAttack > 0){
+        //     playerDamageTaken = playerDamageTaken + currentEnemy3Attack
+        // }
+    }
+
+    function currentEnemyAttackRandomizer(enemyAttackLow, enemyAttackHigh) {
+        return Math.floor(Math.random() * (enemyAttackHigh - enemyAttackLow + 1) + enemyAttackLow)
+    }
+
+    function playerTakeDamage(damageTaken) {
+        setPlayerHealth(playerHealth - damageTaken)
+        showToastMessageRed(damageTaken)
+    }
+
+    function showToastMessageRed(damageTaken) {
+        console.log("TOOOOOOOOOOOOOOOOOAAAAAAAAAASSSSSSSSSTTTTTTTTT")
+        toast.error(`You took ${damageTaken} damage !`, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
+
+
+
+    useEffect(() => {
+        if(enemySpeed < 0){
+            setEnemySpeed(enemyMaxSpeed)
+            var currentPlayerAttack = playerAttackRandomizer(playerAttackLow, playerAttackHigh)
+            enemyCounterAttack(currentPlayerAttack)
+        }
+        console.log("USE EFFECT RAN")
     })
-
-
-    // enemyTimedCombatSequenceTest = () => {
-    //     if(this.state.breakLoop < 60 & this.state.enemySpeed > -1 & this.state.enemyHealth >= 0){
-    //         this.setState({
-    //             enemySpeed: this.state.enemySpeed -1,
-    //         })
-    //         if(this.state.enemySpeed === 0){
-    //             var currentPlayerAttack = this.playerAttackRandomizer(this.state.playerAttackLow, this.state.playerAttackHigh)
-    //             this.enemyCounterAttack(currentPlayerAttack)
-    //             this.setState({
-    //                 enemySpeed: this.state.enemyMaxSpeed,
-    //             })
-    //         }
-    //         setTimeout(() => {this.enemyTimedCombatSequenceTest(); }, 1000);
-    //         console.log(`timedCombatSequenceTest() is running. EnemySpeed 2 ${this.state.enemySpeed}`)
-    //     }
-    // }
 
     //                                         // !END TIMED COMBAT
 
@@ -461,7 +494,7 @@ function App() {
     //     })
     // }
 
-    //                                         // !END ROOM MOVEMENT AND PLAYER SPEED
+                                            // !END ROOM MOVEMENT AND PLAYER SPEED
 
     //                                         // *BEGINNING OF COMBAT ATTACK SEQUENCE
 
@@ -503,10 +536,6 @@ function App() {
     //         this.playerAttackMoveSetState(3, currentPlayerAttack)
     //         this.deadCheck(currentPlayerAttack, attackEnemy)
     //     }
-    // }
-
-    // playerAttackRandomizer = (playerAttackLow, playerAttackHigh) => {
-    //     return Math.floor(Math.random() * (playerAttackHigh - playerAttackLow + 1) + playerAttackLow)
     // }
 
     // playerAttackMoveSetState = (attackEnemyNumber, currentPlayerAttack) => {
@@ -583,43 +612,7 @@ function App() {
     //     }
     // }
 
-    // enemyCounterAttack = (currentPlayerAttack) => {
-    //     var currentEnemyAttack = this.currentEnemyAttackRandomizer(this.state.enemyAttackLow, this.state.enemyAttackHigh) - this.state.playerArmor
-    //     var currentEnemy2Attack = this.currentEnemyAttackRandomizer(this.state.enemy2AttackLow, this.state.enemy2AttackHigh) - this.state.playerArmor
-    //     var currentEnemy3Attack = this.currentEnemyAttackRandomizer(this.state.enemy3AttackLow, this.state.enemy3AttackHigh) - this.state.playerArmor
-    //     var playerDamageTaken = 0
-    //     if(currentEnemyAttack <= 0){
-    //         currentEnemyAttack = 1
-    //     }
-    //     if(currentEnemy2Attack <= 0){
-    //         currentEnemy2Attack = 1
-    //     }
-    //     if(currentEnemy3Attack <= 0){
-    //         currentEnemy3Attack = 1
-    //     }
-    //     if(this.state.enemyHealth - currentPlayerAttack > 0){
-    //         playerDamageTaken = playerDamageTaken + currentEnemyAttack
-    //     }
-    //     if(this.state.enemy2Health - currentPlayerAttack > 0){
-    //         playerDamageTaken = playerDamageTaken + currentEnemy2Attack
-    //     }
-    //     if(this.state.enemy3Health - currentPlayerAttack > 0){
-    //         playerDamageTaken = playerDamageTaken + currentEnemy3Attack
-    //     }
-    //     this.playerTakeDamage(playerDamageTaken)
-    // }
 
-    // currentEnemyAttackRandomizer = (enemyAttackLow, enemyAttackHigh) => {
-    //     return Math.floor(Math.random() * (enemyAttackHigh - enemyAttackLow + 1) + enemyAttackLow)
-    // }
-
-    // playerTakeDamage = (damageTaken) => {
-    //     this.setState({
-    //         playerHealth: this.state.playerHealth - damageTaken,
-    //         enemyDamageDone: damageTaken,
-    //     })
-    //     this.showToastMessageRed(damageTaken)
-    // }
 
     // setCurrentRoomStatusClearEnemy = () => {
     //     if(this.state.currentRoom === 2){
@@ -802,11 +795,6 @@ function App() {
     //     }
     // }
 
-    // showToastMessageRed = (damageTaken) => {
-    //     toast.error("You took " + damageTaken + " damage !", {
-    //         position: toast.POSITION.TOP_RIGHT
-    //     });
-    // }
 
                                             // *GAME TIMER/BREAKLOOP TIMER
 
@@ -843,6 +831,7 @@ function App() {
         return(
             <BrowserRouter>
             <Navbar gameTick={gameTick} playerMaxSpeed={playerMaxSpeed} playerMaxHealth={playerMaxHealth} devButton={devButton} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion} />
+            <ToastContainer />
                 <Routes>
                     <Route path="/" element={<Home playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh}playerSpeed={playerSpeed} playerDefense={playerArmor} playerCoins={playerCoins} pickClass={pickClass} />} />
 
