@@ -13,7 +13,7 @@ const RoomTwo = (props) => {
                     <h2>This Is Room Two</h2>
                 </div>
                 <div>
-                    <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyMaxSpeed={props.enemyMaxSpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} />
+                    <EnemyVisuals currentRoom={props.currentRoom}  enemyOne={props.enemyOne} />
                 </div>
                 <div>
                     <DamageEffects rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
@@ -65,3 +65,5 @@ const RoomTwo = (props) => {
 }
 
 export default RoomTwo;
+
+// enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyMaxSpeed={props.enemyMaxSpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward}

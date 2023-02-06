@@ -42,14 +42,25 @@ function App() {
 
     const [startCombatCheck, setStartCombatCheck] = useState(false)
 
-    const [enemyMaxHealth, setEnemyMaxHealth] = useState(0)
-    const [enemyHealth, setEnemyHealth] = useState(0)
-    const [enemyAttackLow, setEnemyAttackLow] = useState(0)
-    const [enemyAttackHigh, setEnemyAttackHigh] = useState(0)
-    const [enemySpeed, setEnemySpeed] = useState(0)
-    const [enemyMaxSpeed, setEnemyMaxSpeed] = useState(0)
-    const [enemyArmor, setEnemyArmor] = useState(0)
-    const [enemyReward, setEnemyReward] = useState(0)
+    const [enemyOne, setEnemyOne] = useState({
+        enemyMaxHealth: 0, 
+        enemyHealth: 0, 
+        enemyAttackLow: 0, 
+        enemyAttackHigh: 0, 
+        enemySpeed: 0, 
+        enemyMaxSpeed: 0, 
+        enemyArmor: 0, 
+        enemyReward: 0
+    })
+
+    // const [enemyMaxHealth, setEnemyMaxHealth] = useState(0)
+    // const [enemyHealth, setEnemyHealth] = useState(0)
+    // const [enemyAttackLow, setEnemyAttackLow] = useState(0)
+    // const [enemyAttackHigh, setEnemyAttackHigh] = useState(0)
+    // const [enemySpeed, setEnemySpeed] = useState(0)
+    // const [enemyMaxSpeed, setEnemyMaxSpeed] = useState(0)
+    // const [enemyArmor, setEnemyArmor] = useState(0)
+    // const [enemyReward, setEnemyReward] = useState(0)
     const [numberOfEnemiesInRoom, setNumberOfEnemiesInRoom] = useState(0)
     // const [enemyDamageDone, setEnemyDamageDone] = useState(0)
 
@@ -280,14 +291,26 @@ function App() {
     }
 
     function createEnemy(maxHealth, health, attackLow, attackHigh, speed, armor, reward, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) {
-        setEnemyMaxHealth(maxHealth)
-        setEnemyHealth(health)
-        setEnemyAttackLow(attackLow)
-        setEnemyAttackHigh(attackHigh)
-        setEnemySpeed(speed)
-        setEnemyMaxSpeed(speed)
-        setEnemyArmor(armor)
-        setEnemyReward(reward)
+        setEnemyOne(prevEnemyOne => {
+            return {...prevEnemyOne, 
+                enemyMaxHealth: maxHealth,
+                enemyHealth: health,
+                enemyAttackLow: attackLow,
+                enemyAttackHigh: attackHigh,
+                enemySpeed: speed,
+                enemyMaxSpeed: speed,
+                enemyArmor: armor,
+                enemyReward: reward
+            }
+        })
+        // setEnemyMaxHealth(maxHealth)
+        // setEnemyHealth(health)
+        // setEnemyAttackLow(attackLow)
+        // setEnemyAttackHigh(attackHigh)
+        // setEnemySpeed(speed)
+        // setEnemyMaxSpeed(speed)
+        // setEnemyArmor(armor)
+        // setEnemyReward(reward)
         setNumberOfEnemiesInRoom(numberOfEnemiesInRoom)
     }
 
@@ -420,10 +443,12 @@ function App() {
     function enemyTimedCombatSequence() {
         console.log("EnemyCombatTimer")
         if(breakLoop < 60) {
-            if(enemySpeed >= 0 & enemyHealth > 0) {
-                setEnemySpeed(prevEnemySpeed => prevEnemySpeed -1)
-            }
-            if(enemyHealth >= 0){
+            if(enemyOne.enemySpeed >= 0 & enemyOne.enemyHealth > 0) {
+                setEnemyOne(prevEnemyOne => {
+                    return {...prevEnemyOne, enemySpeed: prevEnemyOne.enemySpeed -1}
+            })
+        }
+            if(enemyOne.enemyHealth >= 0){
                 setTimeout(() => {enemyTimedCombatSequence(); }, 1000);
             }
         }
@@ -434,7 +459,7 @@ function App() {
     }
 
     function enemyCounterAttack(currentPlayerAttack) {
-        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyAttackLow, enemyAttackHigh) - playerArmor
+        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyOne.enemyAttackLow, enemyOne.enemyAttackHigh) - playerArmor
         // var currentEnemy2Attack = currentEnemyAttackRandomizer(enemy2AttackLow, enemy2AttackHigh) - playerArmor
         // var currentEnemy3Attack = currentEnemyAttackRandomizer(enemy3AttackLow, enemy3AttackHigh) - playerArmor
         if(currentEnemyAttack <= 0){
@@ -446,7 +471,7 @@ function App() {
         // if(currentEnemy3Attack <= 0){
         //     currentEnemy3Attack = 1
         // }
-        if(enemyHealth - currentPlayerAttack > 0){
+        if(enemyOne.enemyHealth - currentPlayerAttack > 0){
             playerTakeDamage(currentEnemyAttack)
         }
         // if(enemy2Health - currentPlayerAttack > 0){
@@ -476,8 +501,10 @@ function App() {
 
 
     useEffect(() => {
-        if(enemySpeed < 0){
-            setEnemySpeed(enemyMaxSpeed)
+        if(enemyOne.enemySpeed < 0){
+            setEnemyOne(prevEnemyOne => {
+                return {...prevEnemyOne, enemySpeed: enemyOne.enemyMaxSpeed}
+            })
             var currentPlayerAttack = playerAttackRandomizer(playerAttackLow, playerAttackHigh)
             enemyCounterAttack(currentPlayerAttack)
         }
@@ -835,11 +862,11 @@ function App() {
             <Navbar gameTick={gameTick} playerMaxSpeed={playerMaxSpeed} playerMaxHealth={playerMaxHealth} devButton={devButton} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion} />
             <ToastContainer />
                 <Routes>
-                    <Route path="/" element={<Home playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh}playerSpeed={playerSpeed} playerDefense={playerArmor} playerCoins={playerCoins} pickClass={pickClass} />} />
+                    <Route path="/" element={<Home playerHealth={playerHealth} enemyOne={enemyOne} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh}playerSpeed={playerSpeed} playerDefense={playerArmor} playerCoins={playerCoins} pickClass={pickClass} />} />
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={buyFromStore} roomMovement={roomMovement} createEnemy={createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo roomTwoStatus={roomTwoStatus} currentRoom={currentRoom} enemyHealth={enemyHealth} enemyMaxHealth={enemyMaxHealth} enemyAttackLow={enemyAttackLow} enemyAttackHigh={enemyAttackHigh} enemySpeed={enemySpeed} enemyMaxSpeed={enemyMaxSpeed} enemyArmor={enemyArmor} enemyReward={enemyReward} numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo enemyOne={enemyOne} roomTwoStatus={roomTwoStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} />} />
 
                     {/* <Route path="/RoomTwo" element={<RoomTwo rechargeAttackMove={this.rechargeAttackMove} playerAttacked={this.state.playerAttacked} playerAttackMove={this.playerAttackMove} playerAttackTimerState={this.state.playerAttackTimerState} playerAttackTimerStateMax={this.state.playerAttackTimerStateMax} startCombat={this.startCombat} startCombatCheck={this.state.startCombatCheck} currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed}  enemyMaxSpeed={this.state.enemyMaxSpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} /> */}
 
@@ -869,3 +896,5 @@ function App() {
 }
 
 export default App;
+
+// enemyHealth={enemyHealth} enemyMaxHealth={enemyMaxHealth} enemyAttackLow={enemyAttackLow} enemyAttackHigh={enemyAttackHigh} enemySpeed={enemySpeed} enemyMaxSpeed={enemyMaxSpeed} enemyArmor={enemyArmor} enemyReward={enemyReward}
