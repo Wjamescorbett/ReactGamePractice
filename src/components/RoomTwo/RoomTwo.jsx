@@ -32,7 +32,7 @@ const RoomTwo = (props) => {
                     <h2>This Is The GameBoard Room Two</h2>
                 </div>
             <div>
-                <h2>You killed a dangerous circle. It rewarded you with {props.enemyReward} coin. </h2>
+                <h2>You killed a dangerous circle. It rewarded you with {props.enemyOne.enemyReward} coin. </h2>
             </div>
             <ul>
                 <li>

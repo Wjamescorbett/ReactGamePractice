@@ -6,16 +6,16 @@ const Navbar = (props) => {
         return(
             <div>
                 <h5>Here is the time {props.gameTick}</h5>
-                <h5>Your Heath is {props.playerHealth}. Your max health is {props.playerMaxHealth}.</h5>
-                <h5>Your Attack is {props.playerAttackLow} - {props.playerAttackHigh}. </h5> 
-                <h5>Your Speed is {props.playerSpeed}. !!CAP AT TEN!!</h5>
-                <h5>Your Armor is {props.playerArmor}. </h5>
-                <h5>You have {props.playerCoins} coins. </h5>
-                <h5>You have {props.playerHealthPotion} health potions. {props.healthPotionEffect} healing per. </h5>
-                <h5>You have {props.playerStaminaPotion} stamina potions. </h5>
+                <h5>Your Heath is {props.player.playerHealth}. Your max health is {props.player.playerMaxHealth}.</h5>
+                <h5>Your Attack is {props.player.playerAttackLow} - {props.player.playerAttackHigh}. </h5> 
+                <h5>Your Speed is {props.player.playerSpeed}. !!CAP AT TEN!!</h5>
+                <h5>Your Armor is {props.player.playerArmor}. </h5>
+                <h5>You have {props.player.playerCoins} coins. </h5>
+                <h5>You have {props.player.playerHealthPotion} health potions. {props.player.healthPotionEffect} healing per. </h5>
+                <h5>You have {props.player.playerStaminaPotion} stamina potions. </h5>
                 <div className="w-25 p-3">
-                    <ProgressBar variant="danger" min={0} max={props.playerMaxHealth} now={props.playerHealth} label={`Health ${props.playerHealth}/${props.playerMaxHealth}`}/>
-                    <ProgressBar variant="warning" min={0} max={props.playerMaxSpeed} now={props.playerSpeed} label={`Speed ${props.playerSpeed}/${props.playerMaxSpeed}`}/>
+                    <ProgressBar variant="danger" min={0} max={props.player.playerMaxHealth} now={props.player.playerHealth} label={`Health ${props.player.playerHealth}/${props.player.playerMaxHealth}`}/>
+                    <ProgressBar variant="warning" min={0} max={props.player.playerMaxSpeed} now={props.player.playerSpeed} label={`Speed ${props.player.playerSpeed}/${props.player.playerMaxSpeed}`}/>
                 </div>
                 <nav>
                     <ul>

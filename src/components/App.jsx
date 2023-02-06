@@ -25,16 +25,30 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
     const [gameTick, setGameTick] = useState(0)
     const [breakLoop, setBreakLoop] = useState(0)
-    const [playerHealth, setPlayerHealth] = useState(0)
-    const [playerMaxHealth, setPlayerMaxHealth] = useState(0)
-    const [playerAttackLow, setPlayerAttackLow] = useState(0)
-    const [playerAttackHigh, setPlayerAttackHigh] = useState(0)
-    const [playerSpeed, setPlayerSpeed] = useState(0)
-    const [playerMaxSpeed, setPlayerMaxSpeed] = useState(0)
-    const [playerArmor, setPlayerArmor] = useState(0)
-    const [playerCoins, setPlayerCoins] = useState(0)
-    const [playerHealthPotion, setPlayerHealthPotion] = useState(0)
-    const [playerStaminaPotion, setPlayerStaminaPotion] = useState(0)
+
+    const [player, setPlayer] = useState({
+        playerHealth: 0,
+        playerMaxHealth: 0,
+        playerAttackLow: 0,
+        playerAttackHigh: 0,
+        playerSpeed: 0,
+        playerMaxSpeed: 0,
+        playerArmor: 0,
+        playerCoins: 0,
+        playerHealthPotion: 0,
+        playerStaminaPotion: 0
+    })
+
+    // const [playerHealth, setPlayerHealth] = useState(0)
+    // const [playerMaxHealth, setPlayerMaxHealth] = useState(0)
+    // const [playerAttackLow, setPlayerAttackLow] = useState(0)
+    // const [playerAttackHigh, setPlayerAttackHigh] = useState(0)
+    // const [playerSpeed, setPlayerSpeed] = useState(0)
+    // const [playerMaxSpeed, setPlayerMaxSpeed] = useState(0)
+    // const [playerArmor, setPlayerArmor] = useState(0)
+    // const [playerCoins, setPlayerCoins] = useState(0)
+    // const [playerHealthPotion, setPlayerHealthPotion] = useState(0)
+    // const [playerStaminaPotion, setPlayerStaminaPotion] = useState(0)
 
     const [playerAttackTimerState, setPlayerAttackTimerState] = useState(5)
     const [playerAttackTimerStateMax, setPlayerAttackTimerStateMax] = useState(5)
@@ -138,9 +152,16 @@ function App() {
 //     }
 
     function devButton() {
-        setPlayerHealth(playerMaxHealth)
-        setPlayerAttackHigh(prevPlayerAttackHigh => prevPlayerAttackHigh + 5)
-        setPlayerCoins(playerCoins + 100)
+        setPlayer (prevPlayer => {
+            return {...prevPlayer,
+            playerHealth: player.playerMaxHealth,
+            playerAttackHigh: player.playerAttackHigh + 5,
+            playerCoins: player.playerCoins + 100
+        }
+        })
+        // setPlayerHealth(playerMaxHealth)
+        // setPlayerAttackHigh(prevPlayerAttackHigh => prevPlayerAttackHigh + 5)
+        // setPlayerCoins(playerCoins + 100)
     }
 
     // useHealthPotion = () => {
@@ -176,9 +197,15 @@ function App() {
 
     function buyFromStore(item) {
         if(item === "health"){
-            if(playerCoins >= 5){
-                setPlayerCoins(prevPlayerCoins => prevPlayerCoins - 5)
-                setPlayerMaxHealth(prevPlayerMaxHealth => prevPlayerMaxHealth + 10)
+            if(player.playerCoins >= 5){
+                setPlayer(prevPlayer =>{
+                    return {...prevPlayer,
+                    playerCoins: player.playerCoins - 5,
+                    playerHealth: player.playerHealth + 10
+                    }
+                })
+                // setPlayerCoins(prevPlayerCoins => prevPlayerCoins - 5)
+                // setPlayerMaxHealth(prevPlayerMaxHealth => prevPlayerMaxHealth + 10)
             } else {
                 alert("You can't afford a health upgrade.")
             }
@@ -277,16 +304,30 @@ function App() {
 
     function pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) {
         console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
-        setPlayerHealth(health)
-        setPlayerMaxHealth(maxHealth)
-        setPlayerAttackLow(attackLow)
-        setPlayerAttackHigh(attackHigh)
-        setPlayerSpeed(speed)
-        setPlayerMaxSpeed(maxSpeed)
-        setPlayerArmor(armor)
-        setPlayerCoins(coins)
-        setPlayerHealthPotion(healthPotion)
-        setPlayerStaminaPotion(staminaPotion)
+        setPlayer(prevPlayer => {
+            return {...prevPlayer,
+            playerHealth: health,
+            playerMaxHealth: maxHealth,
+            playerAttackLow: attackLow,
+            playerAttackHigh: attackHigh,
+            playerSpeed: speed,
+            playerMaxSpeed: maxSpeed,
+            playerArmor: armor,
+            playerCoins: coins,
+            playerHealthPotion: healthPotion,
+            playerStaminaPotion: staminaPotion
+        }
+        })
+        // setPlayerHealth(health)
+        // setPlayerMaxHealth(maxHealth)
+        // setPlayerAttackLow(attackLow)
+        // setPlayerAttackHigh(attackHigh)
+        // setPlayerSpeed(speed)
+        // setPlayerMaxSpeed(maxSpeed)
+        // setPlayerArmor(armor)
+        // setPlayerCoins(coins)
+        // setPlayerHealthPotion(healthPotion)
+        // setPlayerStaminaPotion(staminaPotion)
         gameTime()
     }
 
@@ -346,8 +387,13 @@ function App() {
 
     function roomMovement(nowCurrentRoom){
         setCurrentRoom(nowCurrentRoom)
-        if(playerSpeed > 0){
-            setPlayerSpeed(prevPlayerSpeed => prevPlayerSpeed - 1)
+        if(player.playerSpeed > 0){
+            setPlayer(prevPlayer => {
+                return {...prevPlayer,
+                    playerSpeed: player.playerSpeed - 1
+                }
+            })
+            // setPlayerSpeed(prevPlayerSpeed => prevPlayerSpeed - 1)
         }
         if(nowCurrentRoom === 2) {
             createEnemy(20, 20, 2, 3, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
@@ -459,7 +505,7 @@ function App() {
     }
 
     function enemyCounterAttack(currentPlayerAttack) {
-        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyOne.enemyAttackLow, enemyOne.enemyAttackHigh) - playerArmor
+        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyOne.enemyAttackLow, enemyOne.enemyAttackHigh) - player.playerArmor
         // var currentEnemy2Attack = currentEnemyAttackRandomizer(enemy2AttackLow, enemy2AttackHigh) - playerArmor
         // var currentEnemy3Attack = currentEnemyAttackRandomizer(enemy3AttackLow, enemy3AttackHigh) - playerArmor
         if(currentEnemyAttack <= 0){
@@ -487,7 +533,11 @@ function App() {
     }
 
     function playerTakeDamage(damageTaken) {
-        setPlayerHealth(playerHealth - damageTaken)
+        setPlayer(prevPlayer =>{
+            return {...prevPlayer,
+            playerHealth: player.playerHealth - damageTaken}
+        })
+        // setPlayerHealth(playerHealth - damageTaken)
         showToastMessageRed(damageTaken)
     }
 
@@ -505,7 +555,7 @@ function App() {
             setEnemyOne(prevEnemyOne => {
                 return {...prevEnemyOne, enemySpeed: enemyOne.enemyMaxSpeed}
             })
-            var currentPlayerAttack = playerAttackRandomizer(playerAttackLow, playerAttackHigh)
+            var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
             enemyCounterAttack(currentPlayerAttack)
         }
         console.log("USE EFFECT RAN")
@@ -859,10 +909,10 @@ function App() {
     // render() {
         return(
             <BrowserRouter>
-            <Navbar gameTick={gameTick} playerMaxSpeed={playerMaxSpeed} playerMaxHealth={playerMaxHealth} devButton={devButton} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion} />
+            <Navbar gameTick={gameTick} devButton={devButton} player={player} />
             <ToastContainer />
                 <Routes>
-                    <Route path="/" element={<Home playerHealth={playerHealth} enemyOne={enemyOne} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh}playerSpeed={playerSpeed} playerDefense={playerArmor} playerCoins={playerCoins} pickClass={pickClass} />} />
+                    <Route path="/" element={<Home player={player} enemyOne={enemyOne} pickClass={pickClass} />} />
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={buyFromStore} roomMovement={roomMovement} createEnemy={createEnemy} />} />
 
@@ -896,5 +946,7 @@ function App() {
 }
 
 export default App;
+
+// playerMaxSpeed={playerMaxSpeed} playerMaxHealth={playerMaxHealth} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion}
 
 // enemyHealth={enemyHealth} enemyMaxHealth={enemyMaxHealth} enemyAttackLow={enemyAttackLow} enemyAttackHigh={enemyAttackHigh} enemySpeed={enemySpeed} enemyMaxSpeed={enemyMaxSpeed} enemyArmor={enemyArmor} enemyReward={enemyReward}

@@ -22,7 +22,7 @@ const Home = (props) => {
                     <h1>This is the homepage</h1>
                     <h1>Intro and story go here.</h1>
                     <h5>Pick Your Class</h5>
-                    <h5>playerHealth is {props.playerHealth} </h5>
+                    <h5>playerHealth is {props.player.playerHealth} </h5>
                     <div>
                         <button onClick={showToastMessage}>Notify</button>
                         <ToastContainer />
