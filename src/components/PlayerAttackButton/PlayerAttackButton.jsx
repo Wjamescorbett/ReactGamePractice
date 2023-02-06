@@ -19,10 +19,10 @@ const PlayerAttackButton = (props) => {
             </div>
         )
     }
-    if(props.playerAttacked === 3){
-        return(
+    else{
+        return (
             <div>
-                <button className="rechargeAttackMove" onClick={() => props.rechargeAttackMove()}>Recharge Attack Move</button>
+                <h1> BROKEN </h1>
             </div>
         )
     }

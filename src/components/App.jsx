@@ -36,19 +36,9 @@ function App() {
         playerArmor: 0,
         playerCoins: 0,
         playerHealthPotion: 0,
-        playerStaminaPotion: 0
+        playerStaminaPotion: 0,
+        playerDamageDone: 0
     })
-
-    // const [playerHealth, setPlayerHealth] = useState(0)
-    // const [playerMaxHealth, setPlayerMaxHealth] = useState(0)
-    // const [playerAttackLow, setPlayerAttackLow] = useState(0)
-    // const [playerAttackHigh, setPlayerAttackHigh] = useState(0)
-    // const [playerSpeed, setPlayerSpeed] = useState(0)
-    // const [playerMaxSpeed, setPlayerMaxSpeed] = useState(0)
-    // const [playerArmor, setPlayerArmor] = useState(0)
-    // const [playerCoins, setPlayerCoins] = useState(0)
-    // const [playerHealthPotion, setPlayerHealthPotion] = useState(0)
-    // const [playerStaminaPotion, setPlayerStaminaPotion] = useState(0)
 
     const [playerAttackTimerState, setPlayerAttackTimerState] = useState(5)
     const [playerAttackTimerStateMax, setPlayerAttackTimerStateMax] = useState(5)
@@ -64,17 +54,10 @@ function App() {
         enemySpeed: 0, 
         enemyMaxSpeed: 0, 
         enemyArmor: 0, 
-        enemyReward: 0
+        enemyReward: 0,
+        enemyRewardCheck: 0
     })
 
-    // const [enemyMaxHealth, setEnemyMaxHealth] = useState(0)
-    // const [enemyHealth, setEnemyHealth] = useState(0)
-    // const [enemyAttackLow, setEnemyAttackLow] = useState(0)
-    // const [enemyAttackHigh, setEnemyAttackHigh] = useState(0)
-    // const [enemySpeed, setEnemySpeed] = useState(0)
-    // const [enemyMaxSpeed, setEnemyMaxSpeed] = useState(0)
-    // const [enemyArmor, setEnemyArmor] = useState(0)
-    // const [enemyReward, setEnemyReward] = useState(0)
     const [numberOfEnemiesInRoom, setNumberOfEnemiesInRoom] = useState(0)
     // const [enemyDamageDone, setEnemyDamageDone] = useState(0)
 
@@ -455,36 +438,16 @@ function App() {
     function startCombat() {
         setStartCombatCheck(true)
         enemyTimedCombatSequence()
-        playerAttackTimer(1)
+        playerAttackTimer(playerAttacked)
     }
-
-    // startCombat = () => {
-    //     this.setState({
-    //         startCombatCheck: true,
-    //     })
-    //     this.enemyTimedCombatSequenceTest()
-    //     this.playerAttackTimer(1)
-    // }
 
     function playerAttackTimer(charged) {
         if(breakLoop < 300 & playerAttackTimerState > 0 & charged === 1){
             setPlayerAttackTimerState(prevPlayerAttackTimerState => prevPlayerAttackTimerState -1)
             console.log("PLAYER ATTACK TIMER RUNNING")
-            setTimeout(() => {playerAttackTimer(1); }, 1000);
-        }
-        else{
-            setPlayerAttackTimerState(playerAttackTimerStateMax)
-            setPlayerAttacked(2)
-            return
+            setTimeout(() => {playerAttackTimer(playerAttacked); }, 1000);
         }
     }
-
-    // rechargeAttackMove = () => {
-    //     this.setState({
-    //         playerAttacked: 1,
-    //     })
-    //     this.playerAttackTimer(1)
-    // }
 
     function enemyTimedCombatSequence() {
         console.log("EnemyCombatTimer")
@@ -542,7 +505,6 @@ function App() {
     }
 
     function showToastMessageRed(damageTaken) {
-        console.log("TOOOOOOOOOOOOOOOOOAAAAAAAAAASSSSSSSSSTTTTTTTTT")
         toast.error(`You took ${damageTaken} damage !`, {
             position: toast.POSITION.TOP_RIGHT
         });
@@ -557,6 +519,10 @@ function App() {
             })
             var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
             enemyCounterAttack(currentPlayerAttack)
+        }
+        if(playerAttackTimerState < 0){
+            setPlayerAttackTimerState(playerAttackTimerStateMax)
+            setPlayerAttacked(2)
         }
         console.log("USE EFFECT RAN")
     })
@@ -577,179 +543,193 @@ function App() {
 
     //                                         // *BEGINNING OF COMBAT ATTACK SEQUENCE
 
-    // playerAttackMove = (attackEnemy) => {
-    //     var currentPlayerAttack = this.playerAttackRandomizer(this.state.playerAttackLow, this.state.playerAttackHigh)
-    //     if(attackEnemy === 1 & this.state.enemyHealth <= 0){
-    //         this.deadCheck(currentPlayerAttack, attackEnemy)
-    //         alert("You killed this enemy!")
-    //     }
-    //     if(attackEnemy === 1 & this.state.enemyHealth > 0){
-    //         currentPlayerAttack = currentPlayerAttack - this.state.enemyArmor
-    //         if(currentPlayerAttack <= 0){
-    //             currentPlayerAttack = 1
-    //         }
-    //         this.playerAttackMoveSetState(1, currentPlayerAttack)
-    //         this.deadCheck(currentPlayerAttack, attackEnemy)
-    //     }
-    //     if(attackEnemy === 2 & this.state.enemy2Health <= 0){
-    //         this.deadCheck(currentPlayerAttack, attackEnemy)
-    //         alert("You killed this enemy!")
-    //     }
-    //     if(attackEnemy === 2 & this.state.enemy2Health > 0){
-    //         currentPlayerAttack = currentPlayerAttack - this.state.enemy2Armor
-    //         if(currentPlayerAttack <= 0){
-    //             currentPlayerAttack = 1
-    //         }
-    //         this.playerAttackMoveSetState(2, currentPlayerAttack)
-    //         this.deadCheck(currentPlayerAttack, attackEnemy)
-    //     }
-    //     if(attackEnemy === 3 & this.state.enemy3Health <= 0){
-    //         this.deadCheck(currentPlayerAttack, attackEnemy)
-    //         alert("You killed this enemy!")
-    //     }
-    //     if(attackEnemy === 3 & this.state.enemy3Health > 0){
-    //         currentPlayerAttack = currentPlayerAttack - this.state.enemy3Armor
-    //         if(currentPlayerAttack <= 0){
-    //             currentPlayerAttack = 1
-    //         }
-    //         this.playerAttackMoveSetState(3, currentPlayerAttack)
-    //         this.deadCheck(currentPlayerAttack, attackEnemy)
-    //     }
-    // }
+    function playerAttackMove(attackEnemy) {
+        var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
+        if(attackEnemy === 1 & enemyOne.enemyHealth <= 0){
+            deadCheck(currentPlayerAttack, attackEnemy)
+            alert("You killed this enemy!")
+        }
+        if(attackEnemy === 1 & enemyOne.enemyHealth > 0){
+            currentPlayerAttack = currentPlayerAttack - enemyOne.enemyArmor
+            if(currentPlayerAttack <= 0){
+                currentPlayerAttack = 1
+            }
+            playerAttackMoveSetState(1, currentPlayerAttack)
+            deadCheck(currentPlayerAttack, attackEnemy)
+        }
+        // if(attackEnemy === 2 & this.state.enemy2Health <= 0){
+        //     this.deadCheck(currentPlayerAttack, attackEnemy)
+        //     alert("You killed this enemy!")
+        // }
+        // if(attackEnemy === 2 & this.state.enemy2Health > 0){
+        //     currentPlayerAttack = currentPlayerAttack - this.state.enemy2Armor
+        //     if(currentPlayerAttack <= 0){
+        //         currentPlayerAttack = 1
+        //     }
+        //     this.playerAttackMoveSetState(2, currentPlayerAttack)
+        //     this.deadCheck(currentPlayerAttack, attackEnemy)
+        // }
+        // if(attackEnemy === 3 & this.state.enemy3Health <= 0){
+        //     this.deadCheck(currentPlayerAttack, attackEnemy)
+        //     alert("You killed this enemy!")
+        // }
+        // if(attackEnemy === 3 & this.state.enemy3Health > 0){
+        //     currentPlayerAttack = currentPlayerAttack - this.state.enemy3Armor
+        //     if(currentPlayerAttack <= 0){
+        //         currentPlayerAttack = 1
+        //     }
+        //     this.playerAttackMoveSetState(3, currentPlayerAttack)
+        //     this.deadCheck(currentPlayerAttack, attackEnemy)
+        // }
+    }
 
-    // playerAttackMoveSetState = (attackEnemyNumber, currentPlayerAttack) => {
-    //     if(attackEnemyNumber === 1){
-    //         this.setState({
-    //             enemyHealth: this.state.enemyHealth - currentPlayerAttack,
-    //             playerDamageDone: currentPlayerAttack,
-    //             playerAttacked: 3,
-    //             playerAttackTimerState: this.state.playerAttackTimerStateMax,
-    //             })
-    //             this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
-    //     }
-    //     if(attackEnemyNumber === 2){
-    //         this.setState({
-    //             enemy2Health: this.state.enemy2Health - currentPlayerAttack,
-    //             playerDamageDone: currentPlayerAttack,
-    //             })
-    //             this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
-    //     }
-    //     if(attackEnemyNumber === 3){
-    //         this.setState({
-    //             enemy3Health: this.state.enemy3Health - currentPlayerAttack,
-    //             playerDamageDone: currentPlayerAttack,
-    //             })
-    //             this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
-    //     }
-    // }
+    function playerAttackMoveSetState(attackEnemyNumber, currentPlayerAttack) {
+        if(attackEnemyNumber === 1){
+            setPlayer(prevPlayer => {
+                return {...prevPlayer,
+                playerDamageDone: currentPlayerAttack
+                }
+            })
+            setEnemyOne(prevEnemyOne => {
+                return{...prevEnemyOne,
+                enemyHealth: enemyOne.enemyHealth - currentPlayerAttack
+                }
+            })
+            setPlayerAttacked(1)
+            showToastMessage(currentPlayerAttack, attackEnemyNumber)
 
-    // deadCheck = (currentPlayerAttack, attackEnemy) => {
-    //     if(this.state.enemyHealth - currentPlayerAttack <= 0){
-    //         if(this.state.enemyRewardCheck === 0 & attackEnemy === 1){
-    //             this.deadCheckSetState(1)
-    //         }
-    //     }
-    //     if(this.state.enemy2Health - currentPlayerAttack <= 0) {
-    //         if(this.state.enemy2RewardCheck === 0 & attackEnemy === 2){
-    //             this.deadCheckSetState(2)
-    //         }
-    //     }
-    //     if(this.state.enemy3Health - currentPlayerAttack <= 0 & attackEnemy === 3) {
-    //         if(this.state.enemy3RewardCheck === 0){
-    //             this.deadCheckSetState(3)
-    //         }
-    //     }
-    //     if(this.state.enemyHealth <= 0 & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0){
-    //         this.setCurrentRoomStatusClearEnemy()
-    //     }
-    //     // if(this.state.enemyHealth + this.state.enemy2Health + this.state.enemy3Health > 0){
-    //     //     this.enemyCounterAttack(currentPlayerAttack)
-    //     // }
-    // }
+            // this.setState({
+            //     enemyHealth: this.state.enemyHealth - currentPlayerAttack,
+            //     playerDamageDone: currentPlayerAttack,
+            //     playerAttacked: 3,
+            //     playerAttackTimerState: this.state.playerAttackTimerStateMax,
+            //     })
+        }
+        // if(attackEnemyNumber === 2){
+        //     this.setState({
+        //         enemy2Health: this.state.enemy2Health - currentPlayerAttack,
+        //         playerDamageDone: currentPlayerAttack,
+        //         })
+        //         this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
+        // }
+        // if(attackEnemyNumber === 3){
+        //     this.setState({
+        //         enemy3Health: this.state.enemy3Health - currentPlayerAttack,
+        //         playerDamageDone: currentPlayerAttack,
+        //         })
+        //         this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
+        // }
+    }
 
-    // deadCheckSetState = (enemyNumber) => {
-    //     if(enemyNumber === 1){
-    //         this.setState({
-    //             playerCoins: this.state.playerCoins + this.state.enemyReward,
-    //             enemyRewardCheck: 1,
-    //             enemyHealth: 0,
-    //         })
-    //     }
-    //     if(enemyNumber === 2){
-    //         this.setState({
-    //             playerCoins: this.state.playerCoins + this.state.enemy2Reward,
-    //             enemy2RewardCheck: 1,
-    //             enemy2Health: 0,
-    //         })
-    //     }
-    //     if(enemyNumber === 3){
-    //         this.setState({
-    //             playerCoins: this.state.playerCoins + this.state.enemy3Reward,
-    //             enemy3RewardCheck: 1,
-    //             enemy3Health: 0,
-    //         })
-    //     }
-    // }
+    function deadCheck(currentPlayerAttack, attackEnemy) {
+        if(enemyOne.enemyHealth - currentPlayerAttack <= 0){
+            if(enemyOne.enemyRewardCheck === 0 & attackEnemy === 1){
+                deadCheckSetState(1)
+            }
+        }
+        // if(this.state.enemy2Health - currentPlayerAttack <= 0) {
+        //     if(this.state.enemy2RewardCheck === 0 & attackEnemy === 2){
+        //         this.deadCheckSetState(2)
+        //     }
+        // }
+        // if(this.state.enemy3Health - currentPlayerAttack <= 0 & attackEnemy === 3) {
+        //     if(this.state.enemy3RewardCheck === 0){
+        //         this.deadCheckSetState(3)
+        //     }
+        // }
+        if(enemyOne.enemyHealth <= 0){
+            setCurrentRoomStatusClearEnemy()
+        }
+        // & this.state.enemy2Health <= 0 & this.state.enemy3Health <= 0
+    }
+
+    function deadCheckSetState(enemyNumber) {
+        if(enemyNumber === 1){
+            setEnemyOne(prevEnemyOne => {
+                return {...prevEnemyOne,
+                enemyHealth: 0,
+                enemyRewardCheck: 1
+                }
+            })
+            setPlayer(prevPlayer => {
+                return {...prevPlayer,
+                playerCoins: player.playerCoins + enemyOne.enemyReward
+                }
+            })
+        }
+        // if(enemyNumber === 2){
+        //     this.setState({
+        //         playerCoins: this.state.playerCoins + this.state.enemy2Reward,
+        //         enemy2RewardCheck: 1,
+        //         enemy2Health: 0,
+        //     })
+        // }
+        // if(enemyNumber === 3){
+        //     this.setState({
+        //         playerCoins: this.state.playerCoins + this.state.enemy3Reward,
+        //         enemy3RewardCheck: 1,
+        //         enemy3Health: 0,
+        //     })
+        // }
+    }
 
 
 
-    // setCurrentRoomStatusClearEnemy = () => {
-    //     if(this.state.currentRoom === 2){
-    //         this.setState({
-    //             roomTwoStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 3){
-    //         this.setState({
-    //             roomThreeStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 4){
-    //         this.setState({
-    //             roomFourStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 5){
-    //         this.setState({
-    //             roomFiveStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 6){
-    //         this.setState({
-    //             roomSixStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 7){
-    //         this.setState({
-    //             roomSevenStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 8){
-    //         this.setState({
-    //             roomEightStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 9){
-    //         this.setState({
-    //             roomNineStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 10){
-    //         this.setState({
-    //             roomTenStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 11){
-    //         this.setState({
-    //             roomElevenStatus: 1,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 12){
-    //         this.setState({
-    //             roomTwelveStatus: 1,
-    //         })
-    //     }
-    // }
+    function setCurrentRoomStatusClearEnemy() {
+        if(currentRoom === 2){
+            setRoomTwoStatus(1)
+        }
+        // if(this.state.currentRoom === 3){
+        //     this.setState({
+        //         roomThreeStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 4){
+        //     this.setState({
+        //         roomFourStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 5){
+        //     this.setState({
+        //         roomFiveStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 6){
+        //     this.setState({
+        //         roomSixStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 7){
+        //     this.setState({
+        //         roomSevenStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 8){
+        //     this.setState({
+        //         roomEightStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 9){
+        //     this.setState({
+        //         roomNineStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 10){
+        //     this.setState({
+        //         roomTenStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 11){
+        //     this.setState({
+        //         roomElevenStatus: 1,
+        //     })
+        // }
+        // if(this.state.currentRoom === 12){
+        //     this.setState({
+        //         roomTwelveStatus: 1,
+        //     })
+        // }
+    }
 
     //                                         // !END OF ATTACK SEQUENCE
 
@@ -856,23 +836,23 @@ function App() {
 
     //                                         // *ON-SCREEN PROMPTS
 
-    // showToastMessage = (currentPlayerAttack, attackEnemyNumber) => {
-    //     if(attackEnemyNumber === 1){
-    //         toast.success("You did " + currentPlayerAttack + " damage to enemy 1 !", {
-    //             position: toast.POSITION.TOP_CENTER
-    //         });
-    //     }
-    //     if(attackEnemyNumber === 2){
-    //         toast.success("You did " + currentPlayerAttack + " damage to enemy 2 !", {
-    //             position: toast.POSITION.TOP_CENTER
-    //         });
-    //     }
-    //     if(attackEnemyNumber === 3){
-    //         toast.success("You did " + currentPlayerAttack + " damage to enemy 3 !", {
-    //             position: toast.POSITION.TOP_CENTER
-    //         });
-    //     }
-    // }
+    function showToastMessage(currentPlayerAttack, attackEnemyNumber) {
+        if(attackEnemyNumber === 1){
+            toast.success("You did " + currentPlayerAttack + " damage to enemy 1 !", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        if(attackEnemyNumber === 2){
+            toast.success("You did " + currentPlayerAttack + " damage to enemy 2 !", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        if(attackEnemyNumber === 3){
+            toast.success("You did " + currentPlayerAttack + " damage to enemy 3 !", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    }
 
 
                                             // *GAME TIMER/BREAKLOOP TIMER
@@ -916,7 +896,7 @@ function App() {
 
                     <Route path="/GameBoard" element={<GameBoard buyFromStore={buyFromStore} roomMovement={roomMovement} createEnemy={createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo enemyOne={enemyOne} roomTwoStatus={roomTwoStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo enemyOne={enemyOne} roomTwoStatus={roomTwoStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
 
                     {/* <Route path="/RoomTwo" element={<RoomTwo rechargeAttackMove={this.rechargeAttackMove} playerAttacked={this.state.playerAttacked} playerAttackMove={this.playerAttackMove} playerAttackTimerState={this.state.playerAttackTimerState} playerAttackTimerStateMax={this.state.playerAttackTimerStateMax} startCombat={this.startCombat} startCombatCheck={this.state.startCombatCheck} currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed}  enemyMaxSpeed={this.state.enemyMaxSpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} /> */}
 
