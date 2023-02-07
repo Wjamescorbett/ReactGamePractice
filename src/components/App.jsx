@@ -40,9 +40,10 @@ function App() {
         playerDamageDone: 0
     })
 
-    const [playerAttackTimerState, setPlayerAttackTimerState] = useState(5)
-    const [playerAttackTimerStateMax, setPlayerAttackTimerStateMax] = useState(5)
+    const [playerAttackTimerState, setPlayerAttackTimerState] = useState(0)
+    const [playerAttackTimerStateMax, setPlayerAttackTimerStateMax] = useState(0)
     const [playerAttacked, setPlayerAttacked] = useState(1)
+    const [attackTimerRun, setAttackTimerRun] = useState(true)
 
     const [startCombatCheck, setStartCombatCheck] = useState(false)
 
@@ -62,6 +63,7 @@ function App() {
     // const [enemyDamageDone, setEnemyDamageDone] = useState(0)
 
     const[currentRoom, setCurrentRoom] = useState(0)
+    const[currentRoomStatus, setCurrentRoomStatus] = useState(0)
 
     const [roomTwoStatus, setRoomTwoStatus] = useState(0)
 
@@ -133,6 +135,21 @@ function App() {
 //             playerAttacked: 1,
 //         }
 //     }
+
+useEffect(() => {
+    if(enemyOne.enemySpeed < 0){
+        setEnemyOne(prevEnemyOne => {
+            return {...prevEnemyOne, enemySpeed: enemyOne.enemyMaxSpeed}
+        })
+        var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
+        enemyCounterAttack(currentPlayerAttack)
+    }
+    if(playerAttackTimerState < 0){
+        setPlayerAttackTimerState(playerAttackTimerStateMax)
+        setPlayerAttacked(2)
+        setAttackTimerRun(false)
+    }
+})
 
     function devButton() {
         setPlayer (prevPlayer => {
@@ -285,8 +302,8 @@ function App() {
     //     })
     // }
 
-    function pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion) {
-        console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion)
+    function pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer) {
+        console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer)
         setPlayer(prevPlayer => {
             return {...prevPlayer,
             playerHealth: health,
@@ -301,6 +318,8 @@ function App() {
             playerStaminaPotion: staminaPotion
         }
         })
+        setPlayerAttackTimerState(attackTimer)
+        setPlayerAttackTimerStateMax(attackTimer)
         // setPlayerHealth(health)
         // setPlayerMaxHealth(maxHealth)
         // setPlayerAttackLow(attackLow)
@@ -438,15 +457,7 @@ function App() {
     function startCombat() {
         setStartCombatCheck(true)
         enemyTimedCombatSequence()
-        playerAttackTimer(playerAttacked)
-    }
-
-    function playerAttackTimer(charged) {
-        if(breakLoop < 300 & playerAttackTimerState > 0 & charged === 1){
-            setPlayerAttackTimerState(prevPlayerAttackTimerState => prevPlayerAttackTimerState -1)
-            console.log("PLAYER ATTACK TIMER RUNNING")
-            setTimeout(() => {playerAttackTimer(playerAttacked); }, 1000);
-        }
+        playerAttackTimer(playerAttackTimerStateMax)
     }
 
     function enemyTimedCombatSequence() {
@@ -512,22 +523,9 @@ function App() {
 
 
 
-    useEffect(() => {
-        if(enemyOne.enemySpeed < 0){
-            setEnemyOne(prevEnemyOne => {
-                return {...prevEnemyOne, enemySpeed: enemyOne.enemyMaxSpeed}
-            })
-            var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
-            enemyCounterAttack(currentPlayerAttack)
-        }
-        if(playerAttackTimerState < 0){
-            setPlayerAttackTimerState(playerAttackTimerStateMax)
-            setPlayerAttacked(2)
-        }
-        console.log("USE EFFECT RAN")
-    })
 
-    //                                         // !END TIMED COMBAT
+
+                                            // !END TIMED COMBAT
 
     // playerHasNoSpeed = () => {
     //     alert("You have no more speed! You took 10 damage. Return to Room One or use a stamina potion to regain your speed.")
@@ -541,7 +539,22 @@ function App() {
 
                                             // !END ROOM MOVEMENT AND PLAYER SPEED
 
-    //                                         // *BEGINNING OF COMBAT ATTACK SEQUENCE
+                                            // *BEGINNING OF COMBAT ATTACK SEQUENCE
+
+    function playerAttackTimer(test2) {
+        var timer = test2
+        if(timer >= 0){
+            console.log(`THIS IS ATTACK TIMER ${timer}`)
+            playerAttackTimerSetState(timer)
+        }
+    }
+
+    function playerAttackTimerSetState(timer){
+        var test = timer -1
+        setTimeout(() => {setPlayerAttackTimerState(prevPlayerAttackTimerState => prevPlayerAttackTimerState -1); }, 1000);
+        setTimeout(() => {playerAttackTimer(test); }, 1000);
+    }
+
 
     function playerAttackMove(attackEnemy) {
         var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
@@ -556,31 +569,8 @@ function App() {
             }
             playerAttackMoveSetState(1, currentPlayerAttack)
             deadCheck(currentPlayerAttack, attackEnemy)
+            playerAttackTimer(playerAttackTimerStateMax)
         }
-        // if(attackEnemy === 2 & this.state.enemy2Health <= 0){
-        //     this.deadCheck(currentPlayerAttack, attackEnemy)
-        //     alert("You killed this enemy!")
-        // }
-        // if(attackEnemy === 2 & this.state.enemy2Health > 0){
-        //     currentPlayerAttack = currentPlayerAttack - this.state.enemy2Armor
-        //     if(currentPlayerAttack <= 0){
-        //         currentPlayerAttack = 1
-        //     }
-        //     this.playerAttackMoveSetState(2, currentPlayerAttack)
-        //     this.deadCheck(currentPlayerAttack, attackEnemy)
-        // }
-        // if(attackEnemy === 3 & this.state.enemy3Health <= 0){
-        //     this.deadCheck(currentPlayerAttack, attackEnemy)
-        //     alert("You killed this enemy!")
-        // }
-        // if(attackEnemy === 3 & this.state.enemy3Health > 0){
-        //     currentPlayerAttack = currentPlayerAttack - this.state.enemy3Armor
-        //     if(currentPlayerAttack <= 0){
-        //         currentPlayerAttack = 1
-        //     }
-        //     this.playerAttackMoveSetState(3, currentPlayerAttack)
-        //     this.deadCheck(currentPlayerAttack, attackEnemy)
-        // }
     }
 
     function playerAttackMoveSetState(attackEnemyNumber, currentPlayerAttack) {
@@ -597,28 +587,7 @@ function App() {
             })
             setPlayerAttacked(1)
             showToastMessage(currentPlayerAttack, attackEnemyNumber)
-
-            // this.setState({
-            //     enemyHealth: this.state.enemyHealth - currentPlayerAttack,
-            //     playerDamageDone: currentPlayerAttack,
-            //     playerAttacked: 3,
-            //     playerAttackTimerState: this.state.playerAttackTimerStateMax,
-            //     })
         }
-        // if(attackEnemyNumber === 2){
-        //     this.setState({
-        //         enemy2Health: this.state.enemy2Health - currentPlayerAttack,
-        //         playerDamageDone: currentPlayerAttack,
-        //         })
-        //         this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
-        // }
-        // if(attackEnemyNumber === 3){
-        //     this.setState({
-        //         enemy3Health: this.state.enemy3Health - currentPlayerAttack,
-        //         playerDamageDone: currentPlayerAttack,
-        //         })
-        //         this.showToastMessage(currentPlayerAttack, attackEnemyNumber)
-        // }
     }
 
     function deadCheck(currentPlayerAttack, attackEnemy) {
@@ -627,16 +596,6 @@ function App() {
                 deadCheckSetState(1)
             }
         }
-        // if(this.state.enemy2Health - currentPlayerAttack <= 0) {
-        //     if(this.state.enemy2RewardCheck === 0 & attackEnemy === 2){
-        //         this.deadCheckSetState(2)
-        //     }
-        // }
-        // if(this.state.enemy3Health - currentPlayerAttack <= 0 & attackEnemy === 3) {
-        //     if(this.state.enemy3RewardCheck === 0){
-        //         this.deadCheckSetState(3)
-        //     }
-        // }
         if(enemyOne.enemyHealth <= 0){
             setCurrentRoomStatusClearEnemy()
         }
@@ -657,20 +616,6 @@ function App() {
                 }
             })
         }
-        // if(enemyNumber === 2){
-        //     this.setState({
-        //         playerCoins: this.state.playerCoins + this.state.enemy2Reward,
-        //         enemy2RewardCheck: 1,
-        //         enemy2Health: 0,
-        //     })
-        // }
-        // if(enemyNumber === 3){
-        //     this.setState({
-        //         playerCoins: this.state.playerCoins + this.state.enemy3Reward,
-        //         enemy3RewardCheck: 1,
-        //         enemy3Health: 0,
-        //     })
-        // }
     }
 
 
