@@ -12,12 +12,12 @@ const RoomSix = (props) => {
                 <div>
                     <h2>This Is Room Six</h2>
                 </div>
-            {/* <div>
-                <EnemyVisuals currentRoom={props.currentRoom} enemyHealth={props.enemyHealth} enemyMaxHealth={props.enemyMaxHealth} enemyAttackLow={props.enemyAttackLow} enemyAttackHigh={props.enemyAttackHigh} enemySpeed={props.enemySpeed} enemyArmor={props.enemyArmor} enemyReward={props.enemyReward} enemy2Health={props.enemy2Health} enemy2MaxHealth={props.enemy2MaxHealth} enemy2AttackLow={props.enemy2AttackLow} enemy2AttackHigh={props.enemy2AttackHigh} enemy2Speed={props.enemy2Speed} enemy2Armor={props.enemy2Armor} enemy2Reward={props.enemy2Reward}/>            
+            <div>
+                <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} />            
             </div>
             <div>
-                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
-            </div> */}
+                <DamageEffects playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+            </div>
             <div>
                 <img src={GameRoomSixPNG} alt="GameRoomSixPNG" />
             </div>

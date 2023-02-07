@@ -31,7 +31,10 @@ const Navbar = (props) => {
                             <button className="staminaPotion" onClick={() => props.useStaminaPotion()}>Use stamina potion</button>
                         </li> */}
                         <li>
-                            <button className="devButton" onClick={() => props.devButton()}>DEV BUTTON</button>
+                            <button className="devButton" onClick={() => props.devButtonUpgrade()}>DEV BUTTON Upgrade + 5 dmg</button>
+                        </li>
+                        <li>
+                            <button className="devButton" onClick={() => props.devButtonDowngrade()}>DEV BUTTON Downgrade - 5 dmg</button>
                         </li>
                     </ul>
                 </nav>

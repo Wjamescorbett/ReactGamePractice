@@ -27,9 +27,9 @@ const Home = (props) => {
                         <button onClick={showToastMessage}>Notify</button>
                         <ToastContainer />
                     </div>
-                    <button className="pickClass" onClick={() => handleSubmit(100, 100, 3, 5, 5, 5, 1, 2, 1, 1, 3)}>Warrior</button>
-                    <button className="pickClass" onClick={() => handleSubmit(150, 150, 2, 4, 4, 4, 3, 2, 2, 1, 3)}>Tank</button>
-                    <button className="pickClass" onClick={() => handleSubmit(25, 25, 8, 12, 4, 4, 1, 2, 1 , 1, 3)}>Glass Cannon</button>
+                    <button className="pickClass" onClick={() => handleSubmit(100, 100, 3, 5, 5, 5, 1, 2, 1, 1, 10)}>Warrior</button>
+                    <button className="pickClass" onClick={() => handleSubmit(150, 150, 2, 4, 4, 4, 3, 2, 2, 1, 2)}>Tank</button>
+                    <button className="pickClass" onClick={() => handleSubmit(25, 25, 8, 12, 4, 4, 1, 2, 1 , 1, 2)}>Glass Cannon</button>
                     <ul>
                         <li>
                             <Link to="/GameBoard">Go To Room One</Link>

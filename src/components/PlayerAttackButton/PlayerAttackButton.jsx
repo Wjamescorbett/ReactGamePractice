@@ -13,11 +13,21 @@ const PlayerAttackButton = (props) => {
         )
     }
     if(props.playerAttacked === 2){
-        return(
-            <div>
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-            </div>
-        )
+        if(props.numberOfEnemiesInRoom === 1){
+            return(
+                <div>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                </div>
+            )
+        }
+        if(props.numberOfEnemiesInRoom === 2){
+            return(
+                <div>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                </div>
+            )
+        }
     }
     else{
         return (

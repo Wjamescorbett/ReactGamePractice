@@ -36,7 +36,16 @@ const EnemyVisuals = (props) => {
             <div>
                 <h2>You are encountering two dangerous circles. </h2>
                 <h2>The first circle It has {props.enemyHealth} health, {props.enemyAttackLow} attackLow, {props.enemyAttackHigh} attackHigh, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
+
+                <div className="w-25 p-3">
+                    <ProgressBar variant="danger" min={0} max={props.enemyOne.enemyMaxHealth} now={props.enemyOne.enemyHealth} label={`Health ${props.enemyOne.enemyHealth}/${props.enemyOne.enemyMaxHealth}`}/>
+                    <ProgressBar variant="warning" min={0} max={props.enemyOne.enemyMaxSpeed} now={props.enemyOne.enemySpeed} label={`Speed ${props.enemyOne.enemySpeed}/${props.enemyOne.enemyMaxSpeed}`}/>
+                </div>
                 <h2>The second dangerous circle has {props.enemy2Health} health, {props.enemy2AttackLow} attackLow, {props.enemy2AttackHigh} attackHigh, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
+                <div className="w-25 p-3">
+                    <ProgressBar variant="danger" min={0} max={props.enemyTwo.enemy2MaxHealth} now={props.enemyTwo.enemy2Health} label={`Health ${props.enemyTwo.enemy2Health}/${props.enemyTwo.enemy2MaxHealth}`}/>
+                    <ProgressBar variant="warning" min={0} max={props.enemyTwo.enemy2MaxSpeed} now={props.enemyTwo.enemy2Speed} label={`Speed ${props.enemyTwo.enemy2Speed}/${props.enemyTwo.enemy2MaxSpeed}`}/>
+                </div>
             </div>
         )
     }

@@ -15,49 +15,44 @@ const DamageEffects = (props) => {
         )
     }
     if(props.startCombatCheck === true){
-        if(props.numberOfEnemiesInRoom === 1){
-            return(
+        return(
+            <div>
                 <div>
-                    <div>
-                        <PlayerAttackButton rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
-                    </div>
-                    <div>
-                        <h1>COMBAT STARTED</h1>
-                    </div>
+                    <PlayerAttackButton numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
                 </div>
-                // {/* //     <ToastContainer />
-                // //     <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                // //     <button className="healMove">Heal</button>
-                // // </div> */}
-            )
-        }
-        if(props.numberOfEnemiesInRoom === 2){
-            return(
                 <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                    <ToastContainer />
-                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                    <ToastContainer />
-                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                    <button className="healMove">Heal</button>
+                    <h1>COMBAT STARTED</h1>
                 </div>
-            )
-        }
-        if(props.numberOfEnemiesInRoom === 3){
-            return(
-                <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                    <ToastContainer />
-                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                    <ToastContainer />
-                    <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
-                    <ToastContainer />
-                    <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
-                    <button className="healMove">Heal</button>
-                </div>
-            )
-        }
+            </div>
+        )
     }
 }
 
 export default DamageEffects;
+
+// if(props.numberOfEnemiesInRoom === 2){
+//     return(
+//         <div>
+//             <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+//             <ToastContainer />
+//             <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+//             <ToastContainer />
+//             <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
+//             <button className="healMove">Heal</button>
+//         </div>
+//     )
+// }
+// if(props.numberOfEnemiesInRoom === 3){
+//     return(
+//         <div>
+//             <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+//             <ToastContainer />
+//             <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+//             <ToastContainer />
+//             <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+//             <ToastContainer />
+//             <button className="dodgeMove" onClick={() => props.playerDodgeMove()}>Dodge Attack</button>
+//             <button className="healMove">Heal</button>
+//         </div>
+//     )
+// }
