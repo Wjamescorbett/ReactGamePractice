@@ -48,9 +48,9 @@ function App() {
     const [startCombatCheck, setStartCombatCheck] = useState(false)
 
     const [enemyOne, setEnemyOne] = useState({
-        enemyMaxHealth: 1, 
-        enemyHealth: 1, 
-        enemyAttackLow: 0, 
+        enemyMaxHealth: 0, 
+        enemyHealth: 0, 
+        enemyAttackLow: 0,
         enemyAttackHigh: 0, 
         enemySpeed: 0, 
         enemyMaxSpeed: 0, 
@@ -172,9 +172,16 @@ useEffect(() => {
         setPlayerAttacked(2)
         setAttackTimerRun(false)
     }
+    if(enemyOne.enemyHealth > 0 & startCombatCheck === true & runEnemyOneAttackTimer === true){
+        switchEnemyOneCombatTimer()
+        enemyOneAttackTimer()
+    }
     console.log("USE EFFECT RAN")
 })
 
+    function switchEnemyOneCombatTimer(){
+        setRunEnemyOneAttackTimer(false)
+    }
 
     function devButton() {
         setPlayer (prevPlayer => {
@@ -496,7 +503,7 @@ useEffect(() => {
     function startCombat() {
         setStartCombatCheck(true)
         playerAttackTimer(playerAttackTimerStateMax)
-        enemyOneAttackTimer(enemyOne.enemySpeed, enemyOne.enemyMaxSpeed)
+        // enemyOneAttackTimer(enemyOne.enemySpeed, enemyOne.enemyMaxSpeed, player.playerHealth)
     }
 
     function playerAttackRandomizer(playerAttackLow, playerAttackHigh) {
@@ -534,27 +541,21 @@ useEffect(() => {
 
                                             // *BEGINNING OF COMBAT ATTACK SEQUENCE
 
-    function enemyOneAttackTimer(speed, maxSpeed){
-        var speedTracker = speed
-        var maxSpeedTracker = maxSpeed
-        console.log(speedTracker)
-        if(speed >= 0){
+    function enemyOneAttackTimer(){
+        if(enemyOne.enemySpeed > 0){
             setEnemyOne(prevEnemyOne => {
                 return {...prevEnemyOne,
-                    enemySpeed: speedTracker
+                    enemySpeed: enemyOne.enemySpeed - 1
                 }
             })
-            enemyOneAttackTimerSetState(speedTracker, maxSpeedTracker)
         }
-        if(speed < 0){
+        if(enemyOne.enemySpeed <= 0){
+            enemyOneCounterAttack()
             setEnemyOne(prevEnemyOne => {
                 return {...prevEnemyOne,
-                    enemySpeed: maxSpeedTracker
+                    enemySpeed: enemyOne.enemyMaxSpeed
                 }
             })
-            speedTracker = maxSpeedTracker
-            enemyOneCounterAttack()
-            enemyOneAttackTimerSetState(speedTracker, maxSpeedTracker)
         }
     }
 
@@ -563,29 +564,17 @@ useEffect(() => {
         if(currentEnemyAttack <= 0){
             currentEnemyAttack = 1
         }
-        if(enemyOne.enemyHealth - currentPlayerAttack > 0){
-            playerTakeDamage(currentEnemyAttack)
-        }
+        playerTakeDamage(currentEnemyAttack)
     }
 
     function playerTakeDamage(damageTaken) {
         setPlayer(prevPlayer =>{
             return {...prevPlayer,
-            playerHealth: playerHealthTracker - damageTaken}
+            playerHealth: player.playerHealth - damageTaken}
         })
-        var newPlayerHealthTracker = playerHealthTracker - damageTaken
-        enemyOneAttackTimerSetState(speedTracker, healthTracker, speedTrackerMax, newPlayerHealthTracker)
         showToastMessageRed(damageTaken)
     }
 
-    function enemyOneAttackTimerSetState(speedTracker, maxSpeedTracker){
-        var newSpeedTracker = speedTracker - 1
-        var newMaxSpeedTracker = maxSpeedTracker
-        if(newMaxSpeedTracker < 0){
-            newSpeedTracker = newMaxSpeedTracker
-        }
-        setTimeout(() => {enemyOneAttackTimer(newSpeedTracker, newMaxSpeedTracker); }, 1000);
-    }
 
 
 
@@ -853,6 +842,7 @@ useEffect(() => {
     function gameTime() {
         setBreakLoop(prevBreakLoop => prevBreakLoop + 1)
         setGameTick(prevGameTick => prevGameTick + 1)
+        setRunEnemyOneAttackTimer(true)
         if(breakLoop < 300){
             setTimeout(() => {gameTime(); }, 1000);
         }
