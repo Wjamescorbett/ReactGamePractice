@@ -8,6 +8,11 @@ import Col from 'react-bootstrap/Col';
 
 
 const EnemyVisuals = (props) => {
+
+    // function threeEnemies(){
+
+    // }
+
     if(props.numberOfEnemiesInRoom === 1){
         return(
             <Container>

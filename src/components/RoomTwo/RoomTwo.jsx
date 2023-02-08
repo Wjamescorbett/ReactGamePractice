@@ -3,16 +3,36 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
 import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
+import { Container } from "react-bootstrap";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const RoomTwo = (props) => {
-    var enemies = [props.enemyOne, props.enemyTwo, props.enemyThree]
+    
+    function test(){
+        let enemies = [props.enemyOne.enemySpeed, props.enemyTwo.enemySpeed, props.enemyThree.enemySpeed]
+        enemies.sort((a,b) => a - b)
+        console.log(enemies)
+        return(
+            <Container>
+                <Row>
+                {enemies.map(enemy => 
+                    <Col sm={4} className="square border border-5, square bg-secondary rounded-6">
+                        <h1>MORE TESTING</h1>
+                        {enemy}
+                    </Col>
+                )}
+                </Row>
+            </Container>
+        )
+    }
 
     if(props.roomTwoStatus === 0){
         return (
             <nav>
                 <div>
+                    {test()}
                     <h2>This Is Room Two</h2>
-                    {enemies.map(enemy => <div>{enemy.enemy3Speed}</div>)}
                 </div>
                 <div>
                     <EnemyVisuals currentRoom={props.currentRoom}  enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
