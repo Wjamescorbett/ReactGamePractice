@@ -65,28 +65,28 @@ function App() {
     })
 
     const [enemyTwo, setEnemyTwo] = useState({
-        enemy2Name: "",
-        enemy2MaxHealth: 1, 
-        enemy2Health: 1, 
-        enemy2AttackLow: 0, 
-        enemy2AttackHigh: 0,
-        enemy2Speed: 0, 
-        enemy2MaxSpeed: 0, 
-        enemy2Armor: 0, 
-        enemy2Reward: 0,
-        enemy2RewardCheck: 0
+        enemyName: "",
+        enemyMaxHealth: 1, 
+        enemyHealth: 1, 
+        enemyAttackLow: 0, 
+        enemyAttackHigh: 0,
+        enemySpeed: 0, 
+        enemyMaxSpeed: 0, 
+        enemyArmor: 0, 
+        enemyReward: 0,
+        enemyRewardCheck: 0
     })
     const [enemyThree, setEnemyThree] = useState({
-        enemy3Name: "",
-        enemy3MaxHealth: 1,
-        enemy3Health: 1, 
-        enemy3AttackLow: 0, 
-        enemy3AttackHigh: 0, 
-        enemy3Speed: 0, 
-        enemy3MaxSpeed: 0, 
-        enemy3Armor: 0, 
-        enemy3Reward: 0,
-        enemy3RewardCheck: 0
+        enemyName: "",
+        enemyMaxHealth: 1,
+        enemyHealth: 1, 
+        enemyAttackLow: 0, 
+        enemyAttackHigh: 0, 
+        enemySpeed: 0, 
+        enemyMaxSpeed: 0, 
+        enemyArmor: 0, 
+        enemyReward: 0,
+        enemyRewardCheck: 0
     })
 
     const [numberOfEnemiesInRoom, setNumberOfEnemiesInRoom] = useState(0)
@@ -145,7 +145,7 @@ useEffect(() => {
     }
     if(playerAttackTimerState >= 0 & runPlayerAttackTimer === true){
         setRunPlayerAttackTimer(false)
-        if(enemyOne.enemyHealth > 0 || enemyTwo.enemy2Health > 0 || enemyThree.enemy3Health > 0){
+        if(enemyOne.enemyHealth > 0 || enemyTwo.enemyHealth > 0 || enemyThree.enemyHealth > 0){
             playerAttackTimer(playerAttackTimerState)
         }
     }
@@ -153,15 +153,15 @@ useEffect(() => {
         setRunEnemyOneAttackTimer(false)
         enemyOneAttackTimer()
     }
-    if(enemyTwo.enemy2Health > 0 & startCombatCheck === true & runEnemyTwoAttackTimer === true){
+    if(enemyTwo.enemyHealth > 0 & startCombatCheck === true & runEnemyTwoAttackTimer === true){
         setRunEnemyTwoAttackTimer(false)
         enemyTwoAttackTimer()
     }
-    if(enemyThree.enemy3Health > 0 & startCombatCheck === true & runEnemyThreeAttackTimer === true){
+    if(enemyThree.enemyHealth > 0 & startCombatCheck === true & runEnemyThreeAttackTimer === true){
         setRunEnemyThreeAttackTimer(false)
         enemyThreeAttackTimer()
     }
-    if(enemyOne.enemyHealth <= 0 & enemyTwo.enemy2Health <= 0 & enemyThree.enemy3Health <= 0){
+    if(enemyOne.enemyHealth <= 0 & enemyTwo.enemyHealth <= 0 & enemyThree.enemyHealth <= 0){
         setCurrentRoomStatusClearEnemy()
         setStartCombatCheck(false)
     }
@@ -349,12 +349,12 @@ useEffect(() => {
         })
         setEnemyTwo(prevEnemyTwo => {
             return {...prevEnemyTwo, 
-                enemy2RewardCheck: 0
+                enemyRewardCheck: 0
             }
         })
         setEnemyThree(prevEnemyThree => {
             return {...prevEnemyThree, 
-                enemy3RewardCheck: 0
+                enemyRewardCheck: 0
             }
         })
         setPlayerAttacked(1)
@@ -403,28 +403,28 @@ useEffect(() => {
         })
         setEnemyTwo(prevEnemyTwo => {
             return {...prevEnemyTwo,
-                enemy2Name: enemy2Name,
-                enemy2MaxHealth: maxHealth2,
-                enemy2Health: health2,
-                enemy2AttackLow: attack2Low,
-                enemy2AttackHigh: attack2High,
-                enemy2Speed: speed2,
-                enemy2MaxSpeed: speed2,
-                enemy2Armor: armor2,
-                enemy2Reward: reward2
+                enemyName: enemy2Name,
+                enemyMaxHealth: maxHealth2,
+                enemyHealth: health2,
+                enemyAttackLow: attack2Low,
+                enemyAttackHigh: attack2High,
+                enemySpeed: speed2,
+                enemyMaxSpeed: speed2,
+                enemyArmor: armor2,
+                enemyReward: reward2
             }
         })
         setEnemyThree(prevEnemyThree => {
             return {...prevEnemyThree,
-                enemy3Name: enemy3Name,
-                enemy3MaxHealth: maxHealth3,
-                enemy3Health: health3,
-                enemy3AttackLow: attack3Low,
-                enemy3AttackHigh: attack3High,
-                enemy3Speed: speed3,
-                enemy3MaxSpeed: speed3,
-                enemy3Armor: armor3,
-                enemy3Reward: reward3
+                enemyName: enemy3Name,
+                enemyMaxHealth: maxHealth3,
+                enemyHealth: health3,
+                enemyAttackLow: attack3Low,
+                enemyAttackHigh: attack3High,
+                enemySpeed: speed3,
+                enemyMaxSpeed: speed3,
+                enemyArmor: armor3,
+                enemyReward: reward3
             }
         })
         setNumberOfEnemiesInRoom(numberOfEnemiesInRoom)
@@ -539,8 +539,8 @@ useEffect(() => {
     //     this.setState({
     //         playerHealth: this.state.playerHealth - 10,
     //         enemyRewardCheck: 0,
-    //         enemy2RewardCheck: 0,
-    //         enemy3RewardCheck: 0,
+    //         enemyRewardCheck: 0,
+    //         enemyRewardCheck: 0,
     //     })
     // }
 
@@ -578,25 +578,25 @@ useEffect(() => {
     // *START ENEMY TWO TIMED ATTACK SEQUENCE
     function enemyTwoAttackTimer(){
         console.log("Enemy TWO Attack Timer")
-        if(enemyTwo.enemy2Speed > 0){
+        if(enemyTwo.enemySpeed > 0){
             setEnemyTwo(prevEnemyTwo => {
                 return {...prevEnemyTwo,
-                    enemy2Speed: enemyTwo.enemy2Speed - 1
+                    enemySpeed: enemyTwo.enemySpeed - 1
                 }
             })
         }
-        if(enemyTwo.enemy2Speed <= 0){
+        if(enemyTwo.enemySpeed <= 0){
             enemyTwoCounterAttack()
             setEnemyTwo(prevEnemyTwo => {
                 return {...prevEnemyTwo,
-                    enemy2Speed: enemyTwo.enemy2MaxSpeed
+                    enemySpeed: enemyTwo.enemyMaxSpeed
                 }
             })
         }
     }
 
     function enemyTwoCounterAttack() {
-        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyTwo.enemy2AttackLow, enemyTwo.enemy2AttackHigh) - player.playerArmor
+        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyTwo.enemyAttackLow, enemyTwo.enemyAttackHigh) - player.playerArmor
         if(currentEnemyAttack <= 0){
             currentEnemyAttack = 1
         }
@@ -607,25 +607,25 @@ useEffect(() => {
     // *START ENEMY THREE TIMED ATTACK SEQUENCE
     function enemyThreeAttackTimer(){
         console.log("Enemy THREE Attack Timer")
-        if(enemyThree.enemy3Speed > 0){
+        if(enemyThree.enemySpeed > 0){
             setEnemyThree(prevEnemyThree => {
                 return {...prevEnemyThree,
-                    enemy3Speed: enemyThree.enemy3Speed - 1
+                    enemySpeed: enemyThree.enemySpeed - 1
                 }
             })
         }
-        if(enemyThree.enemy3Speed <= 0){
+        if(enemyThree.enemySpeed <= 0){
             enemyThreeCounterAttack()
             setEnemyThree(prevEnemyThree => {
                 return {...prevEnemyThree,
-                    enemy3Speed: enemyThree.enemy3MaxSpeed
+                    enemySpeed: enemyThree.enemyMaxSpeed
                 }
             })
         }
     }
 
     function enemyThreeCounterAttack() {
-        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyThree.enemy3AttackLow, enemyThree.enemy3AttackHigh) - player.playerArmor
+        var currentEnemyAttack = currentEnemyAttackRandomizer(enemyThree.enemyAttackLow, enemyThree.enemyAttackHigh) - player.playerArmor
         if(currentEnemyAttack <= 0){
             currentEnemyAttack = 1
         }
@@ -685,24 +685,24 @@ useEffect(() => {
             deadCheck(currentPlayerAttack, attackEnemy)
         }
 
-        if(attackEnemy === 2 & enemyTwo.enemy2Health <= 0){
+        if(attackEnemy === 2 & enemyTwo.enemyHealth <= 0){
             deadCheck(currentPlayerAttack, attackEnemy)
             alert("You killed enemy 2!")
         }
-        if(attackEnemy === 2 & enemyTwo.enemy2Health > 0){
-            currentPlayerAttack = currentPlayerAttack - enemyTwo.enemy2Armor
+        if(attackEnemy === 2 & enemyTwo.enemyHealth > 0){
+            currentPlayerAttack = currentPlayerAttack - enemyTwo.enemyArmor
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
             playerAttackMoveSetState(2, currentPlayerAttack)
             deadCheck(currentPlayerAttack, attackEnemy)
         }
-        if(attackEnemy === 3 & enemyThree.enemy3Health <= 0){
+        if(attackEnemy === 3 & enemyThree.enemyHealth <= 0){
             deadCheck(currentPlayerAttack, attackEnemy)
             alert("You killed enemy 3!")
         }
-        if(attackEnemy === 3 & enemyThree.enemy3Health > 0){
-            currentPlayerAttack = currentPlayerAttack - enemyThree.enemy3Armor
+        if(attackEnemy === 3 & enemyThree.enemyHealth > 0){
+            currentPlayerAttack = currentPlayerAttack - enemyThree.enemyArmor
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
@@ -734,7 +734,7 @@ useEffect(() => {
             })
             setEnemyTwo(prevEnemyTwo => {
                 return{...prevEnemyTwo,
-                enemy2Health: enemyTwo.enemy2Health - currentPlayerAttack
+                enemyHealth: enemyTwo.enemyHealth - currentPlayerAttack
                 }
             })
             setPlayerAttacked(1)
@@ -748,7 +748,7 @@ useEffect(() => {
             })
             setEnemyThree(prevEnemyThree => {
                 return{...prevEnemyThree,
-                enemy3Health: enemyThree.enemy3Health - currentPlayerAttack
+                enemyHealth: enemyThree.enemyHealth - currentPlayerAttack
                 }
             })
             setPlayerAttacked(1)
@@ -760,10 +760,10 @@ useEffect(() => {
         if(enemyOne.enemyHealth - currentPlayerAttack <= 0 & enemyOne.enemyRewardCheck === 0 & attackEnemy === 1){
             deadCheckSetState(1)
         }
-        if(enemyTwo.enemy2Health - currentPlayerAttack <= 0 & enemyTwo.enemy2RewardCheck === 0 & attackEnemy === 2){
+        if(enemyTwo.enemyHealth - currentPlayerAttack <= 0 & enemyTwo.enemyRewardCheck === 0 & attackEnemy === 2){
             deadCheckSetState(2)
         }
-        if(enemyThree.enemy3Health - currentPlayerAttack <= 0 & enemyThree.enemy3RewardCheck === 0 & attackEnemy === 3){
+        if(enemyThree.enemyHealth - currentPlayerAttack <= 0 & enemyThree.enemyRewardCheck === 0 & attackEnemy === 3){
             deadCheckSetState(3)
         }
         setRunPlayerAttackTimer(true)
@@ -787,28 +787,28 @@ useEffect(() => {
         if(enemyNumber === 2){
             setEnemyTwo(prevEnemyTwo => {
                 return {...prevEnemyTwo,
-                enemy2Health: 0,
-                enemy2RewardCheck: 1
+                enemyHealth: 0,
+                enemyRewardCheck: 1
                 }
             })
             console.log("SET ENEMY TWO KILLED --------------------------------------------------------")
             setPlayer(prevPlayer => {
                 return {...prevPlayer,
-                playerCoins: player.playerCoins + enemyTwo.enemy2Reward
+                playerCoins: player.playerCoins + enemyTwo.enemyReward
                 }
             })
         }
         if(enemyNumber === 3){
             setEnemyThree(prevEnemyThree => {
                 return {...prevEnemyThree,
-                enemy3Health: 0,
-                enemy3RewardCheck: 1
+                enemyHealth: 0,
+                enemyRewardCheck: 1
                 }
             })
             console.log("SET ENEMY THREE KILLED --------------------------------------------------------")
             setPlayer(prevPlayer => {
                 return {...prevPlayer,
-                playerCoins: player.playerCoins + enemyThree.enemy3Reward
+                playerCoins: player.playerCoins + enemyThree.enemyReward
                 }
             })
         }
@@ -905,7 +905,7 @@ useEffect(() => {
     //     // player attacks enemy with highest health with full attack power if the ransomizer is greater than the enemies; speed 
 
     // enemyWithMostHealth = () => {
-    //     var highEnemyHealth = Math.max(this.state.enemyHealth, this.state.enemy2Health, this.state.enemy3Health)
+    //     var highEnemyHealth = Math.max(this.state.enemyHealth, this.state.enemyHealth, this.state.enemyHealth)
     //     if(highEnemyHealth === this.state.enemyHealth){
     //         this.setState({
     //             enemyHealth: this.state.enemyHealth - (this.state.playerAttackHigh - this.state.enemyArmor),
@@ -914,17 +914,17 @@ useEffect(() => {
     //             })
     //             return
     //     }
-    //     if(highEnemyHealth === this.state.enemy2Health){
+    //     if(highEnemyHealth === this.state.enemyHealth){
     //         this.setState({
-    //             enemy2Health: this.state.enemy2Health - (this.state.playerAttackHigh - this.state.enemy2Armor),
+    //             enemyHealth: this.state.enemyHealth - (this.state.playerAttackHigh - this.state.enemy2Armor),
     //             playerSpeed: this.state.playerSpeed - 1,
     //             playerDamageDone: this.state.playerAttackHigh - this.state.enemyArmor,
     //             })
     //             return
     //     }
-    //     if(highEnemyHealth === this.state.enemy3Health){
+    //     if(highEnemyHealth === this.state.enemyHealth){
     //         this.setState({
-    //             enemy3Health: this.state.enemy3Health - (this.state.playerAttackHigh - this.state.enemy3Armor),
+    //             enemyHealth: this.state.enemyHealth - (this.state.playerAttackHigh - this.state.enemy3Armor),
     //             playerSpeed: this.state.playerSpeed - 1,
     //             playerDamageDone: this.state.playerAttackHigh - this.state.enemyArmor,
     //             })
@@ -1044,19 +1044,19 @@ useEffect(() => {
 
                     {/* <Route path="/RoomFour" element={<RoomFour openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomFourStatus={this.state.roomFourStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} /> */}
 
-                    {/* <Route path="/RoomFive" element={<RoomFive resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomFiveStatus={this.state.roomFiveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward} />} /> */}
+                    {/* <Route path="/RoomFive" element={<RoomFive resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomFiveStatus={this.state.roomFiveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward} />} /> */}
 
                     <Route path="/RoomSix" element={<RoomSix resetRoomStatus={resetRoomStatus} useHealthPotion={useHealthPotion} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} roomSixStatus={roomSixStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
 
-                    {/* <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomSevenStatus={this.state.roomSevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
+                    {/* <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomSevenStatus={this.state.roomSevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
 
                     {/* <Route path="/RoomEight" element={<RoomEight openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomEightStatus={this.state.roomEightStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} /> */}
 
                     <Route path="/RoomNine" element={<RoomNine resetRoomStatus={resetRoomStatus} useHealthPotion={useHealthPotion} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomNineStatus={roomNineStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
 
-                    {/* <Route path="/RoomTen" element={<RoomTen resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTenStatus={this.state.roomTenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
+                    {/* <Route path="/RoomTen" element={<RoomTen resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTenStatus={this.state.roomTenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
 
-                    {/* <Route path="/RoomEleven" element={<RoomEleven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomElevenStatus={this.state.roomElevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
+                    {/* <Route path="/RoomEleven" element={<RoomEleven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomElevenStatus={this.state.roomElevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
 
                     {/* <Route path="/RoomTwelve" element={<RoomTwelve openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTwelveStatus={this.state.roomTwelveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward}/>} /> */}
                 </Routes>
@@ -1065,7 +1065,3 @@ useEffect(() => {
 }
 
 export default App;
-
-// playerMaxSpeed={playerMaxSpeed} playerMaxHealth={playerMaxHealth} playerHealth={playerHealth} playerAttackLow={playerAttackLow} playerAttackHigh={playerAttackHigh} playerSpeed={playerSpeed} playerArmor={playerArmor} playerCoins={playerCoins} playerHealthPotion={playerHealthPotion} playerStaminaPotion={playerStaminaPotion}
-
-// enemyHealth={enemyHealth} enemyMaxHealth={enemyMaxHealth} enemyAttackLow={enemyAttackLow} enemyAttackHigh={enemyAttackHigh} enemySpeed={enemySpeed} enemyMaxSpeed={enemyMaxSpeed} enemyArmor={enemyArmor} enemyReward={enemyReward}

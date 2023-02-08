@@ -5,12 +5,14 @@ import DamageEffects from "../DamageEffects/DamageEffects";
 import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 
 const RoomTwo = (props) => {
+    var enemies = [props.enemyOne, props.enemyTwo, props.enemyThree]
 
     if(props.roomTwoStatus === 0){
         return (
             <nav>
                 <div>
                     <h2>This Is Room Two</h2>
+                    {enemies.map(enemy => <div>{enemy.enemy3Speed}</div>)}
                 </div>
                 <div>
                     <EnemyVisuals currentRoom={props.currentRoom}  enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
