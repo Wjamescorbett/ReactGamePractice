@@ -13,7 +13,7 @@ const RoomSix = (props) => {
                     <h2>This Is Room Six</h2>
                 </div>
                 <div>
-                    <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} />            
+                    <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />            
                 </div>
                 <div>
                     <DamageEffects playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />

@@ -442,7 +442,7 @@ useEffect(() => {
             createEnemy(20, 20, 2, 3, 7, 1, 1, 20, 20, 2, 3, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2) //Two Circles
         }
         if(nowCurrentRoom === 9 & roomNineStatus === 0){
-            createEnemy(30, 30, 4, 5, 2, 2, 10, 15, 15, 10, 14, 2, 5, 25, 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
+            createEnemy(30, 30, 4, 5, 4, 2, 10, 15, 15, 10, 14, 3, 5, 25, 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
         }
     }
 
