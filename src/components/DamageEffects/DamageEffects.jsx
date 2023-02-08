@@ -18,7 +18,7 @@ const DamageEffects = (props) => {
         return(
             <div>
                 <div>
-                    <PlayerAttackButton numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
+                    <PlayerAttackButton resetRoomStatus={props.resetRoomStatus} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
                 </div>
                 <div>
                     <h1>COMBAT STARTED</h1>

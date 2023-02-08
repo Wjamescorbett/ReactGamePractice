@@ -6,9 +6,7 @@ const Navbar = (props) => {
         return(
             <div>
                 <h5>Here is the time {props.gameTick}</h5>
-                <h5>Your Heath is {props.player.playerHealth}. Your max health is {props.player.playerMaxHealth}.</h5>
                 <h5>Your Attack is {props.player.playerAttackLow} - {props.player.playerAttackHigh}. </h5> 
-                <h5>Your Speed is {props.player.playerSpeed}. !!CAP AT TEN!!</h5>
                 <h5>Your Armor is {props.player.playerArmor}. </h5>
                 <h5>You have {props.player.playerCoins} coins. </h5>
                 <h5>You have {props.player.playerHealthPotion} health potions. {props.player.healthPotionEffect} healing per. </h5>
@@ -19,11 +17,6 @@ const Navbar = (props) => {
                 </div>
                 <nav>
                     <ul>
-                        <li>
-                        <Link to="/GameBoard" >
-                            <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
-                        </Link>
-                        </li>
                         {/* <li>
                             <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                         </li> */}

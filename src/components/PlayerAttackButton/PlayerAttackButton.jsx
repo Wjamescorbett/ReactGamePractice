@@ -17,6 +17,9 @@ const PlayerAttackButton = (props) => {
             return(
                 <div>
                     <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <Link to="/GameBoard" >
+                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
+                    </Link>
                 </div>
             )
         }
@@ -25,6 +28,9 @@ const PlayerAttackButton = (props) => {
                 <div>
                     <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
                     <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                    <Link to="/GameBoard" >
+                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
+                    </Link>
                 </div>
             )
         }
@@ -34,6 +40,9 @@ const PlayerAttackButton = (props) => {
                     <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
                     <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
                     <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+                    <Link to="/GameBoard" >
+                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
+                    </Link>
                 </div>
             )
         }
