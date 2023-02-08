@@ -28,6 +28,15 @@ const PlayerAttackButton = (props) => {
                 </div>
             )
         }
+        if(props.numberOfEnemiesInRoom === 3){
+            return(
+                <div>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                    <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+                </div>
+            )
+        }
     }
     else{
         return (

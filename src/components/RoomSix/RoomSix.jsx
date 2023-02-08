@@ -12,15 +12,15 @@ const RoomSix = (props) => {
                 <div>
                     <h2>This Is Room Six</h2>
                 </div>
-            <div>
-                <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} />            
-            </div>
-            <div>
-                <DamageEffects playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
-            </div>
-            <div>
-                <img src={GameRoomSixPNG} alt="GameRoomSixPNG" />
-            </div>
+                <div>
+                    <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} />            
+                </div>
+                <div>
+                    <DamageEffects playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+                </div>
+                <div>
+                    <img src={GameRoomSixPNG} alt="GameRoomSixPNG" />
+                </div>
             </nav>
         )
     }

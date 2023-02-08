@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomNinePNG from './GameRoomNinePNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
+import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 
 const RoomNine = (props) => {
     if(props.roomNineStatus === 0){
@@ -10,18 +11,15 @@ const RoomNine = (props) => {
                 <div>
                     <h2>This Is Room Nine</h2>
                 </div>
-            <div>
-                <h2>You are encountering three different shapes! Be careful and think about what you should attack first. </h2>
-                <h2>Enemy one is a Semi-Circle, it has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
-                <h2>The second enemy is a Parallelogram, it has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
-                <h2>The third enemy is a Trapezium, it has {props.enemy3Health} health, {props.enemy3Attack} attack, {props.enemy3Speed} speed, {props.enemy3Armor} armor, and will reward you with {props.enemy3Reward} coin. </h2>
-            </div>
-            <div>
-                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
-            </div>
-            <div>
-                <img src={GameRoomNinePNG} alt="GameRoomNinePNG" />
-            </div>
+                <div>
+                    <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} />            
+                </div>
+                <div>
+                    <DamageEffects playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+                </div>
+                <div>
+                    <img src={GameRoomNinePNG} alt="GameRoomNinePNG" />
+                </div>
             </nav>
         )
     }
@@ -56,3 +54,10 @@ const RoomNine = (props) => {
 }
 
 export default RoomNine;
+
+{/* <div>
+                <h2>You are encountering three different shapes! Be careful and think about what you should attack first. </h2>
+                <h2>Enemy one is a Semi-Circle, it has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
+                <h2>The second enemy is a Parallelogram, it has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
+                <h2>The third enemy is a Trapezium, it has {props.enemy3Health} health, {props.enemy3Attack} attack, {props.enemy3Speed} speed, {props.enemy3Armor} armor, and will reward you with {props.enemy3Reward} coin. </h2>
+            </div> */}
