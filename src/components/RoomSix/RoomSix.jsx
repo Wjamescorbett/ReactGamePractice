@@ -16,7 +16,7 @@ const RoomSix = (props) => {
                     <EnemyVisuals currentRoom={props.currentRoom} enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />            
                 </div>
                 <div>
-                    <DamageEffects useHealthPotion={props.useHealthPotion} playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+                    <DamageEffects resetRoomStatus={props.resetRoomStatus} useHealthPotion={props.useHealthPotion} playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
                 </div>
                 <div>
                     <img src={GameRoomSixPNG} alt="GameRoomSixPNG" />

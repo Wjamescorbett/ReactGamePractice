@@ -52,6 +52,7 @@ function App() {
     const [startCombatCheck, setStartCombatCheck] = useState(false)
 
     const [enemyOne, setEnemyOne] = useState({
+        enemyName: "",
         enemyMaxHealth: 0, 
         enemyHealth: 0, 
         enemyAttackLow: 0,
@@ -64,6 +65,7 @@ function App() {
     })
 
     const [enemyTwo, setEnemyTwo] = useState({
+        enemy2Name: "",
         enemy2MaxHealth: 1, 
         enemy2Health: 1, 
         enemy2AttackLow: 0, 
@@ -75,7 +77,8 @@ function App() {
         enemy2RewardCheck: 0
     })
     const [enemyThree, setEnemyThree] = useState({
-        enemy3MaxHealth: 1, 
+        enemy3Name: "",
+        enemy3MaxHealth: 1,
         enemy3Health: 1, 
         enemy3AttackLow: 0, 
         enemy3AttackHigh: 0, 
@@ -384,9 +387,10 @@ useEffect(() => {
         gameTime()
     }
 
-    function createEnemy(maxHealth, health, attackLow, attackHigh, speed, armor, reward, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) {
+    function createEnemy(enemyName, maxHealth, health, attackLow, attackHigh, speed, armor, reward, enemy2Name, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, enemy3Name, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) {
         setEnemyOne(prevEnemyOne => {
-            return {...prevEnemyOne, 
+            return {...prevEnemyOne,
+                enemyName: enemyName,
                 enemyMaxHealth: maxHealth,
                 enemyHealth: health,
                 enemyAttackLow: attackLow,
@@ -399,6 +403,7 @@ useEffect(() => {
         })
         setEnemyTwo(prevEnemyTwo => {
             return {...prevEnemyTwo,
+                enemy2Name: enemy2Name,
                 enemy2MaxHealth: maxHealth2,
                 enemy2Health: health2,
                 enemy2AttackLow: attack2Low,
@@ -411,6 +416,7 @@ useEffect(() => {
         })
         setEnemyThree(prevEnemyThree => {
             return {...prevEnemyThree,
+                enemy3Name: enemy3Name,
                 enemy3MaxHealth: maxHealth3,
                 enemy3Health: health3,
                 enemy3AttackLow: attack3Low,
@@ -438,15 +444,15 @@ useEffect(() => {
                 }
             })
         }
-            // ?enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
+            // ?enemyName, enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
         if(nowCurrentRoom === 2 & roomTwoStatus === 0) {
-            createEnemy(20, 20, 2, 3, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+            createEnemy("enemyOneRoomTwo", 20, 20, 2, 3, 5, 1, 1, "enemyTwoRoomTwo", 20, 20, 2, 3, 4, 1, 1, "enemyThreeRoomTwo", 20, 20, 2, 3, 8, 1, 1, 3)
         }
         if(nowCurrentRoom === 6 & roomSixStatus === 0){
-            createEnemy(20, 20, 2, 3, 7, 1, 1, 20, 20, 2, 3, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2) //Two Circles
+            createEnemy("enemyOneRoomSix", 20, 20, 2, 3, 7, 1, 1, "enemyTwoRoomSix", 20, 20, 2, 3, 4, 1, 1, "enemyThreeRoomSix", 0, 0, 0, 0, 0, 0, 0, 2) //Two Circles
         }
         if(nowCurrentRoom === 9 & roomNineStatus === 0){
-            createEnemy(30, 30, 4, 5, 4, 2, 10, 15, 15, 10, 14, 3, 5, 25, 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
+            createEnemy("enemyOneRoomNine", 30, 30, 4, 5, 4, 2, 10, "enemyTwoRoomNine", 15, 15, 10, 14, 3, 5, 25, "enemyThreeRoomNine", 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
         }
     }
 
@@ -1023,14 +1029,14 @@ useEffect(() => {
     // render() {
         return(
             <BrowserRouter>
-            <Navbar resetRoomStatus={resetRoomStatus} gameTick={gameTick} devButtonUpgrade={devButtonUpgrade} devButtonDowngrade={devButtonDowngrade} player={player} />
+            <Navbar gameTick={gameTick} devButtonUpgrade={devButtonUpgrade} devButtonDowngrade={devButtonDowngrade} player={player} />
             <ToastContainer />
                 <Routes>
                     <Route path="/" element={<Home player={player} enemyOne={enemyOne} pickClass={pickClass} />} />
 
                     <Route path="/GameBoard" element={<GameBoard useHealthPotion={useHealthPotion} buyFromStore={buyFromStore} roomMovement={roomMovement} createEnemy={createEnemy} />} />
 
-                    <Route path="/RoomTwo" element={<RoomTwo useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} roomTwoStatus={roomTwoStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
+                    <Route path="/RoomTwo" element={<RoomTwo useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomTwoStatus={roomTwoStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
 
                     {/* <Route path="/RoomTwo" element={<RoomTwo rechargeAttackMove={this.rechargeAttackMove} playerAttacked={this.state.playerAttacked} playerAttackMove={this.playerAttackMove} playerAttackTimerState={this.state.playerAttackTimerState} playerAttackTimerStateMax={this.state.playerAttackTimerStateMax} startCombat={this.startCombat} startCombatCheck={this.state.startCombatCheck} currentRoom={this.state.currentRoom} roomMovement={this.roomMovement} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyMaxHealth={this.state.enemyMaxHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed}  enemyMaxSpeed={this.state.enemyMaxSpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} roomTwoStatus={this.state.roomTwoStatus} resetRoomStatus={this.resetRoomStatus} />} /> */}
 
@@ -1040,13 +1046,13 @@ useEffect(() => {
 
                     {/* <Route path="/RoomFive" element={<RoomFive resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomFiveStatus={this.state.roomFiveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward} />} /> */}
 
-                    <Route path="/RoomSix" element={<RoomSix useHealthPotion={useHealthPotion} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} roomSixStatus={roomSixStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
+                    <Route path="/RoomSix" element={<RoomSix resetRoomStatus={resetRoomStatus} useHealthPotion={useHealthPotion} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} roomSixStatus={roomSixStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
 
                     {/* <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomSevenStatus={this.state.roomSevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
 
                     {/* <Route path="/RoomEight" element={<RoomEight openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomEightStatus={this.state.roomEightStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} /> */}
 
-                    <Route path="/RoomNine" element={<RoomNine useHealthPotion={useHealthPotion} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomNineStatus={roomNineStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
+                    <Route path="/RoomNine" element={<RoomNine resetRoomStatus={resetRoomStatus} useHealthPotion={useHealthPotion} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomNineStatus={roomNineStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} />} />
 
                     {/* <Route path="/RoomTen" element={<RoomTen resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTenStatus={this.state.roomTenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemy2Health={this.state.enemy2Health} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
 
