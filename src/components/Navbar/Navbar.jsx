@@ -18,9 +18,6 @@ const Navbar = (props) => {
                 <nav>
                     <ul>
                         {/* <li>
-                            <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
-                        </li> */}
-                        {/* <li>
                             <button className="staminaPotion" onClick={() => props.useStaminaPotion()}>Use stamina potion</button>
                         </li> */}
                         <li>

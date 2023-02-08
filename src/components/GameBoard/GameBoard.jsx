@@ -7,6 +7,9 @@ const GameBoard = (props) => {
         return (
             <nav>
             <div>
+                <li>
+                    <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
+                </li>
                 <h2>This Is The GameBoard Room One</h2>
                 <h5>It is the first "bonfire"</h5>
                 <h2>Here is the store! Spend coins to upgrade yourself.</h2>
