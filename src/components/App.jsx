@@ -449,7 +449,7 @@ useEffect(() => {
         }
             // ?enemyName, enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
         if(nowCurrentRoom === 2 & roomTwoStatus === 0) {
-            createEnemy("enemyOneRoomTwo", 20, 20, 2, 3, 5, 1, 1, "enemyTwoRoomTwo", 20, 20, 2, 3, 4, 1, 1, "enemyThreeRoomTwo", 20, 20, 2, 3, 8, 1, 1, 3)
+            createEnemy("Enemy One", 20, 20, 2, 3, 5, 1, 1, "Enemy Two", 20, 20, 2, 3, 4, 1, 1, "Enemy Three", 20, 20, 2, 3, 8, 1, 1, 3)
         }
         if(nowCurrentRoom === 6 & roomSixStatus === 0){
             createEnemy("enemyOneRoomSix", 20, 20, 2, 3, 7, 1, 1, "enemyTwoRoomSix", 20, 20, 2, 3, 4, 1, 1, "enemyThreeRoomSix", 0, 0, 0, 0, 0, 0, 0, 2) //Two Circles

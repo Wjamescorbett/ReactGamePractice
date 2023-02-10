@@ -12,50 +12,10 @@ import Col from 'react-bootstrap/Col';
 
 const RoomTwo = (props) => {
 
-    
-    function test(){
-        let enemies = [props.enemyOne.enemySpeed, props.enemyTwo.enemySpeed, props.enemyThree.enemySpeed]
-        enemies.sort((a,b) => a - b)
-        return(
-            <Container>
-                <Row>
-                {enemies.map(enemy => 
-                    <Col sm={4} className="square border border-5, square bg-secondary rounded-6">
-                        <h1>MORE TESTING</h1>
-                        {enemy}
-                    </Col>
-                )}
-                </Row>
-            </Container>
-        )
-    }
-
-    function test2(){
-        let enemies = []
-        enemies.push(props.enemyOne, props.enemyTwo, props.enemyThree)
-        enemies.sort((a,b) => a.enemySpeed - b.enemySpeed)
-        console.log(enemies)
-        return(
-            <Container>
-                <Row>
-                {enemies.map(enemy => 
-                    <Col sm={4} className={`square border border-5, square bg-${enemy.enemyColor} rounded-6`}>
-                        <h1>{enemy.enemyName}</h1>
-                        <ProgressBar variant="danger" min={0} max={enemy.enemyMaxHealth} now={enemy.enemyHealth} label={`Health ${enemy.enemyHealth}/${enemy.enemyMaxHealth}`}/>
-                        <ProgressBar variant="warning" min={0} max={enemy.enemyMaxSpeed} now={enemy.enemySpeed} label={`Speed ${enemy.enemySpeed}/${enemy.enemyMaxSpeed}`}/>
-                    </Col>
-                )}
-                </Row>
-            </Container>
-        )
-    }
-
     if(props.roomTwoStatus === 0){
         return (
             <nav>
                 <div>
-                    {test()}
-                    {test2()}
                     <h2>This Is Room Two</h2>
                 </div>
                 <div>
