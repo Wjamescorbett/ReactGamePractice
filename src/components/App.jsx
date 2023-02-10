@@ -61,7 +61,8 @@ function App() {
         enemyMaxSpeed: 0, 
         enemyArmor: 0, 
         enemyReward: 0,
-        enemyRewardCheck: 0
+        enemyRewardCheck: 0,
+        enemyColor: "primary"
     })
 
     const [enemyTwo, setEnemyTwo] = useState({
@@ -74,7 +75,8 @@ function App() {
         enemyMaxSpeed: 0, 
         enemyArmor: 0, 
         enemyReward: 0,
-        enemyRewardCheck: 0
+        enemyRewardCheck: 0,
+        enemyColor: "info"
     })
     const [enemyThree, setEnemyThree] = useState({
         enemyName: "",
@@ -86,7 +88,8 @@ function App() {
         enemyMaxSpeed: 0, 
         enemyArmor: 0, 
         enemyReward: 0,
-        enemyRewardCheck: 0
+        enemyRewardCheck: 0,
+        enemyColor: "secondary"
     })
 
     const [numberOfEnemiesInRoom, setNumberOfEnemiesInRoom] = useState(0)

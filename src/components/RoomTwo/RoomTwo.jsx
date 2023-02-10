@@ -5,10 +5,13 @@ import GameRoomTwoPNG from './GameRoomTwoPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
 import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 import { Container } from "react-bootstrap";
+// import { motion } from "framer-motion"
+// import { motion } from 'framer-motion/dist/framer-motion'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const RoomTwo = (props) => {
+
     
     function test(){
         let enemies = [props.enemyOne.enemySpeed, props.enemyTwo.enemySpeed, props.enemyThree.enemySpeed]
@@ -36,10 +39,10 @@ const RoomTwo = (props) => {
             <Container>
                 <Row>
                 {enemies.map(enemy => 
-                    <Col sm={4} className="square border border-5, square bg-secondary rounded-6">
-                        <h1>MORE TESTING</h1>
+                    <Col sm={4} className={`square border border-5, square bg-${enemy.enemyColor} rounded-6`}>
+                        <h1>{enemy.enemyName}</h1>
+                        <ProgressBar variant="danger" min={0} max={enemy.enemyMaxHealth} now={enemy.enemyHealth} label={`Health ${enemy.enemyHealth}/${enemy.enemyMaxHealth}`}/>
                         <ProgressBar variant="warning" min={0} max={enemy.enemyMaxSpeed} now={enemy.enemySpeed} label={`Speed ${enemy.enemySpeed}/${enemy.enemyMaxSpeed}`}/>
-                        {enemy.enemyName}
                     </Col>
                 )}
                 </Row>
