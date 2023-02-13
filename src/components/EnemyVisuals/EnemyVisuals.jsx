@@ -17,21 +17,17 @@ const EnemyVisuals = (props) => {
         enemies.sort((a,b) => a.enemySpeed - b.enemySpeed)
         console.log(enemies)
         return(
-            <TransitionGroup component={null}>
                 <Container>
                     <Row>
-                    {enemies.map(enemy => 
-                    <CSSTransition key={enemy} timeout={500} classNames="fade">
+                    {enemies.map(enemy =>                         
                         <Col sm={4} className={`square border border-5, square bg-${enemy.enemyColor} rounded-6`}>
                             <h1>{enemy.enemyName}</h1>
                             <ProgressBar variant="danger" min={0} max={enemy.enemyMaxHealth} now={enemy.enemyHealth} label={`Health ${enemy.enemyHealth}/${enemy.enemyMaxHealth}`}/>
                             <ProgressBar variant="warning" min={0} max={enemy.enemyMaxSpeed} now={enemy.enemySpeed} label={`Speed ${enemy.enemySpeed}/${enemy.enemyMaxSpeed}`}/>
                         </Col>
-                    </CSSTransition>
                     )}
                     </Row>
                 </Container>
-            </TransitionGroup>
         )
     }
 
