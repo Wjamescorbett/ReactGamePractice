@@ -22,6 +22,14 @@ const EnemyVisuals = (props) => {
                     {enemies.map(enemy =>                         
                         <Col sm={4} className={`square border border-5, square bg-${enemy.enemyColor} rounded-6`}>
                             <h1>{enemy.enemyName}</h1>
+                            <Row>
+                                <Col>
+                                    <h5>Attack: {enemy.enemyAttackLow} - {enemy.enemyAttackHigh}</h5>
+                                </Col>
+                                <Col>
+                                    <h5>Armor: {enemy.enemyArmor}</h5>
+                                </Col>
+                            </Row>
                             <ProgressBar variant="danger" min={0} max={enemy.enemyMaxHealth} now={enemy.enemyHealth} label={`Health ${enemy.enemyHealth}/${enemy.enemyMaxHealth}`}/>
                             <ProgressBar variant="warning" min={0} max={enemy.enemyMaxSpeed} now={enemy.enemySpeed} label={`Speed ${enemy.enemySpeed}/${enemy.enemyMaxSpeed}`}/>
                         </Col>

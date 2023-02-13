@@ -677,7 +677,7 @@ useEffect(() => {
         var currentPlayerAttack = playerAttackRandomizer(player.playerAttackLow, player.playerAttackHigh)
         if(attackEnemy === 1 & enemyOne.enemyHealth <= 0){
             deadCheck(currentPlayerAttack, attackEnemy)
-            alert("You killed this enemy!")
+            killedEnemyToastMessage(attackEnemy)
         }
         if(attackEnemy === 1 & enemyOne.enemyHealth > 0){
             currentPlayerAttack = currentPlayerAttack - enemyOne.enemyArmor
@@ -690,7 +690,7 @@ useEffect(() => {
 
         if(attackEnemy === 2 & enemyTwo.enemyHealth <= 0){
             deadCheck(currentPlayerAttack, attackEnemy)
-            alert("You killed enemy 2!")
+            killedEnemyToastMessage(attackEnemy)
         }
         if(attackEnemy === 2 & enemyTwo.enemyHealth > 0){
             currentPlayerAttack = currentPlayerAttack - enemyTwo.enemyArmor
@@ -702,7 +702,7 @@ useEffect(() => {
         }
         if(attackEnemy === 3 & enemyThree.enemyHealth <= 0){
             deadCheck(currentPlayerAttack, attackEnemy)
-            alert("You killed enemy 3!")
+            killedEnemyToastMessage(attackEnemy)
         }
         if(attackEnemy === 3 & enemyThree.enemyHealth > 0){
             currentPlayerAttack = currentPlayerAttack - enemyThree.enemyArmor
@@ -994,6 +994,24 @@ useEffect(() => {
         }
     }
 
+    function killedEnemyToastMessage(attackEnemyNumber){
+        if(attackEnemyNumber === 1){
+            toast.info("You already killed enemy 1 !", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        if(attackEnemyNumber === 2){
+            toast.info("You already killed enemy 2 !", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        if(attackEnemyNumber === 3){
+            toast.info("You already killed enemy 3 !", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    }
+
 
                                             // *GAME TIMER/BREAKLOOP TIMER
 
@@ -1031,6 +1049,7 @@ useEffect(() => {
                                             // !END ROOM TIMER
     // render() {
         return(
+            <div class="bg-dark bg-opacity-25 text-dark">
             <BrowserRouter>
             <Navbar gameTick={gameTick} devButtonUpgrade={devButtonUpgrade} devButtonDowngrade={devButtonDowngrade} player={player} />
             <ToastContainer />
@@ -1064,6 +1083,7 @@ useEffect(() => {
                     {/* <Route path="/RoomTwelve" element={<RoomTwelve openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTwelveStatus={this.state.roomTwelveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward}/>} /> */}
                 </Routes>
             </BrowserRouter>
+            </div>
         )
 }
 
