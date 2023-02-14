@@ -92,6 +92,9 @@ function App() {
         enemyColor: "secondary"
     })
 
+    const [enemyArray, setEnemyArray] = useState([])
+    const [enemiesInRoomCheck, setEnemiesInRoomCheck] = useState(false)
+
     const [numberOfEnemiesInRoom, setNumberOfEnemiesInRoom] = useState(0)
     // const [enemyDamageDone, setEnemyDamageDone] = useState(0)
 
@@ -167,6 +170,10 @@ useEffect(() => {
     if(enemyOne.enemyHealth <= 0 & enemyTwo.enemyHealth <= 0 & enemyThree.enemyHealth <= 0){
         setCurrentRoomStatusClearEnemy()
         setStartCombatCheck(false)
+    }
+
+    if(enemiesInRoomCheck === true){
+        setEnemiesInRoomCheck(false)
     }
 
 })
@@ -387,7 +394,9 @@ useEffect(() => {
         })
         setPlayerAttackTimerState(attackTimer)
         setPlayerAttackTimerStateMax(attackTimer)
-        gameTime()
+        if(gameTick === 0){
+            gameTime()
+        }
     }
 
     function createEnemy(enemyName, maxHealth, health, attackLow, attackHigh, speed, armor, reward, enemy2Name, maxHealth2, health2, attack2Low, attack2High, speed2, armor2, reward2, enemy3Name, maxHealth3, health3, attack3Low, attack3High, speed3, armor3, reward3, numberOfEnemiesInRoom) {
@@ -527,14 +536,6 @@ useEffect(() => {
 
     function currentEnemyAttackRandomizer(enemyAttackLow, enemyAttackHigh) {
         return Math.floor(Math.random() * (enemyAttackHigh - enemyAttackLow + 1) + enemyAttackLow)
-    }
-
-
-    function showToastMessageRed(damageTaken) {
-        toast.error(`You took ${damageTaken} damage !`, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 1500
-        });
     }
 
     // playerHasNoSpeed = () => {
@@ -1012,19 +1013,26 @@ useEffect(() => {
         }
     }
 
+    function showToastMessageRed(damageTaken) {
+        toast.error(`You took ${damageTaken} damage !`, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500
+        });
+    }
+
 
                                             // *GAME TIMER/BREAKLOOP TIMER
 
     function gameTime() {
-        setBreakLoop(prevBreakLoop => prevBreakLoop + 1)
-        setGameTick(prevGameTick => prevGameTick + 1)
-        setRunEnemyOneAttackTimer(true)
-        setRunEnemyTwoAttackTimer(true)
-        setRunEnemyThreeAttackTimer(true)
-        if(breakLoop < 300){
-            setTimeout(() => {gameTime(); }, 1000);
-        }
-        console.log(`gameTime() ran. gameTick is at ${gameTick}`)
+            setBreakLoop(prevBreakLoop => prevBreakLoop + 1)
+            setGameTick(prevGameTick => prevGameTick + 1)
+            setRunEnemyOneAttackTimer(true)
+            setRunEnemyTwoAttackTimer(true)
+            setRunEnemyThreeAttackTimer(true)
+            if(breakLoop < 300){
+                setTimeout(() => {gameTime(); }, 1000);
+            }
+            console.log(`gameTime() ran. gameTick is at ${gameTick}`)
     }
 
 
