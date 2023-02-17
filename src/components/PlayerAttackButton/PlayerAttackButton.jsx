@@ -42,6 +42,7 @@ const PlayerAttackButton = (props) => {
                     <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
                     <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
                     <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+                    <button className="attackClosestMove" onClick={() => props.playerAttackClosestEnemyMove()}>Attack Closest Enemy</button>
                     <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                     <Link to="/GameBoard" >
                         <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>

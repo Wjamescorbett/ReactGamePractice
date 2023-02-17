@@ -22,7 +22,7 @@ const RoomTwo = (props) => {
                     <EnemyVisuals currentRoom={props.currentRoom}  enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
                 </div>
                 <div>
-                    <DamageEffects useHealthPotion={props.useHealthPotion} resetRoomStatus={props.resetRoomStatus} playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+                    <DamageEffects useHealthPotion={props.useHealthPotion} resetRoomStatus={props.resetRoomStatus} playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck} playerAttackMove={props.playerAttackMove} playerAttackClosestEnemyMove= {props.playerAttackClosestEnemyMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
                 </div>
                 <div>
                     <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
@@ -40,23 +40,15 @@ const RoomTwo = (props) => {
             <div>
                 <h2>You killed a dangerous circle. It rewarded you with {props.enemyOne.enemyReward} coin. </h2>
             </div>
-            <ul>
-                <li>
-                    <Link to="/GameBoard" >
-                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/RoomThree" >
-                    <button className="square" onClick={() => props.roomMovement(3)}>Go to room Three</button>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/RoomSix">
-                        <button className="circle" onClick={() => props.roomMovement(6)}>Go to room Six</button>
-                    </Link>
-                </li>
-            </ul>
+                <Link to="/GameBoard" >
+                    <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Go to room One</button>
+                </Link>
+                <Link to="/RoomThree" >
+                <button className="square" onClick={() => props.roomMovement(3)}>Go to room Three</button>
+                </Link>
+                <Link to="/RoomSix">
+                    <button className="circle" onClick={() => props.roomMovement(6)}>Go to room Six</button>
+                </Link>
             <div>
                 <img src={GameRoomTwoPNG} alt="GameRoomTwoPNG" />
             </div>
