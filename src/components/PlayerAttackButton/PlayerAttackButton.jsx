@@ -11,27 +11,24 @@ const PlayerAttackButton = (props) => {
     function attackButtonOne(){
         if(props.enemyOne.enemyHealth > 0){
             return(
-                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                <button className={`btn btn-${props.enemyOne.enemyColor}`} onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
             )
-
         }
     }
 
     function attackButtonTwo(){
         if(props.enemyTwo.enemyHealth > 0){
             return(
-                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                <button className={`btn btn-${props.enemyTwo.enemyColor}`} onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
             )
-
         }
     }
 
     function attackButtonThree(){
         if(props.enemyThree.enemyHealth > 0){
             return(
-                <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+                <button className={`btn btn-${props.enemyThree.enemyColor}`} onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
             )
-
         }
     }
 
@@ -66,16 +63,16 @@ const PlayerAttackButton = (props) => {
                 </div>
             )
         }
-        
+
         if(props.numberOfEnemiesInRoom === 3){
             return(
                 <div>
                     {attackButtonOne()}
                     {attackButtonTwo()}
                     {attackButtonThree()}
-                    <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
+                    <button className="btn btn-danger" onClick={() => props.useHealthPotion()}>Use health potion</button>
                     <Link to="/GameBoard" >
-                        <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
+                        <button className="btn btn-success" onClick={() => props.resetRoomStatus()}>Return Home</button>
                     </Link>
                 </div>
             )

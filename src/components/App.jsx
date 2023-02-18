@@ -368,8 +368,8 @@ useEffect(() => {
         })
     }
 
-    function pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer) {
-        console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer)
+    function pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer, attackCloseEnemyTimer) {
+        console.log(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer, attackCloseEnemyTimer)
         setPlayer(prevPlayer => {
             return {...prevPlayer,
             playerHealth: health,
@@ -386,8 +386,8 @@ useEffect(() => {
         })
         setPlayerAttackTimerState(attackTimer)
         setPlayerAttackTimerStateMax(attackTimer)
-        setPlayerAttackCloseEnemyTimerState(attackTimer)
-        setPlayerAttackCloseEnemyTimerStateMax(attackTimer)
+        setPlayerAttackCloseEnemyTimerState(attackCloseEnemyTimer)
+        setPlayerAttackCloseEnemyTimerStateMax(attackCloseEnemyTimer)
         
         if(gameTick === 0){
             gameTime()
@@ -455,7 +455,7 @@ useEffect(() => {
         }
             // ?enemyName, enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
         if(nowCurrentRoom === 2 & roomTwoStatus === 0) {
-            createEnemy("Enemy One", 20, 20, 2, 3, 5, 1, 1, "Enemy Two", 20, 20, 2, 3, 4, 1, 1, "Enemy Three", 20, 20, 2, 3, 8, 1, 1, 3)
+            createEnemy("Enemy One", 20, 20, 2, 3, 5, 1, 1, "Enemy Two", 0, 0, 0, 0, 0, 0, 0, "Enemy Three", 0, 0, 0, 0, 0, 0, 0, 1)
         }
         if(nowCurrentRoom === 6 & roomSixStatus === 0){
             createEnemy("enemyOneRoomSix", 20, 20, 2, 3, 7, 1, 1, "enemyTwoRoomSix", 20, 20, 2, 3, 4, 1, 1, "enemyThreeRoomSix", 0, 0, 0, 0, 0, 0, 0, 2) //Two Circles

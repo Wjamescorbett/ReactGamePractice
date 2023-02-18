@@ -6,8 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const Home = (props) => {
 
 
-    function handleSubmit(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer) {
-        props.pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer)
+    function handleSubmit(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer, attackCloseEnemyTimer) {
+        props.pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer, attackCloseEnemyTimer)
     }
 
     const showToastMessage = () => {
@@ -36,9 +36,9 @@ const Home = (props) => {
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col col-lg-4">
-                                <button className="pickClass" onClick={() => handleSubmit(100, 100, 3, 5, 5, 5, 1, 2, 1, 1, 4)}>Warrior</button>
-                                <button className="pickClass" onClick={() => handleSubmit(150, 150, 2, 4, 4, 4, 3, 2, 2, 1, 2)}>Tank</button>
-                                <button className="pickClass" onClick={() => handleSubmit(25, 25, 8, 12, 4, 4, 1, 2, 1 , 1, 2)}>Glass Cannon</button>
+                                <button className="pickClass" onClick={() => handleSubmit(100, 100, 3, 5, 5, 5, 1, 2, 1, 1, 4, 10)}>Warrior</button>
+                                <button className="pickClass" onClick={() => handleSubmit(150, 150, 2, 4, 4, 4, 3, 2, 2, 1, 2, 10)}>Tank</button>
+                                <button className="pickClass" onClick={() => handleSubmit(25, 25, 8, 12, 4, 4, 1, 2, 1 , 1, 2, 5)}>Glass Cannon</button>
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
