@@ -42,7 +42,7 @@ const PlayerAttackButton = (props) => {
         if(props.numberOfEnemiesInRoom === 1){
             return(
                 <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+                    <button className={`btn btn-${props.enemyOne.enemyColor}`} onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
                     <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                     <Link to="/GameBoard" >
                         <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
