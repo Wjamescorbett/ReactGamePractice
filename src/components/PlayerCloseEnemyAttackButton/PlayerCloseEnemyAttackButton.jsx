@@ -15,7 +15,7 @@ const PlayerCloseEnemyAttackButton = (props) => {
     if(props.playerAttackedCloseEnemy === 2){
             return(
                 <div>
-                    <button className="attackClosestMove" onClick={() => props.playerAttackClosestEnemyMove()}>Power Attack Closest Enemy</button>
+                    <button className="attackClosestMove" onClick={() => props.playerAttackCloseEnemyMove()}>Power Attack Closest Enemy</button>
                 </div>
             )
         }

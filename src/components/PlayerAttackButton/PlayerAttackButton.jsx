@@ -7,11 +7,40 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const PlayerAttackButton = (props) => {
+
+    function attackButtonOne(){
+        if(props.enemyOne.enemyHealth > 0){
+            return(
+                <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
+            )
+
+        }
+    }
+
+    function attackButtonTwo(){
+        if(props.enemyTwo.enemyHealth > 0){
+            return(
+                <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+            )
+
+        }
+    }
+
+    function attackButtonThree(){
+        if(props.enemyThree.enemyHealth > 0){
+            return(
+                <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
+            )
+
+        }
+    }
+
     if(props.playerAttacked === 1){
         return(
             <ProgressBar variant="danger" min={0} max={props.playerAttackTimerStateMax} now={props.playerAttackTimerState} label={`Attack in ${props.playerAttackTimerState}/${props.playerAttackTimerStateMax}`}/>
         )
     }
+    
     if(props.playerAttacked === 2){
         if(props.numberOfEnemiesInRoom === 1){
             return(
@@ -24,11 +53,12 @@ const PlayerAttackButton = (props) => {
                 </div>
             )
         }
+
         if(props.numberOfEnemiesInRoom === 2){
             return(
                 <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
+                    {attackButtonOne()}
+                    {attackButtonTwo()}
                     <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                     <Link to="/GameBoard" >
                         <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>
@@ -36,13 +66,13 @@ const PlayerAttackButton = (props) => {
                 </div>
             )
         }
+        
         if(props.numberOfEnemiesInRoom === 3){
             return(
                 <div>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(1)}>Attack enemy 1</button>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(2)}>Attack enemy 2</button>
-                    <button className="attackMove" onClick={() => props.playerAttackMove(3)}>Attack enemy 3</button>
-                    <button className="attackClosestMove" onClick={() => props.playerAttackClosestEnemyMove()}>Power Attack Closest Enemy</button>
+                    {attackButtonOne()}
+                    {attackButtonTwo()}
+                    {attackButtonThree()}
                     <button className="healthPotion" onClick={() => props.useHealthPotion()}>Use health potion</button>
                     <Link to="/GameBoard" >
                         <button className="gameBoardButton" onClick={() => props.resetRoomStatus()}>Return Home</button>

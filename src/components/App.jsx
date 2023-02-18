@@ -525,6 +525,7 @@ useEffect(() => {
     function startCombat() {
         setStartCombatCheck(true)
         setRunPlayerAttackTimer(true)
+        setRunPlayerAttackCloseEnemyTimer(true)
     }
 
     function playerAttackRandomizer(playerAttackLow, playerAttackHigh) {
@@ -699,7 +700,7 @@ useEffect(() => {
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
-            playerAttackMoveSetState(1, currentPlayerAttack)
+            playerAttackMoveSetState(1, currentPlayerAttack, "standardAttack")
             deadCheck(currentPlayerAttack, attackEnemy, "standardAttack")
         }
 
@@ -712,7 +713,7 @@ useEffect(() => {
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
-            playerAttackMoveSetState(2, currentPlayerAttack)
+            playerAttackMoveSetState(2, currentPlayerAttack, "standardAttack")
             deadCheck(currentPlayerAttack, attackEnemy, "standardAttack")
         }
         if(attackEnemy === 3 & enemyThree.enemyHealth <= 0){
@@ -724,7 +725,7 @@ useEffect(() => {
             if(currentPlayerAttack <= 0){
                 currentPlayerAttack = 1
             }
-            playerAttackMoveSetState(3, currentPlayerAttack)
+            playerAttackMoveSetState(3, currentPlayerAttack, "standardAttack")
             deadCheck(currentPlayerAttack, attackEnemy, "standardAttack")
         }
     }
@@ -738,7 +739,7 @@ useEffect(() => {
                 currentPlayerAttack = 1
             }
             runOnce = true
-            playerAttackMoveSetState(1, currentPlayerAttack)
+            playerAttackMoveSetState(1, currentPlayerAttack, "closeAttack")
             deadCheck(currentPlayerAttack, 1, "closeAttack")
         }
         if(enemyTwo.enemySpeed <= enemyOne.enemySpeed & enemyTwo.enemySpeed <= enemyThree.enemySpeed & enemyTwo.enemyHealth > 0 & runOnce === false){
@@ -747,7 +748,7 @@ useEffect(() => {
                 currentPlayerAttack = 1
             }
             runOnce = true
-            playerAttackMoveSetState(2, currentPlayerAttack)
+            playerAttackMoveSetState(2, currentPlayerAttack, "closeAttack")
             deadCheck(currentPlayerAttack, 2, "closeAttack")
         }
         if(enemyThree.enemySpeed <= enemyOne.enemySpeed & enemyThree.enemySpeed <= enemyTwo.enemySpeed & enemyThree.enemyHealth > 0 & runOnce === false){
@@ -756,7 +757,7 @@ useEffect(() => {
                 currentPlayerAttack = 1
             }
             runOnce = true
-            playerAttackMoveSetState(3, currentPlayerAttack)
+            playerAttackMoveSetState(3, currentPlayerAttack, "closeAttack")
             deadCheck(currentPlayerAttack, 3, "closeAttack")
         }
     }
