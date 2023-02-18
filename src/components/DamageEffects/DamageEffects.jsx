@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import PlayerAttackButton from '../PlayerAttackButton/PlayerAttackButton';
+import PlayerCloseEnemyAttackButton from '../PlayerCloseEnemyAttackButton/PlayerCloseEnemyAttackButton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,7 +19,8 @@ const DamageEffects = (props) => {
         return(
             <div>
                 <div>
-                    <PlayerAttackButton useHealthPotion={props.useHealthPotion} resetRoomStatus={props.resetRoomStatus} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} rechargeAttackMove={props.rechargeAttackMove} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackClosestEnemyMove={props.playerAttackClosestEnemyMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
+                    <PlayerAttackButton useHealthPotion={props.useHealthPotion} resetRoomStatus={props.resetRoomStatus} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} playerAttacked={props.playerAttacked} playerAttackMove={props.playerAttackMove} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} />
+                    <PlayerCloseEnemyAttackButton playerAttackCloseEnemyMove={props.playerAttackCloseEnemyMove} playerAttackCloseEnemyTimerState={props.playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={props.playerAttackCloseEnemyTimerStateMax} playerAttackedCloseEnemy={props.playerAttackedCloseEnemy} />
                 </div>
                 <div>
                     <h1>COMBAT STARTED</h1>
