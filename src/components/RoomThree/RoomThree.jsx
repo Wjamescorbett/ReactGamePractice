@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomThreePNG from './GameRoomThreePNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
+import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
 
 
 const RoomThree = (props) => {
@@ -11,18 +12,22 @@ const RoomThree = (props) => {
                 <div>
                     <h2>This Is Room Three</h2>
                 </div>
-            <div>
-                <h2>You are encountering a dangerous Square. It has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coins. </h2>
-            </div>
-            <div>
-                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
-            </div>
-            <div>
-                <img src={GameRoomThreePNG} alt="GameRoomOnePNG" />
-            </div>
+                <div>
+                    <EnemyVisuals currentRoom={props.currentRoom}  enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+                </div>
+                <div>
+                    <DamageEffects useHealthPotion={props.useHealthPotion} resetRoomStatus={props.resetRoomStatus} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck}  numberOfEnemiesInRoom={props.numberOfEnemiesInRoom}
+                    playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} playerAttackMove={props.playerAttackMove} 
+                    playerAttackedCloseEnemy={props.playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={props.playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={props.playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove= {props.playerAttackCloseEnemyMove}
+                    enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} />
+                </div>
+                <div>
+                    <img src={GameRoomThreePNG} alt="GameRoomTwoPNG" />
+                </div>
             </nav>
         )
     }
+
     if(props.roomThreeStatus === 1){
         return (
             <nav>
