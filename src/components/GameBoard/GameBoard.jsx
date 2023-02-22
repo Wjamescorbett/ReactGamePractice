@@ -50,9 +50,9 @@ const GameBoard = (props) => {
                     </Link>
                 </li>
             </ul>
-            <div>
+            {/* <div>
                 <img src={GameRoomOnePNG} alt="GameRoomOnePNG" />
-            </div>
+            </div> */}
             </nav>
         )
     }

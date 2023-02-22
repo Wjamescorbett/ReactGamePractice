@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import './App.css';
 import Home from './Home/Home';
 import Navbar from './Navbar/Navbar';
+import GameMap from './GameMap/GameMap';
 import Layout from './Layout/Layout';
 import GameBoard from './GameBoard/GameBoard';
 import RoomTwo from './RoomTwo/RoomTwo';
@@ -1182,6 +1183,7 @@ useEffect(() => {
 
                     {/* <Route path="/RoomTwelve" element={<RoomTwelve openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTwelveStatus={this.state.roomTwelveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward}/>} /> */}
                 </Routes>
+                <GameMap />
             </BrowserRouter>
             </div>
         )
