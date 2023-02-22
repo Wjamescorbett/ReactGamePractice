@@ -649,15 +649,6 @@ useEffect(() => {
         showToastMessageRed(damageTaken)
     }
 
-
-
-
-
-
-
-
-
-
                                             // *START PLAYER ATTACK TIMER
     function playerAttackTimer(timer) {
         var timeHolder = timer
@@ -905,24 +896,23 @@ useEffect(() => {
         }
 
         if(currentRoom === 4){
-            setRoomThreeStatus(1)
+            setRoomFourStatus(1)
         }
 
         if(currentRoom === 5){
-            setRoomThreeStatus(1)
+            setRoomFiveStatus(1)
         }
-
 
         if(currentRoom === 6){
             setRoomSixStatus(1)
         }
 
         if(currentRoom === 7){
-            setRoomThreeStatus(1)
+            setRoomSevenStatus(1)
         }
 
         if(currentRoom === 8){
-            setRoomThreeStatus(1)
+            setRoomEightStatus(1)
         }
 
         if(currentRoom === 9){
@@ -930,15 +920,15 @@ useEffect(() => {
         }
 
         if(currentRoom === 10){
-            setRoomThreeStatus(1)
+            setRoomTenStatus(1)
         }
 
         if(currentRoom === 11){
-            setRoomThreeStatus(1)
+            setRoomElevenStatus(1)
         }
 
         if(currentRoom === 12){
-            setRoomThreeStatus(1)
+            setRoomTwelveStatus(1)
         }
     }
 
@@ -1024,26 +1014,31 @@ useEffect(() => {
 
     // }
 
-    // !FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     function openChest() {
-        if(this.state.currentRoom === 4){
-            this.setState({
-                healthPotionEffect: this.state.healthPotionEffect + 15,
-                roomFourStatus: 2,
+        if(currentRoom === 4){
+            setPlayer (prevPlayer => {
+                return {...prevPlayer,
+                playerHealthPotionEffect: player.playerHealthPotionEffect + 15
+                }
             })
+            setRoomFourStatus(2)
         }
-        if(this.state.currentRoom === 8){
-            this.setState({
-                healthPotionEffect: this.state.healthPotionEffect + 15,
-                roomEightStatus: 2,
+        if(currentRoom === 8){
+            setPlayer (prevPlayer => {
+                return {...prevPlayer,
+                playerHealthPotionEffect: player.playerHealthPotionEffect + 15
+                }
             })
+            setRoomEightStatus(2)
         }
-        if(this.state.currentRoom === 12){
-            this.setState({
-                healthPotionEffect: this.state.healthPotionEffect + 15,
-                roomTwelveStatus: 2,
+        if(currentRoom === 12){
+            setPlayer (prevPlayer => {
+                return {...prevPlayer,
+                playerHealthPotionEffect: player.playerHealthPotionEffect + 15
+                }
             })
+            setRoomTwelveStatus(2)
         }
     }
 
@@ -1093,7 +1088,7 @@ useEffect(() => {
     }
 
 
-                                            // *GAME TIMER/BREAKLOOP TIMER
+                                            // *GAME TIMER
 
     function gameTime() {
             setBreakLoop(prevBreakLoop => prevBreakLoop + 1)
@@ -1108,26 +1103,7 @@ useEffect(() => {
     }
 
 
-                                            //  !END GAME TIMER
-
-    //                                         //  *ROOM TIMER
-    // roomTime = () => {
-    //     this.roomTimeSetState()
-    //     if(this.state.roomBreakLoop < 300){
-    //         setTimeout(() => {this.roomTime(); }, 1000);
-    //     }
-    //     console.log(`gameRoomTime() is running. roomTime is at ${this.state.roomTime}`)
-    // }
-
-    // roomTimeSetState = () => {
-    //     this.setState({
-    //         roomTime: this.state.roomTime + 1,
-    //         roomBreakLoop: this.state.roomBreakLoop + 1,
-    //     })
-    // }
-
                                             // !END ROOM TIMER
-    // render() {
         return(
             <div class="bg-dark bg-opacity-25 text-dark">
             <BrowserRouter>
