@@ -472,16 +472,37 @@ useEffect(() => {
         }
             // ?enemyName, enemyMaxHealth, EnemyHealth, enemyAttackLow, enemyAttackHigh, enemySpeed, enemyArmor, enemyReward
         if(nowCurrentRoom === 2 & roomTwoStatus === 0) {
-            createEnemy("Enemy One", 20, 20, 2, 3, 5, 1, 1, "Enemy Two", 0, 0, 0, 0, 1000, 0, 0, "Enemy Three", 0, 0, 0, 0, 1000, 0, 0, 1)
+            createEnemy("Enemy One", 20, 20, 2, 3, 5, 1, 1, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 1)
         }
         if(nowCurrentRoom === 3 & roomThreeStatus === 0){
-            createEnemy("Enemy One", 15, 15, 4, 5, 3, 2, 2, "Enemy Two", 0, 0, 0, 0, 1000, 0, 0, "Enemy Three", 0, 0, 0, 0, 1000, 0, 0, 1) //One Square 15, 4, 5, 2, 2, 2
+            createEnemy("Enemy One", 15, 15, 4, 5, 3, 2, 2, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 1) //One Square 15, 15, 4, 5, 3, 2, 2
+        }
+        if(nowCurrentRoom === 4 & roomFourStatus === 0){
+            createEnemy("Enemy One", 50, 50, 6, 8, 4, 3, 15, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 1) //One Boss Triangle
+        }
+        if(nowCurrentRoom === 5 & roomFiveStatus === 0){
+            createEnemy("Enemy One", 15, 15, 10, 12, 5, 2, 5, "Enemy Two", 10, 10, 3, 5, 3, 4, 10, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 2) //Parallelogram 15, 10, 12, 2, 5, 25 - Trapezium 10, 3, 5, 9, 4, 10
         }
         if(nowCurrentRoom === 6 & roomSixStatus === 0){
-            createEnemy("enemyOneRoomSix", 20, 20, 2, 3, 7, 1, 1, "enemyTwoRoomSix", 20, 20, 2, 3, 4, 1, 1, "enemyThreeRoomSix", 0, 0, 0, 0, 1000, 0, 0, 2) //Two Circles
+            createEnemy("Enemy One", 30, 30, 4, 6, 7, 1, 1, "Enemy Two", 30, 30, 4, 6, 4, 1, 1, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 2) 
+        }
+        if(nowCurrentRoom === 7 & roomSevenStatus === 0){
+            createEnemy("Enemy One", 15, 15, 10, 12, 5, 2, 5, "Enemy Two", 50, 50, 3, 5, 3, 4, 20, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 2) //Parallelogram 15, 10, 12, 2, 5, 25 - Trapezium 10, 3, 5, 9, 4, 10
+        }
+        if(nowCurrentRoom === 8 & roomEightStatus === 0) {
+            createEnemy("Enemy One", 80, 80, 10, 15, 5, 5, 40, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, "NO ENEMY", 0, 0, 0, 0, 1000, 0, 0, 1)
         }
         if(nowCurrentRoom === 9 & roomNineStatus === 0){
-            createEnemy("enemyOneRoomNine", 30, 30, 4, 5, 4, 2, 10, "enemyTwoRoomNine", 15, 15, 10, 14, 3, 5, 25, "enemyThreeRoomNine", 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
+            createEnemy("Enemy One", 30, 30, 4, 5, 4, 2, 10, "Enemy Two", 15, 15, 10, 14, 3, 5, 25, "Enemy Three", 5, 5, 1, 5, 1, 10, 15, 3) //Semi-Circle - Parallelogram - Trapezium
+        }
+        if(nowCurrentRoom === 10 & roomTenStatus === 0){
+            createEnemy("Enemy One", 100, 100, 10, 12, 10, 4, 30, "Enemy Two", 15, 15, 5, 8, 2, 10, 25, "Enemy Three", 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
+        }
+        if(nowCurrentRoom === 11 & roomElevenStatus === 0){
+            createEnemy("Enemy One", 100, 100, 10, 12, 10, 4, 30, "Enemy Two", 15, 15, 5, 8, 2, 10, 25, "Enemy Three", 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
+        }
+        if(nowCurrentRoom === 12 & roomTwelveStatus === 0){
+            createEnemy("Enemy One", 1000, 1000, 20, 30, 10, 20, 3000, "Enemy Two", 20, 20, 6, 10, 2, 10, 25, "Enemy Three", 20, 20, 6, 10, 2, 10, 25, 3) //Semi-Circle - Parallelogram - Trapezium
         }
     }
 
@@ -505,39 +526,6 @@ useEffect(() => {
     //     }
     //     if(this.state.playerSpeed <= 0){
     //         this.playerHasNoSpeed()
-    //     }
-
-        // if(currentRoom === 3 & this.state.roomThreeStatus === 0){
-        //     this.createEnemy(15, 15, 4, 5, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Square 15, 4, 5, 2, 2, 2
-        // }
-        // if(currentRoom === 4 & this.state.roomFourStatus === 0){
-        //     this.createEnemy(50, 50, 5, 7, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One Boss Triangle
-        // }
-        // if(currentRoom === 5 & this.state.roomFiveStatus === 0){
-        //     this.createEnemy(15, 15, 10, 12, 2, 5, 25, 10, 10, 3, 5, 9, 4, 10, 0, 0, 0, 0, 0, 0, 0, 2) //Parallelogram 15, 10, 12, 2, 5, 25 - Trapezium 10, 3, 5, 9, 4, 10
-        // }
-        // if(currentRoom === 6 & this.state.roomSixStatus === 0){
-        //     this.createEnemy(20, 20, 2, 3, 7, 1, 1, 20, 20, 2, 3, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2) //Two Circles
-        // }
-        // if(currentRoom === 7 & this.state.roomSevenStatus === 0){
-        //     this.createEnemy(15, 15, 4, 5, 2, 2, 2, 15, 15, 4, 5, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2) // Two Squares
-        // }
-        // if(currentRoom === 8 & this.state.roomEightStatus === 0){
-        //     this.createEnemy(80, 80, 6, 8, 3, 4, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1) //One BOSS pentagon
-        // }
-        // if(currentRoom === 9 & this.state.roomNineStatus === 0){
-        //     this.createEnemy(30, 30, 4, 5, 2, 2, 10, 15, 15, 10, 14, 2, 5, 25, 4, 4, 1, 5, 10, 10, 5, 3) //Semi-Circle - Parallelogram - Trapezium
-        // }
-        // if(currentRoom === 10 & this.state.roomTenStatus === 0){
-        //     this.createEnemy(100, 100, 4, 7, 2, 2, 20, 100, 100, 4, 7, 2, 2, 20, 0, 0, 0, 0, 0, 0, 0, 2) //Two Hexagons
-        // }
-        // if(currentRoom === 11 & this.state.roomElevenStatus === 0){
-        //     this.createEnemy(50, 50, 5, 8, 4, 3, 15, 50, 50, 5, 8, 4, 3, 15, 0, 0, 0, 0, 0, 0, 0, 2)
-        // }
-        // if(currentRoom === 12 & this.state.roomTwelveStatus === 0){
-        //     this.createEnemy(500, 500, 15, 20, 8, 8, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
-        // }
-    // }
                                             // *TIMED COMBAT
     function startCombat() {
         setStartCombatCheck(true)
@@ -916,47 +904,42 @@ useEffect(() => {
             setRoomThreeStatus(1)
         }
 
-        // if(this.state.currentRoom === 4){
-        //     this.setState({
-        //         roomFourStatus: 1,
-        //     })
-        // }
-        // if(this.state.currentRoom === 5){
-        //     this.setState({
-        //         roomFiveStatus: 1,
-        //     })
-        // }
+        if(currentRoom === 4){
+            setRoomThreeStatus(1)
+        }
+
+        if(currentRoom === 5){
+            setRoomThreeStatus(1)
+        }
+
+
         if(currentRoom === 6){
             setRoomSixStatus(1)
         }
-        // if(this.state.currentRoom === 7){
-        //     this.setState({
-        //         roomSevenStatus: 1,
-        //     })
-        // }
-        // if(this.state.currentRoom === 8){
-        //     this.setState({
-        //         roomEightStatus: 1,
-        //     })
-        // }
+
+        if(currentRoom === 7){
+            setRoomThreeStatus(1)
+        }
+
+        if(currentRoom === 8){
+            setRoomThreeStatus(1)
+        }
+
         if(currentRoom === 9){
             setRoomNineStatus(1)
         }
-        // if(this.state.currentRoom === 10){
-        //     this.setState({
-        //         roomTenStatus: 1,
-        //     })
-        // }
-        // if(this.state.currentRoom === 11){
-        //     this.setState({
-        //         roomElevenStatus: 1,
-        //     })
-        // }
-        // if(this.state.currentRoom === 12){
-        //     this.setState({
-        //         roomTwelveStatus: 1,
-        //     })
-        // }
+
+        if(currentRoom === 10){
+            setRoomThreeStatus(1)
+        }
+
+        if(currentRoom === 11){
+            setRoomThreeStatus(1)
+        }
+
+        if(currentRoom === 12){
+            setRoomThreeStatus(1)
+        }
     }
 
     //                                         // !END OF ATTACK SEQUENCE
@@ -1041,26 +1024,28 @@ useEffect(() => {
 
     // }
 
-    // openChest = () => {
-    //     if(this.state.currentRoom === 4){
-    //         this.setState({
-    //             healthPotionEffect: this.state.healthPotionEffect + 15,
-    //             roomFourStatus: 2,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 8){
-    //         this.setState({
-    //             healthPotionEffect: this.state.healthPotionEffect + 15,
-    //             roomEightStatus: 2,
-    //         })
-    //     }
-    //     if(this.state.currentRoom === 12){
-    //         this.setState({
-    //             healthPotionEffect: this.state.healthPotionEffect + 15,
-    //             roomTwelveStatus: 2,
-    //         })
-    //     }
-    // }
+    // !FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    function openChest() {
+        if(this.state.currentRoom === 4){
+            this.setState({
+                healthPotionEffect: this.state.healthPotionEffect + 15,
+                roomFourStatus: 2,
+            })
+        }
+        if(this.state.currentRoom === 8){
+            this.setState({
+                healthPotionEffect: this.state.healthPotionEffect + 15,
+                roomEightStatus: 2,
+            })
+        }
+        if(this.state.currentRoom === 12){
+            this.setState({
+                healthPotionEffect: this.state.healthPotionEffect + 15,
+                roomTwelveStatus: 2,
+            })
+        }
+    }
 
     //                                         // *ON-SCREEN PROMPTS
 
@@ -1161,29 +1146,43 @@ useEffect(() => {
                     playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
                     playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomFour" element={<RoomFour openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomFourStatus={this.state.roomFourStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} /> */}
+                    <Route path="/RoomFour" element={<RoomFour openChest={openChest} useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomFourStatus={roomFourStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomFive" element={<RoomFive resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomFiveStatus={this.state.roomFiveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward} />} /> */}
+                    <Route path="/RoomFive" element={<RoomFive useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomFiveStatus={roomFiveStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
                     <Route path="/RoomSix" element={<RoomSix useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomSixStatus={roomSixStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} 
                     playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
                     playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomSeven" element={<RoomSeven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomSevenStatus={this.state.roomSevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
+                    <Route path="/RoomSeven" element={<RoomSeven useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomSevenStatus={roomSevenStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomEight" element={<RoomEight openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomEightStatus={this.state.roomEightStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} />} /> */}
+                    <Route path="/RoomEight" element={<RoomEight openChest={openChest} useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomEightStatus={roomEightStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
                     <Route path="/RoomNine" element={<RoomNine useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomNineStatus={roomNineStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat} 
                     playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
                     playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomTen" element={<RoomTen resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTenStatus={this.state.roomTenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
+                    <Route path="/RoomTen" element={<RoomTen useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomTenStatus={roomTenStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomEleven" element={<RoomEleven resetRoomStatus={this.resetRoomStatus} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomElevenStatus={this.state.roomElevenStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward} enemyHealth={this.state.enemyHealth} enemy2AttackLow={this.state.enemy2AttackLow} enemy2AttackHigh={this.state.enemy2AttackHigh} enemy2Speed={this.state.enemy2Speed} enemy2Armor={this.state.enemy2Armor} enemy2Reward={this.state.enemy2Reward}/>} /> */}
+                    <Route path="/RoomEleven" element={<RoomEleven useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomElevenStatus={roomElevenStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
 
-                    {/* <Route path="/RoomTwelve" element={<RoomTwelve openChest={this.openChest} numberOfEnemiesInRoom={this.state.numberOfEnemiesInRoom} roomTwelveStatus={this.state.roomTwelveStatus} roomMovement={this.roomMovement} playerAttackMove={this.playerAttackMove} playerDodgeMove={this.playerDodgeMove} enemyHealth={this.state.enemyHealth} enemyAttackLow={this.state.enemyAttackLow} enemyAttackHigh={this.state.enemyAttackHigh} enemySpeed={this.state.enemySpeed} enemyArmor={this.state.enemyArmor} enemyReward={this.state.enemyReward}/>} /> */}
+                    <Route path="/RoomTwelve" element={<RoomTwelve openChest={openChest} useHealthPotion={useHealthPotion} resetRoomStatus={resetRoomStatus} roomMovement={roomMovement} enemyOne={enemyOne} enemyTwo={enemyTwo} enemyThree={enemyThree} roomTwelveStatus={roomTwelveStatus} currentRoom={currentRoom}  numberOfEnemiesInRoom={numberOfEnemiesInRoom} startCombatCheck={startCombatCheck} startCombat={startCombat}
+                    playerAttacked={playerAttacked} playerAttackTimerState={playerAttackTimerState} playerAttackTimerStateMax={playerAttackTimerStateMax} playerAttackMove={playerAttackMove} 
+                    playerAttackedCloseEnemy={playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove={playerAttackCloseEnemyMove} />} />
                 </Routes>
-                <GameMap />
+                {/* <GameMap /> */}
             </BrowserRouter>
             </div>
         )
