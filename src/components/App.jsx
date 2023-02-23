@@ -895,7 +895,7 @@ useEffect(() => {
             setRoomThreeStatus(1)
         }
 
-        if(currentRoom === 4){
+        if(currentRoom === 4 & roomFourStatus !== 2){
             setRoomFourStatus(1)
         }
 
@@ -911,7 +911,7 @@ useEffect(() => {
             setRoomSevenStatus(1)
         }
 
-        if(currentRoom === 8){
+        if(currentRoom === 8 & roomEightStatus !== 2){
             setRoomEightStatus(1)
         }
 
@@ -927,7 +927,7 @@ useEffect(() => {
             setRoomElevenStatus(1)
         }
 
-        if(currentRoom === 12){
+        if(currentRoom === 12 & roomTwelveStatus !== 2){
             setRoomTwelveStatus(1)
         }
     }

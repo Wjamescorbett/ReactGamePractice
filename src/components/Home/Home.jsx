@@ -1,6 +1,5 @@
 import React , { Component } from 'react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Home = (props) => {
@@ -8,12 +7,6 @@ const Home = (props) => {
 
     function handleSubmit(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer, attackCloseEnemyTimer) {
         props.pickClass(health, maxHealth, attackLow, attackHigh, speed, maxSpeed, armor, coins, healthPotion, staminaPotion, attackTimer, attackCloseEnemyTimer)
-    }
-
-    const showToastMessage = () => {
-        toast.success('TEST Success Notification !', {
-            position: toast.POSITION.TOP_RIGHT
-        });
     }
 
         return(

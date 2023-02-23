@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import GameRoomElevenPNG from './GameRoomElevenPNG.png';
 import DamageEffects from "../DamageEffects/DamageEffects";
+import EnemyVisuals from "../EnemyVisuals/EnemyVisuals";
+
 
 const RoomEleven = (props) => {
     
@@ -11,17 +13,18 @@ const RoomEleven = (props) => {
                 <div>
                     <h2>This Is Room Eleven</h2>
                 </div>
-            <div>
-                <h2>You are encountering two BOSS triangles. </h2>
-                <h2>The first triangle has {props.enemyHealth} health, {props.enemyAttack} attack, {props.enemySpeed} speed, {props.enemyArmor} armor, and will reward you with {props.enemyReward} coin. </h2>
-                <h2>The second dangerous triangle has {props.enemy2Health} health, {props.enemy2Attack} attack, {props.enemy2Speed} speed, {props.enemy2Armor} armor, and will reward you with {props.enemy2Reward} coin. </h2>
-            </div>
-            <div>
-                <DamageEffects playerAttackMove={props.playerAttackMove} playerDodgeMove={props.playerDodgeMove} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
-            </div>
-            <div>
-                <img src={GameRoomElevenPNG} alt="GameRoomElevenPNG" />
-            </div>
+                <div>
+                    <EnemyVisuals currentRoom={props.currentRoom}  enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} numberOfEnemiesInRoom={props.numberOfEnemiesInRoom} />
+                </div>
+                <div>
+                    <DamageEffects useHealthPotion={props.useHealthPotion} resetRoomStatus={props.resetRoomStatus} startCombat={props.startCombat} startCombatCheck={props.startCombatCheck}  numberOfEnemiesInRoom={props.numberOfEnemiesInRoom}
+                    playerAttacked={props.playerAttacked} playerAttackTimerState={props.playerAttackTimerState} playerAttackTimerStateMax={props.playerAttackTimerStateMax} playerAttackMove={props.playerAttackMove} 
+                    playerAttackedCloseEnemy={props.playerAttackedCloseEnemy} playerAttackCloseEnemyTimerState={props.playerAttackCloseEnemyTimerState} playerAttackCloseEnemyTimerStateMax={props.playerAttackCloseEnemyTimerStateMax} playerAttackCloseEnemyMove= {props.playerAttackCloseEnemyMove}
+                    enemyOne={props.enemyOne} enemyTwo={props.enemyTwo} enemyThree={props.enemyThree} />
+                </div>
+                <div>
+                    <img src={GameRoomElevenPNG} alt="GameRoomElevenPNG" />
+                </div>
             </nav>
         )
     }
